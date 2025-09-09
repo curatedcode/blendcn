@@ -1,0 +1,41 @@
+{
+	"name": "Radix2Shadcn",
+	"short_name": "Radix2Shadcn",
+	"description": "Embrace your community. Swap, sell, and buy with Radix2Shadcn.",
+	"lang": "en_US",
+	"dir": "ltr",
+	"categories": ["productivity", "tools"],
+	"id": "/",
+	"theme_color": "#22b573",
+	"background_color": "#f5f5f5",
+	"display": "standalone",
+	"scope": "/",
+	"start_url": "/",
+	"display_override": ["window-controls-overlay", "standalone"],
+	"icons": [
+		{
+			"src": "/assets/icons/favicon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/assets/icons/favicon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/assets/icons/favicon-maskable-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/assets/icons/favicon-maskable-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	]
+}
