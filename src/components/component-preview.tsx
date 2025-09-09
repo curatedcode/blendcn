@@ -187,7 +187,7 @@ export function ComponentPreview({
               className="w-[300px] bg-background"
             />
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-3">
             <Checkbox id="newsletter" className="bg-background" />
             <Label htmlFor="newsletter">Subscribe to newsletter</Label>
           </div>
