@@ -6,6 +6,7 @@ import {
 	BadgeCheckIcon,
 	CheckCircle2Icon,
 	PopcornIcon,
+	RotateCcwIcon,
 } from "lucide-react";
 import * as React from "react";
 import { toast } from "sonner";
@@ -540,7 +541,7 @@ export function ComponentPreview({
 									description: "Sunday, December 03, 2023 at 9:00 AM",
 									action: {
 										label: "Undo",
-										onClick: () => console.log("Undo"),
+										onClick: () => {},
 									},
 								})
 							}
@@ -781,17 +782,28 @@ function TableDemo() {
 }
 
 function ProgressDemo() {
-	const [progress, setProgress] = React.useState(13);
-	React.useEffect(() => {
-		if (progress === 100) return;
+	const initialProgress = 0;
+	const [progress, setProgress] = React.useState(initialProgress);
 
-		const timer = setTimeout(() => setProgress((v) => v++), 500);
-		return () => clearTimeout(timer);
+	React.useEffect(() => {
+		const timer = setInterval(() => {
+			if (progress >= 100) return;
+			setProgress((v) => v + 10);
+		}, 500);
+		return () => clearInterval(timer);
 	}, [progress]);
+
 	return (
 		<div className="flex items-center gap-3">
 			<Progress id="progress-demo" value={progress} />
-			<span>{progress}%</span>
+			<Button
+				variant={"ghost"}
+				size={"icon"}
+				onClick={() => setProgress(initialProgress)}
+			>
+				<span className="sr-only">Reset progress</span>
+				<RotateCcwIcon />
+			</Button>
 		</div>
 	);
 }
