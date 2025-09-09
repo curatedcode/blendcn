@@ -18,14 +18,14 @@ import {
 } from "~/components/ui/popover";
 import { cn } from "~/lib/utils";
 
-export type ComboboxProps = {
+export interface ComboboxProps {
   options: { value: string; label: string }[];
   placeholder?: string;
   emptyMessage?: string;
   onChange?: (value: string) => void;
   width: number;
   id?: string;
-};
+}
 
 export function Combobox({
   options,
