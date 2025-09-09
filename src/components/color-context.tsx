@@ -77,7 +77,6 @@ export function ColorContextProvider({
     gray: darkGrayValue,
     background: darkBgValue,
   });
-  console.log({ darkModeResult });
 
   const result = resolvedTheme === "dark" ? darkModeResult : lightModeResult;
 
@@ -105,10 +104,6 @@ export function ColorContextProvider({
     darkColors: darkModeResult,
     lightColors: lightModeResult,
   });
-
-  React.useEffect(() => {
-    console.log({ paletteStyles });
-  }, [paletteStyles]);
 
   const memoValues = React.useMemo(
     () => ({
@@ -305,7 +300,6 @@ function getColorCss({
   // const accentSurfaceWideGamut = stripAlpha(accent.surface, "oklch");
   // const graySurface = stripAlpha(gray.surface, "hex");
   // const graySurfaceWideGamut = stripAlpha(gray.surface, "oklch");
-  // console.log({ scale: gray.scale, isDarkMode });
 
   const appleRed = {
     light: {
