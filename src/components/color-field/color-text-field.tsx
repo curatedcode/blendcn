@@ -2,18 +2,26 @@
 
 import Color from "colorjs.io";
 import * as React from "react";
+import {
+	DEFAULT_COLOR,
+	toCssFormat,
+	toShortFormat,
+} from "~/components/color-field/types";
 import { Input } from "~/components/ui/input";
+import { useIsomorphicLayoutEffect } from "~/hooks/use-isomorphic-layout-effect";
 import { cn } from "~/lib/utils";
 
-interface ColorFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface ColorTextFieldProps
+	extends React.InputHTMLAttributes<HTMLInputElement> {
 	value?: string;
 	defaultValue?: string;
 	onValueChange?: (value: string) => void;
 }
 
-const DEFAULT_COLOR = "000000";
-
-export const ColorField = React.forwardRef<HTMLInputElement, ColorFieldProps>(
+export const ColorTextField = React.forwardRef<
+	HTMLInputElement,
+	ColorTextFieldProps
+>(
 	(
 		{
 			defaultValue = DEFAULT_COLOR,
@@ -55,7 +63,7 @@ export const ColorField = React.forwardRef<HTMLInputElement, ColorFieldProps>(
 		return (
 			// biome-ignore lint/a11y/noStaticElementInteractions: we need to make sure input doesn't lose focus. unique element unique requirements.
 			<div
-				className="flex items-center gap-2"
+				className="flex w-full max-w-60 items-center gap-2"
 				onMouseUp={() => {
 					if (preventInputSelectionRef.current) return;
 
@@ -171,7 +179,7 @@ export const ColorField = React.forwardRef<HTMLInputElement, ColorFieldProps>(
 	},
 );
 
-ColorField.displayName = "ColorField";
+ColorTextField.displayName = "ColorTextField";
 
 const hasSelection = (input: HTMLInputElement | null) => {
 	if (input) {
@@ -180,70 +188,3 @@ const hasSelection = (input: HTMLInputElement | null) => {
 	}
 	return false;
 };
-
-const toShortFormat = (value?: string): string | null => {
-	if (!value) return null;
-
-	value = toCssFormat(value.trim());
-	const regexp = /((?:^(?:[0-9]|[a-f]){6})|(?:^(?:[0-9]|[a-f]){1,3}))/i;
-	let [hex] = value.replace(/^#/, "").match(regexp) ?? [];
-	let color: Color | undefined;
-
-	if (isColorFunction(value)) {
-		try {
-			color = new Color(value);
-			if (["srgb", "hsl", "hwb"].includes(color.spaceId)) {
-				return toShortFormat(color.to("srgb").toString({ format: "hex" }));
-			}
-			const str = color.toString({ precision: 3 });
-			return str.startsWith("color")
-				? str.replace("color(", "").replace(")", "")
-				: str;
-		} catch {}
-	}
-
-	if (!hex) return null;
-
-	switch (hex.length) {
-		case 1:
-			hex = hex.repeat(6);
-			break;
-		case 2:
-			hex = hex.repeat(3);
-			break;
-		case 3: {
-			const [r, g, b] = hex.split("");
-			hex = `${r}${r}${g}${g}${b}${b}`;
-		}
-	}
-
-	return hex.toUpperCase();
-};
-
-const toCssFormat = (value: string) => {
-	if (isColorFunction(value)) {
-		return value.includes("(") ? value : `color(${value})`;
-	}
-	if (value.startsWith("#")) return value;
-	return `#${value}`;
-};
-
-const isColorFunction = (value: string) =>
-	value.startsWith("a98") ||
-	value.startsWith("color") ||
-	value.startsWith("display-p3") ||
-	value.startsWith("hsl") ||
-	value.startsWith("hwb") ||
-	value.startsWith("lab") ||
-	value.startsWith("lch") ||
-	value.startsWith("oklab") ||
-	value.startsWith("oklch") ||
-	value.startsWith("p3") ||
-	value.startsWith("prophoto") ||
-	value.startsWith("rec2020") ||
-	value.startsWith("rgb") ||
-	value.startsWith("srgb") ||
-	value.startsWith("xyz");
-
-const useIsomorphicLayoutEffect =
-	typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;

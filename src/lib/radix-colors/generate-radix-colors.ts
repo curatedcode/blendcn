@@ -18,7 +18,7 @@ const lightColors = Object.fromEntries(
 		Object.values(radixScaleColors[scaleName]).map((str) =>
 			new Color(str).to("oklch"),
 		),
-	]),
+	]), // make sure NO hex value 3 or less is returned
 ) as Record<(typeof radixScaleNames)[number], ArrayOf12<Color>>;
 
 const darkColors = Object.fromEntries(

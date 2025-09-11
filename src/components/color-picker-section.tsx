@@ -1,99 +1,51 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import * as React from "react";
 import { useColorContext } from "~/components/color-context";
-import { ColorField } from "~/components/color-field";
-
-import { Button } from "~/components/ui/button";
+import { ColorTextField } from "~/components/color-field/color-text-field";
 import { Label } from "~/components/ui/label";
-import { copyToClipboard } from "~/lib/clipboard";
+import { Separator } from "~/components/ui/separator";
+import { cn } from "~/lib/utils";
 
-export function ColorPickerSection() {
-	const { resolvedTheme } = useTheme();
+export function ColorPickerSection({ className }: { className?: string }) {
 	const {
-		result,
 		accentValue,
 		setAccentValue,
 		grayValue,
 		setGrayValue,
 		bgValue,
 		setBgValue,
-		getColorCss,
 	} = useColorContext();
 
-	const [copied, setCopied] = React.useState("");
-	const copiedTimeoutRef = React.useRef<number | null>(null);
-	const COPIED_TIMEOUT = 1500;
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: React to copy change
-	const setCopiedMessage = React.useCallback(
-		(message: string) => {
-			setCopied(message);
-			window.clearTimeout(copiedTimeoutRef.current ?? undefined);
-			copiedTimeoutRef.current = window.setTimeout(() => {
-				setCopied("");
-			}, COPIED_TIMEOUT);
-		},
-		[setCopied],
-	);
-
 	return (
-		<div className="grid w-full gap-4 sm:max-w-xs md:mx-0">
-			<div className="flex flex-col">
-				<Label htmlFor="accent" className="mb-2">
-					Accent
-				</Label>
-				<ColorField
+		<div className={cn("flex w-full flex-col gap-3", className)}>
+			<h1 className="flex h-9 items-center font-semibold text-lg md:pr-3">
+				Theme
+			</h1>
+			<Separator className="-mt-3" />
+			<div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:pr-3">
+				<Label htmlFor="accent">Accent</Label>
+				<ColorTextField
 					id="accent"
 					value={accentValue}
 					onValueChange={setAccentValue}
 				/>
 			</div>
-			<div className="flex flex-col">
-				<Label htmlFor="gray" className="mb-2">
-					Gray
-				</Label>
-				<ColorField id="gray" value={grayValue} onValueChange={setGrayValue} />
+			<div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:pr-3">
+				<Label htmlFor="gray">Gray</Label>
+				<ColorTextField
+					id="gray"
+					value={grayValue}
+					onValueChange={setGrayValue}
+				/>
 			</div>
-			<div className="flex flex-col">
-				<Label htmlFor="background" className="mb-2">
-					Background
-				</Label>
-				<ColorField
+			<div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:pr-3">
+				<Label htmlFor="background">Background</Label>
+				<ColorTextField
 					id="background"
 					value={bgValue}
 					onValueChange={setBgValue}
 				/>
 			</div>
-			<Button
-				onClick={async () => {
-					const css = getColorCss({
-						isDarkMode: resolvedTheme === "dark",
-						accent: {
-							contrast: result.accentContrast,
-							scale: result.accentScale,
-							scaleWideGamut: result.accentScaleWideGamut,
-							surface: result.accentSurface,
-							surfaceWideGamut: result.accentSurfaceWideGamut,
-						},
-						background: result.background,
-						gray: {
-							contrast: "#fff",
-							scale: result.grayScale,
-							scaleWideGamut: result.grayScaleWideGamut,
-							surface: result.graySurface,
-							surfaceWideGamut: result.graySurfaceWideGamut,
-						},
-					});
-					await copyToClipboard(css);
-					setCopiedMessage("light");
-				}}
-				data-copied={copied ? true : undefined}
-				className="w-full"
-			>
-				{copied ? "Copied" : "Copy"}
-			</Button>
 		</div>
 	);
 }

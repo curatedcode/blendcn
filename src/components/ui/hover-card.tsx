@@ -37,7 +37,7 @@ type HoverCardContentProps = React.ComponentPropsWithoutRef<
 	VariantProps<typeof hoverCardVariants>;
 
 const HoverCardContent = React.forwardRef<
-	React.ElementRef<typeof HoverCardPrimitive.Content>,
+	React.ComponentRef<typeof HoverCardPrimitive.Content>,
 	HoverCardContentProps
 >(({ className, align = "center", sideOffset = 4, size, ...props }, ref) => (
 	<HoverCardPrimitive.Content

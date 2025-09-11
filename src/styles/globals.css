@@ -10,6 +10,8 @@
   --brightness-primary-active: 0.92;
 
   --breakpoint-xs: 30rem;
+
+  --spacing-desktop: 120rem;
 }
 
 @theme inline {
@@ -62,6 +64,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --apple-red: var(--apple-red)
 }
 
 :root {
@@ -89,7 +93,7 @@
   --accent: #b3dcc3; /* primary-5 */
   --accent-foreground: #1f1f1f; /* gray-12 */
 
-  --destructive: #ff383c; /* apple (red default light) */
+  --destructive: #ff383c; /* apple (red default) */
 
   --border: #cbcbcb; /* gray-6 */
   --input: #e4e4e4; /* gray-3 */
@@ -112,6 +116,8 @@
 
   --sidebar-border: #bfbfbf; /* gray-7 */
   --sidebar-ring: #3aad73; /* primary-8 */
+
+  --apple-red: "#ff383c";
 }
 
 .dark {
@@ -137,7 +143,7 @@
 	--accent: #1e4b30; /* primary-5 */
 	--accent-foreground: #eee; /* gray-12 */
 
-	--destructive: #ff4245; /* apple (red default dark) */
+	--destructive: #ff383c; /* apple (red default) */
 
 	--border: #3e3e3e; /* gray-6 */
 	--input: #292929; /* gray-3 */
@@ -185,7 +191,7 @@
       --accent: oklch(85.9% 0.0554 157.5); /* primary-5 */
       --accent-foreground: oklch(24% 0 none); /* gray-12 */
 
-      --destructive: oklch(65.32% 0.233 25.74); /* apple (red default light) */
+      --destructive: oklch(65.32% 0.233 25.74); /* apple (red default) */
 
       --border: oklch(84.1% 0 none); /* gray-6 */
       --input: oklch(91.8% 0 none); /* gray-3 */
@@ -231,7 +237,7 @@
       --accent: oklch(37.3% 0.0687 154.6); /* primary-5 */
       --accent-foreground: oklch(94.9% 0 none); /* gray-12 */
 
-      --destructive: oklch(66.20% 0.225 25.12); /* apple (red default dark) */
+      --destructive: oklch(65.32% 0.233 25.74); /* apple (red default) */
 
       --border: oklch(36.2% 0 none); /* gray-6 */
       --input: oklch(28.3% 0 none); /* gray-3 */
