@@ -1,10 +1,4 @@
-"use client";
-
-import { useTheme } from "next-themes";
-
 export function NoiseBackdrop() {
-	const { resolvedTheme } = useTheme();
-
 	return (
 		<svg className="pointer-events-none fixed top-0 left-0 z-[-1] size-full">
 			<title>Noise filter</title>
@@ -20,7 +14,7 @@ export function NoiseBackdrop() {
 					<feFuncR type="linear" slope="1.5"></feFuncR>
 					<feFuncG type="linear" slope="1.5"></feFuncG>
 					<feFuncB type="linear" slope="1.5"></feFuncB>
-					<OpacitySlope resolvedTheme={resolvedTheme} />
+					<feFuncA type="linear" slope="var(--noise-opacity-slope)"></feFuncA>
 				</feComponentTransfer>
 				<feComponentTransfer>
 					<feFuncR type="linear" slope="1.2" intercept="-0.10" />
@@ -33,24 +27,8 @@ export function NoiseBackdrop() {
 				height="100%"
 				filter="url(#noise-filter)"
 				fill="currentColor"
-				className="mix-blend-overlay"
+				className="opacity-[0.32] mix-blend-overlay dark:opacity-[0.09]"
 			></rect>
 		</svg>
-	);
-}
-
-function OpacitySlope({
-	resolvedTheme,
-}: {
-	resolvedTheme: string | undefined;
-}) {
-	if (resolvedTheme === "light") {
-		return (
-			<feFuncA type="linear" slope="0.3" suppressHydrationWarning></feFuncA>
-		);
-	}
-
-	return (
-		<feFuncA type="linear" slope="0.08" suppressHydrationWarning></feFuncA>
 	);
 }
