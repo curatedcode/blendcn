@@ -80,7 +80,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
-			<body className="font-body">
+			<body className="bg-background font-body">
 				<ThemeProvider
 					enableSystem
 					attribute={"class"}
