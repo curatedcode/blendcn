@@ -14,7 +14,6 @@ export function NoiseBackdrop() {
 					<feFuncR type="linear" slope="1.5"></feFuncR>
 					<feFuncG type="linear" slope="1.5"></feFuncG>
 					<feFuncB type="linear" slope="1.5"></feFuncB>
-					<feFuncA type="linear" slope="var(--noise-opacity-slope)"></feFuncA>
 				</feComponentTransfer>
 				<feComponentTransfer>
 					<feFuncR type="linear" slope="1.2" intercept="-0.10" />
