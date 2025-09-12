@@ -82,7 +82,7 @@ export const ColorTextField = React.forwardRef<
 								forwardedRef(el);
 							} else if (forwardedRef) {
 								(
-									forwardedRef as React.MutableRefObject<HTMLInputElement | null>
+									forwardedRef as React.RefObject<HTMLInputElement | null>
 								).current = el;
 							}
 						}}
