@@ -3,10 +3,11 @@
 import { useTheme } from "next-themes";
 import * as React from "react";
 import { useLocalStorage } from "~/hooks/use-local-storage";
-import { generateRadixColors } from "~/lib/radix-colors/generate-radix-colors";
+import { generateColors } from "~/lib/colors/generate-colors";
+import type { generateRandomPalette } from "~/lib/colors/generate-random-palette";
 
 type ColorContextType = {
-	result: ReturnType<typeof generateRadixColors>;
+	result: ReturnType<typeof generateColors>;
 	accentValue: string;
 	grayValue: string;
 	bgValue: string;
@@ -33,45 +34,47 @@ export function useColorContext() {
 
 export function ColorContextProvider({
 	children,
+	initialPalette,
 }: {
 	children: React.ReactNode;
+	initialPalette: ReturnType<typeof generateRandomPalette>;
 }) {
 	const { resolvedTheme } = useTheme();
 
 	const [lightAccentValue, setLightAccentValue] = useLocalStorage(
 		"colors/light/accent",
-		"#3D63DD",
+		initialPalette.accent,
 	);
 	const [lightGrayValue, setLightGrayValue] = useLocalStorage(
 		"colors/light/gray",
-		"#8B8D98",
+		initialPalette.gray,
 	);
 	const [lightBgValue, setLightBgValue] = useLocalStorage(
 		"colors/light/background",
-		"#FFFFFF",
+		initialPalette.bgLight,
 	);
 
 	const [darkAccentValue, setDarkAccentValue] = useLocalStorage(
 		"colors/dark/accent",
-		"#3D63DD",
+		initialPalette.accent,
 	);
 	const [darkGrayValue, setDarkGrayValue] = useLocalStorage(
 		"colors/dark/gray",
-		"#8B8D98",
+		initialPalette.gray,
 	);
 	const [darkBgValue, setDarkBgValue] = useLocalStorage(
 		"colors/dark/background",
-		"#111111",
+		initialPalette.bgDark,
 	);
 
-	const lightModeResult = generateRadixColors({
+	const lightModeResult = generateColors({
 		appearance: "light",
 		accent: lightAccentValue,
 		gray: lightGrayValue,
 		background: lightBgValue,
 	});
 
-	const darkModeResult = generateRadixColors({
+	const darkModeResult = generateColors({
 		appearance: "dark",
 		accent: darkAccentValue,
 		gray: darkGrayValue,
@@ -128,7 +131,11 @@ export function ColorContextProvider({
 
 	return (
 		<ColorContext.Provider value={memoValues}>
-			<style id="palette-styles" ref={paletteStylesElementRef}>
+			<style
+				id="palette-styles"
+				ref={paletteStylesElementRef}
+				suppressHydrationWarning
+			>
 				{stylesheet}
 			</style>
 			{children}
@@ -256,7 +263,7 @@ ${darkColorsCss}
 	};
 };
 
-type GeneratedColors = ReturnType<typeof generateRadixColors>;
+type GeneratedColors = ReturnType<typeof generateColors>;
 
 interface GetColorCssParams {
 	isDarkMode: boolean;
