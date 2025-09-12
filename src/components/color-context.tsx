@@ -2,7 +2,6 @@
 
 import { useTheme } from "next-themes";
 import * as React from "react";
-import { useLayoutEffect } from "~/hooks/use-layout-effect";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 import { generateRadixColors } from "~/lib/radix-colors/generate-radix-colors";
 
@@ -81,14 +80,6 @@ export function ColorContextProvider({
 
 	const result = resolvedTheme === "dark" ? darkModeResult : lightModeResult;
 
-	const [timestamp, setTimestamp] = useLocalStorage(
-		"colors/timestamp",
-		Date.now(),
-	);
-	const [discardStoredValues] = React.useState(
-		Date.now() - timestamp > 1000 * 60 * 2,
-	);
-
 	const accentValue =
 		resolvedTheme === "dark" ? darkAccentValue : lightAccentValue;
 	const grayValue = resolvedTheme === "dark" ? darkGrayValue : lightGrayValue;
@@ -134,19 +125,6 @@ export function ColorContextProvider({
 			styleObject,
 		],
 	);
-
-	useLayoutEffect(() => {
-		if (discardStoredValues) {
-			setLightAccentValue("#3D63DD");
-			setLightGrayValue("#8B8D98");
-			setLightBgValue("#FFFFFF");
-			setDarkAccentValue("#3D63DD");
-			setDarkGrayValue("#8B8D98");
-			setDarkBgValue("#111111");
-		}
-		// Refresh the timestamp
-		setTimestamp(Date.now());
-	}, [discardStoredValues]);
 
 	return (
 		<ColorContext.Provider value={memoValues}>
