@@ -1,5 +1,5 @@
 /**
- * @link https://github.com/radix-ui/website/blob/main/components/generateRadixColors.tsx
+ * @link https://github.com/radix-ui/website/blob/main/components/generateColors.tsx
  */
 
 import BezierEasing from "bezier-easing";
@@ -10,7 +10,7 @@ import {
 	radixGrayScaleNames,
 	radixScaleColors,
 	radixScaleNames,
-} from "~/lib/radix-colors/types";
+} from "~/lib/colors/types";
 
 const lightColors = Object.fromEntries(
 	radixScaleNames.map((scaleName) => [
@@ -48,7 +48,7 @@ const darkGrayColors = Object.fromEntries(
 	]),
 ) as Record<(typeof radixGrayScaleNames)[number], ArrayOf12<Color>>;
 
-export const generateRadixColors = ({
+export const generateColors = ({
 	appearance,
 	...args
 }: {

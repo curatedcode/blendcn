@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
-import { generateRadixColors } from "~/lib/radix-colors/generate-radix-colors";
+import { generateColors } from "~/lib/colors/generate-colors";
 
-describe("generateRadixColors fn output", () => {
+describe("generateColors fn output", () => {
 	test("outputs correct color values for light theme", () => {
 		const colors = {
 			accent: "#2A69C0",
@@ -9,14 +9,14 @@ describe("generateRadixColors fn output", () => {
 			background: "#FFFFFF",
 		};
 
-		const result = generateRadixColors({
+		const result = generateColors({
 			appearance: "light",
 			accent: colors.accent,
 			gray: colors.gray,
 			background: colors.background,
 		});
 
-		const resultShouldBe: ReturnType<typeof generateRadixColors> = {
+		const resultShouldBe: ReturnType<typeof generateColors> = {
 			accentScale: [
 				"#fcfdfe",
 				"#f6f9fe",
@@ -147,14 +147,14 @@ describe("generateRadixColors fn output", () => {
 			background: "#111111",
 		};
 
-		const result = generateRadixColors({
+		const result = generateColors({
 			appearance: "dark",
 			accent: colors.accent,
 			gray: colors.gray,
 			background: colors.background,
 		});
 
-		const resultShouldBe: ReturnType<typeof generateRadixColors> = {
+		const resultShouldBe: ReturnType<typeof generateColors> = {
 			accentScale: [
 				"#0c111c",
 				"#111725",
