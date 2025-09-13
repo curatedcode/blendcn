@@ -85,7 +85,6 @@ export function ColorContextProvider({
 		initialPalette.bgDark,
 	);
 
-	// session storage values during hydration, initial values during SSR
 	const lightModeResult = React.useMemo(
 		() =>
 			generateColors({
