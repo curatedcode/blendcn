@@ -23,7 +23,7 @@ export function ContextMenuPreview() {
 		<ComponentAccordionGroup title="Context Menu">
 			<ComponentAccordionSubGroup title="Example">
 				<ContextMenu>
-					<ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed bg-background text-sm">
+					<ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
 						Right click here
 					</ContextMenuTrigger>
 					<ContextMenuContent className="w-52">

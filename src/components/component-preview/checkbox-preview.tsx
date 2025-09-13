@@ -26,13 +26,13 @@ export function CheckboxPreview() {
 		<ComponentAccordionGroup title="Checkbox">
 			<ComponentAccordionSubGroup title="Default">
 				<div className="flex items-center gap-2">
-					<Checkbox id="terms" className="bg-background" />
+					<Checkbox id="terms" />
 					<Label htmlFor="terms">Accept terms and conditions</Label>
 				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="With Text">
 				<div className="flex items-start gap-3">
-					<Checkbox id="terms-2" className="bg-background" defaultChecked />
+					<Checkbox id="terms-2" defaultChecked />
 					<div className="grid gap-2">
 						<Label htmlFor="terms-2">Accept terms and conditions</Label>
 						<p className="text-muted-foreground text-sm">
@@ -43,16 +43,16 @@ export function CheckboxPreview() {
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Disabled">
 				<div className="flex items-center gap-2">
-					<Checkbox id="toggle" className="bg-background" disabled />
+					<Checkbox id="toggle" disabled />
 					<Label htmlFor="toggle">Enable notifications</Label>
 				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Card">
-				<Label className="flex items-start gap-3 rounded-lg border bg-background p-3 hover:bg-accent/50 has-[[aria-checked=true]]:border-green-600 has-[[aria-checked=true]]:bg-green-50 dark:has-[[aria-checked=true]]:border-green-900 dark:has-[[aria-checked=true]]:bg-green-950">
+				<Label className="group flex items-start gap-3 rounded-lg border p-3 hover:bg-accent/50 has-[[aria-checked=true]]:border-green-600 has-[[aria-checked=true]]:bg-green-50 dark:has-[[aria-checked=true]]:border-green-900 dark:has-[[aria-checked=true]]:bg-green-950">
 					<Checkbox
 						id="toggle-2"
 						defaultChecked
-						className="bg-background data-[state=checked]:border-green-600 data-[state=checked]:bg-green-600 data-[state=checked]:text-white dark:data-[state=checked]:border-green-700 dark:data-[state=checked]:bg-green-700"
+						className="group-hover:bg-background data-[state=checked]:border-green-600 data-[state=checked]:bg-green-600 data-[state=checked]:text-white dark:data-[state=checked]:border-green-700 dark:data-[state=checked]:bg-green-700"
 					/>
 					<div className="grid gap-1.5 font-normal">
 						<p className="font-medium text-sm leading-none">
@@ -148,7 +148,6 @@ function CheckboxForm() {
 												<FormControl>
 													<Checkbox
 														checked={field.value?.includes(item.id)}
-														className="bg-background"
 														onCheckedChange={(checked) => {
 															return checked
 																? field.onChange([...field.value, item.id])

@@ -128,7 +128,7 @@ function DatePickerWithInput() {
 					id="date"
 					value={value}
 					placeholder="June 01, 2025"
-					className="bg-background pr-10"
+					className="pr-10"
 					onChange={(e) => {
 						const date = new Date(e.target.value);
 						setValue(e.target.value);
@@ -223,7 +223,7 @@ function DatePickerWithTime() {
 					id="time-picker"
 					step="1"
 					defaultValue="10:30:00"
-					className="appearance-none bg-background [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+					className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 				/>
 			</div>
 		</div>
@@ -248,7 +248,7 @@ function DatePickerNaturalLanguage() {
 					id="date"
 					value={value}
 					placeholder="Tomorrow or next week"
-					className="bg-background pr-10"
+					className="pr-10"
 					onChange={(e) => {
 						setValue(e.target.value);
 						const date = parseDate(e.target.value);

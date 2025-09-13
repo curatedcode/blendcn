@@ -26,30 +26,17 @@ export function InputPreview() {
 	return (
 		<ComponentAccordionGroup title="Input">
 			<ComponentAccordionSubGroup title="Default">
-				<Input
-					type="email"
-					placeholder="Email"
-					className="w-64 bg-background"
-				/>
+				<Input type="email" placeholder="Email" className="w-64" />
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="File">
-				<Input type="file" className="w-64 bg-background" />
+				<Input type="file" className="w-64" />
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Disabled">
-				<Input
-					disabled
-					type="email"
-					placeholder="Email"
-					className="w-64 bg-background"
-				/>
+				<Input disabled type="email" placeholder="Email" className="w-64" />
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="With Button">
 				<div className="flex items-center gap-3">
-					<Input
-						type="email"
-						placeholder="Email"
-						className="w-64 bg-background"
-					/>
+					<Input type="email" placeholder="Email" className="w-64" />
 					<Button type="submit" variant="outline">
 						Subscribe
 					</Button>
@@ -58,12 +45,7 @@ export function InputPreview() {
 			<ComponentAccordionSubGroup title="With Label">
 				<div className="grid items-center gap-2">
 					<Label htmlFor="email">Email</Label>
-					<Input
-						type="email"
-						id="email"
-						placeholder="Email"
-						className="w-64 bg-background"
-					/>
+					<Input type="email" id="email" placeholder="Email" className="w-64" />
 				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Form">
@@ -97,10 +79,7 @@ function InputFormDemo() {
 	}
 	return (
 		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col space-y-4"
-			>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 				<FormField
 					control={form.control}
 					name="username"
@@ -108,11 +87,7 @@ function InputFormDemo() {
 						<FormItem>
 							<FormLabel>Username</FormLabel>
 							<FormControl>
-								<Input
-									placeholder="shadcn"
-									className="w-64 bg-background"
-									{...field}
-								/>
+								<Input placeholder="shadcn" className="w-64" {...field} />
 							</FormControl>
 							<FormDescription>
 								This is your public display name.
@@ -121,9 +96,7 @@ function InputFormDemo() {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit" className="w-fit self-end">
-					Submit
-				</Button>
+				<Button type="submit">Submit</Button>
 			</form>
 		</Form>
 	);

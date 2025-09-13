@@ -89,11 +89,7 @@ function CalendarMonthYearSelector() {
 						)
 					}
 				>
-					<SelectTrigger
-						id="dropdown"
-						size="sm"
-						className="w-full bg-background"
-					>
+					<SelectTrigger id="dropdown" size="sm" className="w-full">
 						<SelectValue placeholder="Dropdown" />
 					</SelectTrigger>
 					<SelectContent align="center">

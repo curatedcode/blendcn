@@ -25,11 +25,7 @@ export function ToggleGroupPreview() {
 				</ToggleGroup>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Outline">
-				<ToggleGroup
-					variant="outline"
-					type="multiple"
-					className="bg-background"
-				>
+				<ToggleGroup variant="outline" type="multiple">
 					<ToggleGroupItem value="bold" aria-label="Toggle bold">
 						<BoldIcon />
 					</ToggleGroupItem>

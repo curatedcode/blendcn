@@ -186,7 +186,7 @@ function ComboboxPopover() {
 			<p className="text-muted-foreground text-sm">Status</p>
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
-					<Button variant="outline" className="w-[150px] justify-start">
+					<Button variant="outline">
 						{selectedStatus ? selectedStatus.label : "+ Set status"}
 					</Button>
 				</PopoverTrigger>
@@ -235,7 +235,7 @@ function ComboboxDropdownMenu() {
 	const [open, setOpen] = React.useState(false);
 
 	return (
-		<div className="flex w-full flex-col items-start justify-between rounded-md border bg-background px-4 py-3 sm:flex-row sm:items-center">
+		<div className="flex w-full flex-col items-start justify-between rounded-md border px-4 py-3 sm:flex-row sm:items-center">
 			<p className="font-medium text-sm leading-none">
 				<span className="mr-2 rounded-lg bg-primary px-2 py-1 text-primary-foreground text-xs">
 					{label}
@@ -330,7 +330,7 @@ function ComboboxResponsive() {
 		return (
 			<Drawer open={open} onOpenChange={setOpen}>
 				<DrawerTrigger asChild>
-					<Button variant="outline" className="w-[150px] justify-start">
+					<Button variant="outline">
 						{selectedStatus ? selectedStatus.label : "+ Set status"}
 					</Button>
 				</DrawerTrigger>
@@ -350,7 +350,7 @@ function ComboboxResponsive() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<Button variant="outline" className="w-[150px] justify-start">
+				<Button variant="outline" className="w-[200px]">
 					{selectedStatus ? selectedStatus.label : "+ Set status"}
 				</Button>
 			</PopoverTrigger>
@@ -434,7 +434,7 @@ function ComboboxForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 				<FormField
 					control={form.control}
 					name="language"

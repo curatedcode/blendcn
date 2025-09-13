@@ -33,7 +33,7 @@ export function SelectPreview() {
 		<ComponentAccordionGroup title="Select">
 			<ComponentAccordionSubGroup title="Default">
 				<Select>
-					<SelectTrigger className="w-[180px] bg-background">
+					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Select a fruit" />
 					</SelectTrigger>
 					<SelectContent>
@@ -61,7 +61,7 @@ export function SelectPreview() {
 function SelectScrollable() {
 	return (
 		<Select>
-			<SelectTrigger className="w-82 bg-background">
+			<SelectTrigger className="w-82">
 				<SelectValue placeholder="Select a timezone" />
 			</SelectTrigger>
 			<SelectContent>
@@ -145,7 +145,7 @@ function SelectForm() {
 	}
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 				<FormField
 					control={form.control}
 					name="email"
@@ -154,7 +154,7 @@ function SelectForm() {
 							<FormLabel>Email</FormLabel>
 							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<FormControl>
-									<SelectTrigger className="bg-background">
+									<SelectTrigger>
 										<SelectValue placeholder="Select a verified email to display" />
 									</SelectTrigger>
 								</FormControl>

@@ -25,15 +25,12 @@ export function TextareaPreview() {
 	return (
 		<ComponentAccordionGroup title="Textarea">
 			<ComponentAccordionSubGroup title="Default">
-				<Textarea
-					placeholder="Type your message here."
-					className="w-84 bg-background"
-				/>
+				<Textarea placeholder="Type your message here." className="w-84" />
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Disabled">
 				<Textarea
 					placeholder="Type your message here."
-					className="w-84 bg-background"
+					className="w-84"
 					disabled
 				/>
 			</ComponentAccordionSubGroup>
@@ -42,7 +39,7 @@ export function TextareaPreview() {
 					<Textarea
 						placeholder="Type your message here."
 						id="message-2"
-						className="w-84 bg-background"
+						className="w-84"
 					/>
 					<p className="w-84 text-pretty text-muted-foreground text-sm">
 						Your message will be copied to the support team.
@@ -51,10 +48,7 @@ export function TextareaPreview() {
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="With Button">
 				<div className="flex items-start gap-3">
-					<Textarea
-						placeholder="Type your message here."
-						className="w-84 bg-background"
-					/>
+					<Textarea placeholder="Type your message here." className="w-84" />
 					<Button variant={"outline"}>Send message</Button>
 				</div>
 			</ComponentAccordionSubGroup>
@@ -64,7 +58,7 @@ export function TextareaPreview() {
 					<Textarea
 						placeholder="Type your message here."
 						id="message"
-						className="w-84 bg-background"
+						className="w-84"
 					/>
 				</div>
 			</ComponentAccordionSubGroup>
@@ -104,10 +98,7 @@ function FormDemo() {
 	}
 	return (
 		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col space-y-4"
-			>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 				<FormField
 					control={form.control}
 					name="bio"
@@ -117,7 +108,7 @@ function FormDemo() {
 							<FormControl>
 								<Textarea
 									placeholder="Tell us a little bit about yourself"
-									className="w-84 resize-none bg-background"
+									className="w-84 resize-none"
 									{...field}
 								/>
 							</FormControl>
@@ -128,9 +119,7 @@ function FormDemo() {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit" className="w-fit self-end">
-					Submit
-				</Button>
+				<Button type="submit">Submit</Button>
 			</form>
 		</Form>
 	);

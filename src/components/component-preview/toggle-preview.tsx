@@ -14,11 +14,7 @@ export function TogglePreview() {
 				</Toggle>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Outline">
-				<Toggle
-					variant="outline"
-					aria-label="Toggle italic"
-					className="bg-background"
-				>
+				<Toggle variant="outline" aria-label="Toggle italic">
 					<ItalicIcon />
 				</Toggle>
 			</ComponentAccordionSubGroup>

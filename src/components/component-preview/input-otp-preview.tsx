@@ -35,18 +35,18 @@ export function InputOTPPreview() {
 			<ComponentAccordionSubGroup title="Separator">
 				<InputOTP maxLength={6}>
 					<InputOTPGroup>
-						<InputOTPSlot index={0} className="bg-background" />
-						<InputOTPSlot index={1} className="bg-background" />
+						<InputOTPSlot index={0} />
+						<InputOTPSlot index={1} />
 					</InputOTPGroup>
 					<InputOTPSeparator />
 					<InputOTPGroup>
-						<InputOTPSlot index={2} className="bg-background" />
-						<InputOTPSlot index={3} className="bg-background" />
+						<InputOTPSlot index={2} />
+						<InputOTPSlot index={3} />
 					</InputOTPGroup>
 					<InputOTPSeparator />
 					<InputOTPGroup>
-						<InputOTPSlot index={4} className="bg-background" />
-						<InputOTPSlot index={5} className="bg-background" />
+						<InputOTPSlot index={4} />
+						<InputOTPSlot index={5} />
 					</InputOTPGroup>
 				</InputOTP>
 			</ComponentAccordionSubGroup>
@@ -61,12 +61,12 @@ function PatternDemo() {
 	return (
 		<InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>
 			<InputOTPGroup>
-				<InputOTPSlot index={0} className="bg-background" />
-				<InputOTPSlot index={1} className="bg-background" />
-				<InputOTPSlot index={2} className="bg-background" />
-				<InputOTPSlot index={3} className="bg-background" />
-				<InputOTPSlot index={4} className="bg-background" />
-				<InputOTPSlot index={5} className="bg-background" />
+				<InputOTPSlot index={0} />
+				<InputOTPSlot index={1} />
+				<InputOTPSlot index={2} />
+				<InputOTPSlot index={3} />
+				<InputOTPSlot index={4} />
+				<InputOTPSlot index={5} />
 			</InputOTPGroup>
 		</InputOTP>
 	);
@@ -96,10 +96,7 @@ function FormDemo() {
 	}
 	return (
 		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col space-y-4"
-			>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 				<FormField
 					control={form.control}
 					name="pin"
@@ -109,12 +106,12 @@ function FormDemo() {
 							<FormControl>
 								<InputOTP maxLength={6} {...field}>
 									<InputOTPGroup>
-										<InputOTPSlot index={0} className="bg-background" />
-										<InputOTPSlot index={1} className="bg-background" />
-										<InputOTPSlot index={2} className="bg-background" />
-										<InputOTPSlot index={3} className="bg-background" />
-										<InputOTPSlot index={4} className="bg-background" />
-										<InputOTPSlot index={5} className="bg-background" />
+										<InputOTPSlot index={0} />
+										<InputOTPSlot index={1} />
+										<InputOTPSlot index={2} />
+										<InputOTPSlot index={3} />
+										<InputOTPSlot index={4} />
+										<InputOTPSlot index={5} />
 									</InputOTPGroup>
 								</InputOTP>
 							</FormControl>
@@ -125,9 +122,7 @@ function FormDemo() {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit" className="w-fit self-end">
-					Submit
-				</Button>
+				<Button type="submit">Submit</Button>
 			</form>
 		</Form>
 	);
