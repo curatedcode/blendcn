@@ -84,32 +84,44 @@ export function Header() {
 
 	if (!isHydrated) {
 		return (
-			<div className="flex w-full items-center pl-3">
+			<div className="flex w-full items-center gap-1.5 pb-1 pl-3">
 				<h1 className="mr-auto font-semibold text-lg">Components</h1>
-				<Button variant={"outline"} size={"icon"}>
+				<Button
+					variant={"outline"}
+					className="dark:border-border dark:bg-background dark:hover:bg-accent/50 dark:hover:text-accent-foreground"
+					size={"icon"}
+				>
 					<SunIcon />
 				</Button>
-				<Button variant={"outline"}>Copy</Button>
+				<Button
+					variant={"outline"}
+					className="dark:border-border dark:bg-background dark:hover:bg-accent/50 dark:hover:text-accent-foreground"
+				>
+					Copy
+				</Button>
 			</div>
 		);
 	}
 
 	return (
-		<div className="flex w-full items-center pl-3">
+		<div className="flex w-full items-center gap-1.5 pb-1 pl-3">
 			<h1 className="mr-auto font-semibold text-lg">Components</h1>
 			<Button
 				variant={"outline"}
 				size={"icon"}
+				className="relative dark:border-border dark:bg-background dark:hover:bg-accent/50 dark:hover:text-accent-foreground"
 				onClick={() => handleThemeChange()}
 			>
 				<span className="sr-only">Switch theme</span>
-				<AnimatePresence>
+				<AnimatePresence mode="wait">
 					{resolvedTheme === "light" && (
 						<motion.div
 							key="light"
-							initial={{ opacity: 0.6, scale: 0.6 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.6 }}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.1 }}
+							className="absolute inset-0 flex items-center justify-center"
 						>
 							<SunIcon />
 						</motion.div>
@@ -117,9 +129,11 @@ export function Header() {
 					{resolvedTheme === "dark" && (
 						<motion.div
 							key="dark"
-							initial={{ opacity: 0.6, scale: 0.6 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.6 }}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.1 }}
+							className="absolute inset-0 flex items-center justify-center"
 						>
 							<MoonStarIcon />
 						</motion.div>
@@ -128,7 +142,12 @@ export function Header() {
 			</Button>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button variant={"outline"}>{isCopied ? "Copied" : "Copy"}</Button>
+					<Button
+						variant={"outline"}
+						className="dark:border-border dark:bg-background dark:hover:bg-accent dark:hover:text-accent-foreground"
+					>
+						{isCopied ? "Copied" : "Copy"}
+					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuLabel>Theme</DropdownMenuLabel>
