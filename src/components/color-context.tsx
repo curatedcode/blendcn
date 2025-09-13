@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import * as React from "react";
-import { useLocalStorage } from "~/hooks/use-local-storage";
+import { useSessionStorage } from "~/hooks/use-session-storage";
 import { generateColors } from "~/lib/colors/generate-colors";
 import type { generateRandomPalette } from "~/lib/colors/generate-random-palette";
 
@@ -32,73 +32,123 @@ export function useColorContext() {
 	return context;
 }
 
+interface ColorContextProviderProps {
+	children: React.ReactNode;
+	initialPalette: ReturnType<typeof generateRandomPalette>;
+}
+
 export function ColorContextProvider({
 	children,
 	initialPalette,
-}: {
-	children: React.ReactNode;
-	initialPalette: ReturnType<typeof generateRandomPalette>;
-}) {
+}: ColorContextProviderProps) {
 	const { resolvedTheme } = useTheme();
 
-	const [lightAccentValue, setLightAccentValue] = useLocalStorage(
+	const getEffectiveTheme = React.useCallback(() => {
+		if (typeof window === "undefined") return "light";
+
+		if (resolvedTheme === "light" || resolvedTheme === "dark")
+			return resolvedTheme;
+
+		if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) {
+			return "dark";
+		}
+
+		return "light";
+	}, [resolvedTheme]);
+
+	const effectiveTheme = getEffectiveTheme();
+
+	// Session storage hooks with initial palette fallbacks
+	const [lightAccentValue, setLightAccentValue] = useSessionStorage(
 		"colors/light/accent",
 		initialPalette.accent,
 	);
-	const [lightGrayValue, setLightGrayValue] = useLocalStorage(
+	const [lightGrayValue, setLightGrayValue] = useSessionStorage(
 		"colors/light/gray",
 		initialPalette.gray,
 	);
-	const [lightBgValue, setLightBgValue] = useLocalStorage(
+	const [lightBgValue, setLightBgValue] = useSessionStorage(
 		"colors/light/background",
 		initialPalette.bgLight,
 	);
 
-	const [darkAccentValue, setDarkAccentValue] = useLocalStorage(
+	const [darkAccentValue, setDarkAccentValue] = useSessionStorage(
 		"colors/dark/accent",
 		initialPalette.accent,
 	);
-	const [darkGrayValue, setDarkGrayValue] = useLocalStorage(
+	const [darkGrayValue, setDarkGrayValue] = useSessionStorage(
 		"colors/dark/gray",
 		initialPalette.gray,
 	);
-	const [darkBgValue, setDarkBgValue] = useLocalStorage(
+	const [darkBgValue, setDarkBgValue] = useSessionStorage(
 		"colors/dark/background",
 		initialPalette.bgDark,
 	);
 
-	const lightModeResult = generateColors({
-		appearance: "light",
-		accent: lightAccentValue,
-		gray: lightGrayValue,
-		background: lightBgValue,
-	});
+	// session storage values during hydration, initial values during SSR
+	const lightModeResult = React.useMemo(
+		() =>
+			generateColors({
+				appearance: "light",
+				accent: lightAccentValue,
+				gray: lightGrayValue,
+				background: lightBgValue,
+			}),
+		[lightAccentValue, lightGrayValue, lightBgValue],
+	);
 
-	const darkModeResult = generateColors({
-		appearance: "dark",
-		accent: darkAccentValue,
-		gray: darkGrayValue,
-		background: darkBgValue,
-	});
+	const darkModeResult = React.useMemo(
+		() =>
+			generateColors({
+				appearance: "dark",
+				accent: darkAccentValue,
+				gray: darkGrayValue,
+				background: darkBgValue,
+			}),
+		[darkAccentValue, darkGrayValue, darkBgValue],
+	);
 
-	const result = resolvedTheme === "dark" ? darkModeResult : lightModeResult;
+	const result = effectiveTheme === "dark" ? darkModeResult : lightModeResult;
 
 	const accentValue =
-		resolvedTheme === "dark" ? darkAccentValue : lightAccentValue;
-	const grayValue = resolvedTheme === "dark" ? darkGrayValue : lightGrayValue;
-	const bgValue = resolvedTheme === "dark" ? darkBgValue : lightBgValue;
+		effectiveTheme === "dark" ? darkAccentValue : lightAccentValue;
+	const grayValue = effectiveTheme === "dark" ? darkGrayValue : lightGrayValue;
+	const bgValue = effectiveTheme === "dark" ? darkBgValue : lightBgValue;
 
 	const setAccentValue =
-		resolvedTheme === "dark" ? setDarkAccentValue : setLightAccentValue;
+		effectiveTheme === "dark" ? setDarkAccentValue : setLightAccentValue;
 	const setGrayValue =
-		resolvedTheme === "dark" ? setDarkGrayValue : setLightGrayValue;
+		effectiveTheme === "dark" ? setDarkGrayValue : setLightGrayValue;
 	const setBgValue =
-		resolvedTheme === "dark" ? setDarkBgValue : setLightBgValue;
+		effectiveTheme === "dark" ? setDarkBgValue : setLightBgValue;
 
-	const { stylesheet, styleObject } = getNewPreviewStyles({
-		darkColors: darkModeResult,
-		lightColors: lightModeResult,
-	});
+	const { stylesheet, styleObject } = React.useMemo(
+		() =>
+			getNewPreviewStyles({
+				lightColors: lightModeResult,
+				lightColorsBase: {
+					accent: lightAccentValue,
+					gray: lightGrayValue,
+					background: lightBgValue,
+				},
+				darkColors: darkModeResult,
+				darkColorsBase: {
+					accent: darkAccentValue,
+					gray: darkGrayValue,
+					background: darkBgValue,
+				},
+			}),
+		[
+			darkModeResult,
+			lightModeResult,
+			lightAccentValue,
+			lightGrayValue,
+			lightBgValue,
+			darkAccentValue,
+			darkGrayValue,
+			darkBgValue,
+		],
+	);
 
 	const paletteStylesElementRef = React.useRef<HTMLStyleElement>(null);
 
@@ -144,14 +194,25 @@ export function ColorContextProvider({
 }
 
 interface GetNewPreviewStylesParams {
-	selector?: string;
 	lightColors: GeneratedColors;
+	lightColorsBase: {
+		accent: string;
+		gray: string;
+		background: string;
+	};
 	darkColors: GeneratedColors;
+	darkColorsBase: {
+		accent: string;
+		gray: string;
+		background: string;
+	};
 }
 
 const getNewPreviewStyles = ({
 	lightColors,
+	lightColorsBase,
 	darkColors,
+	darkColorsBase,
 }: GetNewPreviewStylesParams) => {
 	const lightColorsCss = getColorCss({
 		isDarkMode: false,
@@ -223,6 +284,10 @@ const getNewPreviewStyles = ({
 	--gray-surface: ${lightColors.graySurface};
 
 	--apple-red: #ff383c;
+
+	--accent-base: ${lightColorsBase.accent};
+	--gray-base: ${lightColorsBase.gray};
+	--background-base: ${lightColorsBase.background};
 }
 
 .dark {
@@ -251,6 +316,10 @@ const getNewPreviewStyles = ({
   --gray-10: ${darkColors.grayScale[9]};
   --gray-11: ${darkColors.grayScale[10]};
   --gray-12: ${darkColors.grayScale[11]};
+
+	--accent-base: ${darkColorsBase.accent};
+	--gray-base: ${darkColorsBase.gray};
+	--background-base: ${darkColorsBase.background};
 }
 
 ${lightColorsCss}

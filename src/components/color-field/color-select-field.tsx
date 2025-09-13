@@ -48,7 +48,12 @@ export const ColorSelectField = React.forwardRef<
 		},
 		forwardedRef,
 	) => {
-		const defaultSelectValue = defaultColorMappings[cssVariable];
+		const defaultSelectValue: (typeof themeTokens)[number] =
+			defaultColorMappings[cssVariable];
+
+		const [displayValue, setDisplayValue] = React.useState<string | undefined>(
+			formatColorVariable(defaultSelectValue),
+		);
 
 		const { paletteStylesObject, paletteStylesElementRef } = useColorContext();
 		const { resolvedTheme } = useTheme();
@@ -79,18 +84,6 @@ export const ColorSelectField = React.forwardRef<
 						})
 					: DEFAULT_COLOR),
 		);
-
-		const inputBackgroundColor = React.useMemo(() => {
-			if (!selectedVar) return inputValue;
-			const selectedVarColor = getVariableColor({
-				variable: selectedVar,
-				paletteStylesObject,
-				theme,
-			});
-			if (selectedVarColor !== inputValue) return inputValue;
-
-			return `var(--${selectedVar})`;
-		}, [selectedVar, paletteStylesObject, theme, inputValue]);
 
 		const currentSelectColorRef = React.useRef<string>(
 			selectedVar
@@ -148,6 +141,10 @@ export const ColorSelectField = React.forwardRef<
 			});
 		}
 
+		React.useEffect(() => {
+			setDisplayValue(undefined);
+		}, []);
+
 		return (
 			<div className="flex w-full max-w-60 items-center gap-1">
 				<div className="relative flex-1">
@@ -179,7 +176,9 @@ export const ColorSelectField = React.forwardRef<
 								}
 								ref={forwardedRef}
 								{...props}
-							/>
+							>
+								{displayValue && <span>{displayValue}</span>}
+							</SelectValue>
 						</SelectTrigger>
 						<SelectContent>
 							<SelectGroup>
@@ -211,22 +210,15 @@ export const ColorSelectField = React.forwardRef<
 								}}
 								tabIndex={-1}
 								type="color"
-								value={
-									selectedVar
-										? getVariableColor({
-												variable: selectedVar,
-												paletteStylesObject,
-												theme,
-											})
-										: inputValue
-								}
+								value={inputValue}
 							/>
 							<div
 								className="h-full w-full rounded-md border"
 								style={{
-									backgroundColor: inputBackgroundColor,
+									backgroundColor: selectedVar
+										? `var(--${selectedVar})`
+										: inputValue,
 								}}
-								suppressHydrationWarning
 							/>
 						</div>
 					</div>
@@ -299,8 +291,6 @@ function updateCssVariable({
 		}
 	}
 }
-
-ColorSelectField.displayName = "ColorSelectField";
 
 function getVariableColor({
 	variable,
