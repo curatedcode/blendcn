@@ -219,7 +219,7 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 				orientation="vertical"
 				className="data-[orientation=vertical]:h-3/4 md:hidden"
 			/>
-			<Dialog defaultOpen>
+			<Dialog>
 				<DialogTrigger asChild>
 					<Button
 						variant={"outline"}
