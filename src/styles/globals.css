@@ -66,6 +66,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --color-apple-red: var(--apple-red);
+
+  --color-scrollbar-thumb: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-hover: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-active: var(--scrollbar-thumb);
 }
 
 :root {
@@ -117,7 +121,11 @@
   --sidebar-border: #bfbfbf; /* gray-7 */
   --sidebar-ring: #3aad73; /* primary-8 */
 
-  --apple-red: #ff383c;
+  --apple-red: #ff383c; /* apple red (default) */
+
+  --scrollbar-thumb: #cbcbcb; /* gray-6 */
+  --scrollbar-thumb-hover: #bfbfbf; /* gray-6 */
+  --scrollbar-thumb-active: #acacac; /* gray-6 */
 }
 
 .dark {
@@ -166,6 +174,10 @@
 
 	--sidebar-border: #4a4a4a; /* gray-7 */
 	--sidebar-ring: #616161; /* primary-8 */
+
+  --scrollbar-thumb: #3e3e3e; /* gray-6 */
+  --scrollbar-thumb-hover: #4a4a4a; /* gray-6 */
+  --scrollbar-thumb-active: #616161; /* gray-6 */
 }
 
 @supports (color: color(display-p3 1 1 1)) {
@@ -214,6 +226,10 @@
 
       --sidebar-border: oklch(80.5% 0 none); /* gray-7 */
       --sidebar-ring: oklch(66.8% 0.1346 157.5); /* primary-8 */
+
+      --scrollbar-thumb: oklch(84.1% 0 none); /* gray-6 */
+			--scrollbar-thumb-hover: oklch(80.5% 0 none); /* gray-7 */
+			--scrollbar-thumb-active: oklch(74.4% 0 none); /* gray-8 */
     }
 
     .dark {
@@ -260,6 +276,10 @@
 
       --sidebar-border: oklch(41.1% 0 none); /* gray-7 */
       --sidebar-ring: oklch(52.8% 0.1001 154.6); /* primary-8 */
+
+      --scrollbar-thumb: oklch(36.2% 0 none); /* gray-6 */
+			--scrollbar-thumb-hover: oklch(41.1% 0 none); /* gray-7 */
+			--scrollbar-thumb-active: oklch(49.3% 0 none); /* gray-8 */
     }
   }
 }
@@ -271,9 +291,43 @@
   body {
     @apply bg-background text-foreground;
   }
+    *:not(body):not(html)::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *:not(body):not(html)::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: inherit;
+  }
+  *:not(body):not(html)::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition-property: background-color;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  *:not(body):not(html)::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  *:not(body):not(html)::-webkit-scrollbar-thumb:active {
+    background: var(--scrollbar-thumb-active);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  *:not(body):not(html)::-webkit-scrollbar-corner {
+    background: inherit;
+    border-radius: inherit;
+  }
+  *:not(body):not(html)::-webkit-scrollbar-button {
+    display: none;
+  }
 }
 
-/* Set bg-[length:100%_1px] to make this work on your element */
+/* Set bg-[length:100%_1px] to make this work on the element */
 @utility pseudo-underline-* {
   text-decoration: none;
   background-image: linear-gradient(to right, --value(--color-*, "transparent"), --value(--color-*, "transparent"));
@@ -285,4 +339,34 @@
 
 div[role='dialog']:focus-visible {
   outline: none !important;
+}
+
+@variant scrollbar {
+  &::-webkit-scrollbar {
+    @slot;
+  }
+}
+
+@variant scrollbar-track {
+  &::-webkit-scrollbar-track {
+    @slot;
+  }
+}
+
+@variant scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
+    @slot;
+  }
+}
+
+@variant scrollbar-corner {
+  &::-webkit-scrollbar-corner {
+    @slot;
+  }
+}
+
+@variant scrollbar-button {
+  &::-webkit-scrollbar-button {
+    @slot;
+  }
 }
