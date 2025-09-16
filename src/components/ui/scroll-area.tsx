@@ -7,8 +7,11 @@ import { cn } from "~/lib/utils";
 function ScrollArea({
 	className,
 	children,
+	showScrollbar = true,
 	...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+}: React.ComponentProps<typeof ScrollAreaPrimitive.Root> & {
+	showScrollbar?: boolean;
+}) {
 	return (
 		<ScrollAreaPrimitive.Root
 			data-slot="scroll-area"
@@ -21,7 +24,7 @@ function ScrollArea({
 			>
 				{children}
 			</ScrollAreaPrimitive.Viewport>
-			<ScrollBar />
+			{showScrollbar && <ScrollBar />}
 			<ScrollAreaPrimitive.Corner />
 		</ScrollAreaPrimitive.Root>
 	);
@@ -30,8 +33,11 @@ function ScrollArea({
 function ScrollBar({
 	className,
 	orientation = "vertical",
+	thumbClassName,
 	...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
+}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> & {
+	thumbClassName?: string;
+}) {
 	return (
 		<ScrollAreaPrimitive.ScrollAreaScrollbar
 			data-slot="scroll-area-scrollbar"
@@ -48,7 +54,7 @@ function ScrollBar({
 		>
 			<ScrollAreaPrimitive.ScrollAreaThumb
 				data-slot="scroll-area-thumb"
-				className="relative flex-1 rounded-full bg-border"
+				className={cn("relative flex-1 rounded-full bg-border", thumbClassName)}
 			/>
 		</ScrollAreaPrimitive.ScrollAreaScrollbar>
 	);
