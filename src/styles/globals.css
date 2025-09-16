@@ -282,3 +282,7 @@
   background-position: 0 calc(100% - 1px);
   background-clip: padding-box;
 }
+
+div[role='dialog']:focus-visible {
+  outline: none !important;
+}
