@@ -64,10 +64,6 @@ export const ColorTextField = React.forwardRef<
 			setInputValue(e.currentTarget.value);
 		}
 
-		React.useEffect(() => {
-			console.log({ inputValue });
-		});
-
 		function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
 			if (e.key === "Enter") {
 				const normalized = normalizeColor(inputValue);
