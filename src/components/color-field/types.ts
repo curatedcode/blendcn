@@ -115,7 +115,44 @@ export const extendedTokens = ["color-background", "apple-red"] as const;
 
 export const themeTokens = [...paletteTokens, ...extendedTokens] as const;
 
-export const defaultColorMappings = {
+export const shadcnCssVariables = [
+	"background",
+	"foreground",
+	"card",
+	"card-foreground",
+	"popover",
+	"popover-foreground",
+	"primary",
+	"primary-foreground",
+	"secondary",
+	"secondary-foreground",
+	"muted",
+	"muted-foreground",
+	"accent",
+	"accent-foreground",
+	"destructive",
+	"border",
+	"input",
+	"ring",
+	"chart-1",
+	"chart-2",
+	"chart-3",
+	"chart-4",
+	"chart-5",
+	"sidebar",
+	"sidebar-foreground",
+	"sidebar-primary",
+	"sidebar-primary-foreground",
+	"sidebar-accent",
+	"sidebar-accent-foreground",
+	"sidebar-border",
+	"sidebar-ring",
+	"apple-red",
+] as const;
+
+export const defaultColorMappings: {
+	[K in (typeof shadcnCssVariables)[number]]: (typeof themeTokens)[number];
+} = {
 	background: "color-background",
 	foreground: "gray-12",
 	card: "gray-surface",
@@ -147,6 +184,7 @@ export const defaultColorMappings = {
 	"sidebar-accent-foreground": "gray-12",
 	"sidebar-border": "gray-7",
 	"sidebar-ring": "primary-8",
+	"apple-red": "apple-red",
 } as const;
 
 export function stripHexAlpha(color: string) {

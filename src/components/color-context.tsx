@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import * as React from "react";
 import { useSessionStorage } from "~/hooks/use-session-storage";
 import { generateColors } from "~/lib/colors/generate-colors";
+import { generatePaletteMappings } from "~/lib/colors/generate-palette-mappings";
 import type { generateRandomPalette } from "~/lib/colors/generate-random-palette";
 
 type ColorContextType = {
@@ -18,6 +19,11 @@ type ColorContextType = {
 	paletteStylesObject: { light: GeneratedColors; dark: GeneratedColors };
 	getColorCss: typeof getColorCss;
 	paletteStylesElementRef: React.RefObject<HTMLStyleElement | null>;
+	paletteMappings: ReturnType<typeof generatePaletteMappings>;
+	/** Needs to be a color value, hex/hsl/oklch etc. */
+	setPaletteMappings: React.Dispatch<
+		React.SetStateAction<ReturnType<typeof generatePaletteMappings>>
+	>;
 };
 
 const ColorContext = React.createContext<ColorContextType | null>(null);
@@ -107,6 +113,10 @@ export function ColorContextProvider({
 		[darkAccentValue, darkGrayValue, darkBgValue],
 	);
 
+	const [paletteMappings, setPaletteMappings] = React.useState(
+		generatePaletteMappings({ light: lightModeResult, dark: darkModeResult }),
+	);
+
 	const result = effectiveTheme === "dark" ? darkModeResult : lightModeResult;
 
 	const accentValue =
@@ -164,6 +174,8 @@ export function ColorContextProvider({
 			paletteStylesObject: styleObject,
 			getColorCss,
 			paletteStylesElementRef,
+			paletteMappings,
+			setPaletteMappings,
 		}),
 		[
 			result,
@@ -175,6 +187,7 @@ export function ColorContextProvider({
 			setBgValue,
 			stylesheet,
 			styleObject,
+			paletteMappings,
 		],
 	);
 
@@ -331,7 +344,7 @@ ${darkColorsCss}
 	};
 };
 
-type GeneratedColors = ReturnType<typeof generateColors>;
+export type GeneratedColors = ReturnType<typeof generateColors>;
 
 interface GetColorCssParams {
 	isDarkMode: boolean;
@@ -373,7 +386,7 @@ ${selector} {
   --popover-foreground: ${gray.scale[11]};
 
   --primary: ${accent.scale[8]};
-  --primary-foreground: ${isDarkMode ? gray.scale[11] : gray.scale[0]};
+  --primary-foreground: ${gray.scale[0]};
   
   --secondary: ${gray.scale[3]};
   --secondary-foreground: ${gray.scale[11]};

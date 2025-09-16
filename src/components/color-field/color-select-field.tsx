@@ -55,20 +55,24 @@ export const ColorSelectField = React.forwardRef<
 			formatColorVariable(defaultSelectValue),
 		);
 
-		const { paletteStylesObject, paletteStylesElementRef } = useColorContext();
+		const { paletteStylesObject, paletteStylesElementRef, setPaletteMappings } =
+			useColorContext();
+
 		const { resolvedTheme } = useTheme();
 		const theme = React.useMemo(
 			() => (resolvedTheme ?? "light") as "light" | "dark",
 			[resolvedTheme],
 		);
 
-		const defaultInputValue = React.useMemo(() => {
-			return getVariableColor({
-				variable: defaultSelectValue,
-				paletteStylesObject,
-				theme,
-			});
-		}, [defaultSelectValue, theme, paletteStylesObject]);
+		const defaultInputValue = React.useMemo(
+			() =>
+				getVariableColor({
+					variable: defaultSelectValue,
+					paletteStylesObject,
+					theme,
+				}),
+			[defaultSelectValue, theme, paletteStylesObject],
+		);
 
 		const [selectedVar, setSelectedVar] = React.useState<
 			(typeof themeTokens)[number] | undefined
@@ -138,6 +142,7 @@ export const ColorSelectField = React.forwardRef<
 					format: "oklch",
 				}),
 				theme,
+				setPaletteMappings,
 			});
 		}
 
@@ -253,14 +258,29 @@ function updateCssVariable({
 	newHexValue,
 	newWideGamutValue,
 	theme,
+	setPaletteMappings,
 }: {
 	stylesheet: CSSStyleSheet;
-	cssVariable: string;
+	cssVariable: keyof typeof defaultColorMappings;
 	newHexValue: string;
 	newWideGamutValue: string;
 	theme: "light" | "dark";
+	setPaletteMappings: ReturnType<typeof useColorContext>["setPaletteMappings"];
 }) {
 	const selector = theme === "light" ? ":root" : ".dark";
+
+	setPaletteMappings((prev) => {
+		if (theme === "dark") {
+			return {
+				light: prev.light,
+				dark: { ...prev.dark, [cssVariable]: newHexValue },
+			};
+		}
+		return {
+			light: { ...prev.light, [cssVariable]: newHexValue },
+			dark: prev.dark,
+		};
+	});
 
 	function updateRule(ruleList: CSSRuleList) {
 		for (let i = 0; i < ruleList.length; i++) {

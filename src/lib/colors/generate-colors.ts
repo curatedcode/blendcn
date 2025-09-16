@@ -173,6 +173,8 @@ export const generateColors = ({
 		accentSurfaceWideGamut: accentSurfaceWideGamutString,
 
 		background: backgroundHex,
+
+		appleRed: "#ff383c",
 	};
 };
 
