@@ -65,7 +65,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --apple-red: var(--apple-red);
+  --color-apple-red: var(--apple-red);
 }
 
 :root {
@@ -117,7 +117,7 @@
   --sidebar-border: #bfbfbf; /* gray-7 */
   --sidebar-ring: #3aad73; /* primary-8 */
 
-  --apple-red: "#ff383c";
+  --apple-red: #ff383c;
 }
 
 .dark {
