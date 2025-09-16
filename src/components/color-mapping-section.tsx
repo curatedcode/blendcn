@@ -10,13 +10,13 @@ export function ColorMappingSection({ className }: { className?: string }) {
 
 	return (
 		<div className={cn("flex flex-col gap-3 md:pr-3", className)}>
-			<h1 className="font-semibold text-lg">Mapping</h1>
+			<h1 className="flex h-9 items-center font-semibold text-lg">Mapping</h1>
 			{allVariables.map((key: keyof typeof defaultColorMappings) => (
 				<div
 					className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
 					key={key}
 				>
-					<Label>{capitalizeVariable(key)}</Label>
+					<Label className="leading-tight">{capitalizeVariable(key)}</Label>
 					<ColorSelectField cssVariable={key} />
 				</div>
 			))}

@@ -26,26 +26,36 @@ export function InputPreview() {
 	return (
 		<ComponentAccordionGroup title="Input">
 			<ComponentAccordionSubGroup title="Default">
-				<Input type="email" placeholder="Email" className="w-64" />
+				<Input type="email" placeholder="Email" className="w-56 sm:w-64" />
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="File">
-				<Input type="file" className="w-64" />
+				<Input type="file" className="w-56 sm:w-64" />
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Disabled">
-				<Input disabled type="email" placeholder="Email" className="w-64" />
+				<Input
+					disabled
+					type="email"
+					placeholder="Email"
+					className="w-56 sm:w-64"
+				/>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="With Button">
 				<div className="flex items-center gap-3">
-					<Input type="email" placeholder="Email" className="w-64" />
+					<Input type="email" placeholder="Email" className="w-56 sm:w-64" />
 					<Button type="submit" variant="outline">
-						Subscribe
+						Submit
 					</Button>
 				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="With Label">
 				<div className="grid items-center gap-2">
 					<Label htmlFor="email">Email</Label>
-					<Input type="email" id="email" placeholder="Email" className="w-64" />
+					<Input
+						type="email"
+						id="email"
+						placeholder="Email"
+						className="w-56 sm:w-64"
+					/>
 				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Form">
@@ -87,7 +97,11 @@ function InputFormDemo() {
 						<FormItem>
 							<FormLabel>Username</FormLabel>
 							<FormControl>
-								<Input placeholder="shadcn" className="w-64" {...field} />
+								<Input
+									placeholder="shadcn"
+									className="w-56 sm:w-64"
+									{...field}
+								/>
 							</FormControl>
 							<FormDescription>
 								This is your public display name.

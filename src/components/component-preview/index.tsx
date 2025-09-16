@@ -53,7 +53,7 @@ export function ComponentPreview() {
 	return (
 		<Accordion
 			type="multiple"
-			className="w-full bg-background md:px-3"
+			className="w-full bg-background px-3"
 			defaultValue={["form-and-inputs"]}
 		>
 			<ComponentAccordionItem

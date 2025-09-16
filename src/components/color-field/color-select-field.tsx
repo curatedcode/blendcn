@@ -151,7 +151,7 @@ export const ColorSelectField = React.forwardRef<
 		}, []);
 
 		return (
-			<div className="flex w-full max-w-60 items-center gap-1">
+			<div className="flex w-full items-center gap-1 sm:max-w-48">
 				<div className="relative flex-1">
 					<Select
 						onValueChange={(variable: (typeof themeTokens)[number]) => {

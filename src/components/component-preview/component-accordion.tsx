@@ -10,6 +10,7 @@ export type ComponentAccordionItemsProps = {
 	title: string;
 	description: string;
 	children: React.ReactNode;
+	className?: string;
 };
 
 export function ComponentAccordionItem({
@@ -17,6 +18,7 @@ export function ComponentAccordionItem({
 	title,
 	description,
 	children,
+	className,
 }: ComponentAccordionItemsProps) {
 	return (
 		<AccordionItem value={value}>
@@ -30,7 +32,9 @@ export function ComponentAccordionItem({
 					</p>
 				</div>
 			</AccordionTrigger>
-			<AccordionContent className="space-y-9 px-3">{children}</AccordionContent>
+			<AccordionContent className={cn("space-y-9 px-1.5 md:px-3", className)}>
+				{children}
+			</AccordionContent>
 		</AccordionItem>
 	);
 }
@@ -48,7 +52,10 @@ export function ComponentAccordionGroup({
 		<div className="flex flex-col gap-3">
 			<h2 className="font-medium text-base">{title}</h2>
 			<div
-				className={cn("flex flex-wrap space-x-12 space-y-3 pl-3", className)}
+				className={cn(
+					"flex flex-wrap space-x-12 space-y-3 pl-1.5 md:pl-3",
+					className,
+				)}
 			>
 				{children}
 			</div>
@@ -68,7 +75,7 @@ export function ComponentAccordionSubGroup({
 	return (
 		<div className={cn("flex flex-col gap-3", className)}>
 			<span className="font-medium underline">{title}</span>
-			<div className="px-1">{children}</div>
+			<div className="px-0.5 md:px-1">{children}</div>
 		</div>
 	);
 }

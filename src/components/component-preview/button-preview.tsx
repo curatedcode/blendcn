@@ -9,30 +9,30 @@ export function ButtonPreview() {
 	return (
 		<ComponentAccordionGroup title="Button">
 			<ComponentAccordionSubGroup title="Default">
-				<Button className="w-44">Button</Button>
+				<Button className="w-56 sm:w-44">Button</Button>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Secondary">
-				<Button variant={"secondary"} className="w-44">
+				<Button variant={"secondary"} className="w-56 sm:w-44">
 					Button
 				</Button>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Destructive">
-				<Button variant={"destructive"} className="w-44">
+				<Button variant={"destructive"} className="w-56 sm:w-44">
 					Button
 				</Button>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Outline">
-				<Button variant={"outline"} className="w-44">
+				<Button variant={"outline"} className="w-56 sm:w-44">
 					Button
 				</Button>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Ghost">
-				<Button variant={"ghost"} className="w-44">
+				<Button variant={"ghost"} className="w-56 sm:w-44">
 					Button
 				</Button>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Link">
-				<Button variant={"link"} className="w-44">
+				<Button variant={"link"} className="w-56 sm:w-44">
 					Button
 				</Button>
 			</ComponentAccordionSubGroup>
@@ -44,12 +44,12 @@ export function ButtonPreview() {
 				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="With Icon">
-				<Button variant={"outline"} className="w-44">
+				<Button variant={"outline"} className="w-56 sm:w-44">
 					<GitBranchIcon /> New Branch
 				</Button>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Loading">
-				<Button disabled className="w-44">
+				<Button disabled className="w-56 sm:w-44">
 					<Loader2Icon className="animate-spin" />
 					Please wait
 				</Button>

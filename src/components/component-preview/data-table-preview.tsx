@@ -41,9 +41,14 @@ import {
 
 export function DataTablePreview() {
 	return (
-		<ComponentAccordionGroup title="Date Table">
+		<ComponentAccordionGroup
+			title="Date Table"
+			className="flex-col flex-nowrap"
+		>
 			<ComponentAccordionSubGroup title="Example">
-				<DataTableDemo />
+				<div className="w-full overflow-x-auto">
+					<DataTableDemo />
+				</div>
 			</ComponentAccordionSubGroup>
 		</ComponentAccordionGroup>
 	);

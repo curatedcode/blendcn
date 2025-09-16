@@ -30,7 +30,7 @@ function CollapsibleDemo() {
 		<Collapsible
 			open={isOpen}
 			onOpenChange={setIsOpen}
-			className="flex w-[350px] flex-col gap-2"
+			className="flex w-full flex-col gap-2 sm:w-[350px]"
 		>
 			<div className="flex items-center justify-between gap-4 px-4">
 				<h4 className="font-semibold text-sm">

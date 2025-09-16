@@ -63,7 +63,7 @@ const components: { title: string; description: string }[] = [
 function NavigationMenuDemo() {
 	return (
 		<NavigationMenu viewport={false}>
-			<NavigationMenuList>
+			<NavigationMenuList className="flex flex-col items-start sm:flex-row sm:items-center">
 				<NavigationMenuItem>
 					<NavigationMenuTrigger>Home</NavigationMenuTrigger>
 					<NavigationMenuContent>
@@ -98,7 +98,7 @@ function NavigationMenuDemo() {
 				<NavigationMenuItem>
 					<NavigationMenuTrigger>Components</NavigationMenuTrigger>
 					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+						<ul className="grid w-[300px] gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
 							{components.map((component) => (
 								<ListItem
 									key={component.title}

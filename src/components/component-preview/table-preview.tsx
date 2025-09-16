@@ -15,9 +15,11 @@ import {
 
 export function TablePreview() {
 	return (
-		<ComponentAccordionGroup title="Table">
+		<ComponentAccordionGroup title="Table" className="flex-col flex-nowrap">
 			<ComponentAccordionSubGroup title="Example">
-				<TableDemo />
+				<div className="w-full overflow-x-auto">
+					<TableDemo />
+				</div>
 			</ComponentAccordionSubGroup>
 		</ComponentAccordionGroup>
 	);

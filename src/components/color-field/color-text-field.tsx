@@ -90,7 +90,7 @@ export const ColorTextField = React.forwardRef<
 		}, [value, normalizeColor]);
 
 		return (
-			<div className="flex w-full max-w-60 items-center gap-2">
+			<div className="flex w-full items-center gap-2 sm:max-w-48">
 				<div className="relative flex-1">
 					<Input
 						ref={forwardedRef}
@@ -100,7 +100,7 @@ export const ColorTextField = React.forwardRef<
 						onKeyDown={handleKeyDown}
 						placeholder={placeholder}
 						className={cn(
-							"w-full bg-background pl-9 uppercase placeholder:normal-case",
+							"w-full bg-background pl-9 text-sm uppercase placeholder:normal-case",
 							className,
 						)}
 						{...props}

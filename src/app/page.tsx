@@ -14,15 +14,16 @@ export default function Home() {
 		<ColorContextProvider initialPalette={initialPalette}>
 			<div className="relative">
 				<NoiseBackdrop />
-				<div className="mx-auto flex max-w-desktop px-3 pt-12">
-					<div className="flex w-full max-w-[400px] flex-col gap-3">
+				<div className="mx-aut flex max-w-desktop flex-col pt-12 md:flex-row">
+					<div className="flex w-full flex-col gap-3 px-3 md:max-w-[400px] md:pr-0 md:pl-3">
 						<ColorPickerSection />
-						<Separator />
+						<Separator className="mt-2" />
 						<ColorMappingSection />
 					</div>
-					<div className="flex w-full flex-col border-border border-l">
+					<div className="flex w-full flex-col md:border-l">
+						<Separator className="mx-auto mt-5 mb-2 data-[orientation=horizontal]:w-[calc(100%-24px)] md:hidden" />
 						<Header />
-						<Separator />
+						<Separator className="mx-auto hidden data-[orientation=horizontal]:w-[calc(100%-24px)] md:block md:data-[orientation=horizontal]:w-full" />
 						<ComponentPreview />
 					</div>
 				</div>

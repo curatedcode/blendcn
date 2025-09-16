@@ -18,7 +18,7 @@ export function ColorPickerSection({ className }: { className?: string }) {
 
 	return (
 		<div className={cn("flex w-full flex-col gap-3", className)}>
-			<h1 className="flex h-9 items-center font-semibold text-lg md:pr-3">
+			<h1 className="flex h-9 items-center font-semibold text-lg md:h-[38px] md:pr-3">
 				Theme
 			</h1>
 			<Separator className="-mt-2" />
