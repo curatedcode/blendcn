@@ -135,6 +135,7 @@ describe("generateColors fn output", () => {
 			accentSurface: "#f4f8fecc",
 			accentSurfaceWideGamut: "color(display-p3 0.9608 0.9725 0.9961 / 0.8)",
 			background: "#fff",
+			appleRed: "#ff383c",
 		};
 
 		expect(result).toStrictEqual(resultShouldBe);
@@ -273,6 +274,7 @@ describe("generateColors fn output", () => {
 			accentSurface: "#111d3980",
 			accentSurfaceWideGamut: "color(display-p3 0.0706 0.1098 0.2118 / 0.5)",
 			background: "#111",
+			appleRed: "#ff383c",
 		};
 
 		expect(result).toStrictEqual(resultShouldBe);
