@@ -315,6 +315,7 @@ const getNewPreviewStyles = ({
   --primary-10: ${darkColors.accentScale[9]};
   --primary-11: ${darkColors.accentScale[10]};
   --primary-12: ${darkColors.accentScale[11]};
+	--primary-surface: ${darkColors.accentSurface};
 
   --gray-1: ${darkColors.grayScale[0]};
   --gray-2: ${darkColors.grayScale[1]};
@@ -328,6 +329,7 @@ const getNewPreviewStyles = ({
   --gray-10: ${darkColors.grayScale[9]};
   --gray-11: ${darkColors.grayScale[10]};
   --gray-12: ${darkColors.grayScale[11]};
+	--gray-surface: ${darkColors.graySurface};
 
 	--accent-base: ${darkColorsBase.accent};
 	--gray-base: ${darkColorsBase.gray};
