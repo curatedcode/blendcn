@@ -1,5 +1,3 @@
-"use client";
-
 import { ColorSelectField } from "~/components/color-field/color-select-field";
 import { defaultColorMappings } from "~/components/color-field/types";
 import { Label } from "~/components/ui/label";
