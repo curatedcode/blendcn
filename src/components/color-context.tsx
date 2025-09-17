@@ -388,7 +388,7 @@ ${selector} {
   --popover-foreground: ${gray.scale[11]};
 
   --primary: ${accent.scale[8]};
-  --primary-foreground: ${gray.scale[0]};
+  --primary-foreground: ${accent.contrast};
   
   --secondary: ${gray.scale[3]};
   --secondary-foreground: ${gray.scale[11]};
