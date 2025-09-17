@@ -439,7 +439,7 @@ ${selector} {
       --popover-foreground: ${gray.scaleWideGamut[11]};
 
       --primary: ${accent.scaleWideGamut[8]};
-      --primary-foreground: ${gray.scaleWideGamut[0]};
+      --primary-foreground: ${accent.contrast};
       
       --secondary: ${gray.scaleWideGamut[3]};
       --secondary-foreground: ${gray.scaleWideGamut[11]};
