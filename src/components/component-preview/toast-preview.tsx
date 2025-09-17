@@ -39,9 +39,9 @@ export function ToastPreview() {
 			<ComponentAccordionSubGroup title="Info">
 				<Button
 					variant="outline"
-					onClick={() => toast.info("You have an (1) unread message")}
+					onClick={() => toast.info("You have (1) unread message")}
 				>
-					Show Info Toast
+					Show Toast
 				</Button>
 			</ComponentAccordionSubGroup>
 		</ComponentAccordionGroup>
