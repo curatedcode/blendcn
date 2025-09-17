@@ -38,75 +38,81 @@ export function CarouselPreview() {
 				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Sizes">
-				<Carousel
-					opts={{
-						align: "start",
-					}}
-					className="w-full max-w-sm"
-				>
-					<CarouselContent>
-						{tags.map((num) => (
-							<CarouselItem key={num} className="md:basis-1/2 lg:basis-1/3">
-								<div className="p-1">
-									<Card>
-										<CardContent className="flex aspect-square items-center justify-center p-6">
-											<span className="font-semibold text-3xl">{num}</span>
-										</CardContent>
-									</Card>
-								</div>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-					<CarouselPrevious />
-					<CarouselNext />
-				</Carousel>
+				<div className="pl-10">
+					<Carousel
+						opts={{
+							align: "start",
+						}}
+						className="w-full max-w-sm"
+					>
+						<CarouselContent>
+							{tags.map((num) => (
+								<CarouselItem key={num} className="md:basis-1/2 lg:basis-1/3">
+									<div className="p-1">
+										<Card>
+											<CardContent className="flex aspect-square items-center justify-center p-6">
+												<span className="font-semibold text-3xl">{num}</span>
+											</CardContent>
+										</Card>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious />
+						<CarouselNext />
+					</Carousel>
+				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Spacing">
-				<Carousel className="w-full max-w-sm">
-					<CarouselContent className="-ml-1">
-						{tags.map((num) => (
-							<CarouselItem
-								key={num}
-								className="pl-1 md:basis-1/2 lg:basis-1/3"
-							>
-								<div className="p-1">
-									<Card>
-										<CardContent className="flex aspect-square items-center justify-center p-6">
-											<span className="font-semibold text-2xl">{num}</span>
-										</CardContent>
-									</Card>
-								</div>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-					<CarouselPrevious />
-					<CarouselNext />
-				</Carousel>
+				<div className="pl-10">
+					<Carousel className="w-full max-w-sm">
+						<CarouselContent className="-ml-1">
+							{tags.map((num) => (
+								<CarouselItem
+									key={num}
+									className="pl-1 md:basis-1/2 lg:basis-1/3"
+								>
+									<div className="p-1">
+										<Card>
+											<CardContent className="flex aspect-square items-center justify-center p-6">
+												<span className="font-semibold text-2xl">{num}</span>
+											</CardContent>
+										</Card>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious />
+						<CarouselNext />
+					</Carousel>
+				</div>
 			</ComponentAccordionSubGroup>
 			<ComponentAccordionSubGroup title="Orientation" className="mb-6">
-				<Carousel
-					opts={{
-						align: "start",
-					}}
-					orientation="vertical"
-					className="mt-10 w-full max-w-xs"
-				>
-					<CarouselContent className="-mt-1 h-[200px]">
-						{tags.map((num) => (
-							<CarouselItem key={num} className="pt-1 md:basis-1/2">
-								<div className="p-1">
-									<Card>
-										<CardContent className="flex items-center justify-center p-6">
-											<span className="font-semibold text-3xl">{num}</span>
-										</CardContent>
-									</Card>
-								</div>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-					<CarouselPrevious />
-					<CarouselNext />
-				</Carousel>
+				<div className="pt-10">
+					<Carousel
+						opts={{
+							align: "start",
+						}}
+						orientation="vertical"
+						className="w-full max-w-xs"
+					>
+						<CarouselContent className="-mt-1 h-[200px]">
+							{tags.map((num) => (
+								<CarouselItem key={num} className="pt-1 md:basis-1/2">
+									<div className="p-1">
+										<Card>
+											<CardContent className="flex items-center justify-center p-6">
+												<span className="font-semibold text-3xl">{num}</span>
+											</CardContent>
+										</Card>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious />
+						<CarouselNext />
+					</Carousel>
+				</div>
 			</ComponentAccordionSubGroup>
 		</ComponentAccordionGroup>
 	);
