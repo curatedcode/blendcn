@@ -147,7 +147,7 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 		return (
 			<div
 				className={cn(
-					"fixed top-1.5 right-1.5 z-1 flex h-10 w-fit items-center gap-1.5 rounded-md border bg-background px-3 py-1 shadow-md md:static md:z-0 md:ml-auto md:h-fit md:border-transparent md:bg-transparent md:px-0 md:py-0",
+					"fixed top-1.5 right-1.5 z-1 flex h-10 w-fit items-center gap-1.5 rounded-md border bg-background px-3 py-1 shadow-md md:static md:z-0 md:ml-auto md:h-fit md:border-transparent md:bg-transparent md:px-0 md:py-0 md:shadow-none",
 					className,
 				)}
 			>
@@ -176,7 +176,7 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 	return (
 		<div
 			className={cn(
-				"fixed top-1.5 right-1.5 z-1 flex h-10 w-fit items-center gap-1.5 rounded-md border bg-background px-3 py-1 shadow-md md:static md:z-0 md:ml-auto md:h-fit md:border-transparent md:bg-transparent md:px-0 md:py-0",
+				"fixed top-1.5 right-1.5 z-1 flex h-10 w-fit items-center gap-1.5 rounded-md border bg-background px-3 py-1 shadow-md md:static md:z-0 md:ml-auto md:h-fit md:border-transparent md:bg-transparent md:px-0 md:py-0 md:shadow-none",
 				className,
 			)}
 		>
