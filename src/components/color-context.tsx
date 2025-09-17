@@ -68,27 +68,34 @@ export function ColorContextProvider({
 	const [lightAccentValue, setLightAccentValue] = useSessionStorage(
 		"colors/light/accent",
 		initialPalette.accent,
+		{ initializeWithValue: false },
 	);
+
 	const [lightGrayValue, setLightGrayValue] = useSessionStorage(
 		"colors/light/gray",
 		initialPalette.gray,
+		{ initializeWithValue: false },
 	);
 	const [lightBgValue, setLightBgValue] = useSessionStorage(
 		"colors/light/background",
 		initialPalette.bgLight,
+		{ initializeWithValue: false },
 	);
 
 	const [darkAccentValue, setDarkAccentValue] = useSessionStorage(
 		"colors/dark/accent",
 		initialPalette.accent,
+		{ initializeWithValue: false },
 	);
 	const [darkGrayValue, setDarkGrayValue] = useSessionStorage(
 		"colors/dark/gray",
 		initialPalette.gray,
+		{ initializeWithValue: false },
 	);
 	const [darkBgValue, setDarkBgValue] = useSessionStorage(
 		"colors/dark/background",
 		initialPalette.bgDark,
+		{ initializeWithValue: false },
 	);
 
 	const lightModeResult = React.useMemo(
@@ -190,6 +197,12 @@ export function ColorContextProvider({
 			paletteMappings,
 		],
 	);
+
+	React.useEffect(() => {
+		setPaletteMappings(
+			generatePaletteMappings({ light: lightModeResult, dark: darkModeResult }),
+		);
+	}, [lightModeResult, darkModeResult]);
 
 	return (
 		<ColorContext.Provider value={memoValues}>
