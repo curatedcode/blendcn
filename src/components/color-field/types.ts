@@ -150,9 +150,12 @@ export const shadcnCssVariables = [
 	"apple-red",
 ] as const;
 
-export const defaultColorMappings: {
-	[K in (typeof shadcnCssVariables)[number]]: (typeof themeTokens)[number];
-} = {
+export const defaultColorMappings: Omit<
+	{
+		[K in (typeof shadcnCssVariables)[number]]: (typeof themeTokens)[number];
+	},
+	"apple-red"
+> = {
 	background: "color-background",
 	foreground: "gray-12",
 	card: "gray-surface",
@@ -184,7 +187,6 @@ export const defaultColorMappings: {
 	"sidebar-accent-foreground": "gray-12",
 	"sidebar-border": "gray-7",
 	"sidebar-ring": "primary-8",
-	"apple-red": "apple-red",
 } as const;
 
 export function stripHexAlpha(color: string) {
