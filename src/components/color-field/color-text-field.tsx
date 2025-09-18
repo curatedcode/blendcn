@@ -181,6 +181,7 @@ export const ColorTextField = React.forwardRef<
 							<div
 								className="pointer-events-none absolute inset-0 rounded-md border border-border"
 								style={{ backgroundColor: colorInputValue }}
+								suppressHydrationWarning
 							/>
 						</div>
 					</div>

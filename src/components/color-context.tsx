@@ -5,7 +5,6 @@ import * as React from "react";
 import { useSessionStorage } from "~/hooks/use-session-storage";
 import { generateColors } from "~/lib/colors/generate-colors";
 import { generatePaletteMappings } from "~/lib/colors/generate-palette-mappings";
-import type { generateRandomPalette } from "~/lib/colors/generate-random-palette";
 
 type ColorContextType = {
 	result: ReturnType<typeof generateColors>;
@@ -40,13 +39,9 @@ export function useColorContext() {
 
 interface ColorContextProviderProps {
 	children: React.ReactNode;
-	initialPalette: ReturnType<typeof generateRandomPalette>;
 }
 
-export function ColorContextProvider({
-	children,
-	initialPalette,
-}: ColorContextProviderProps) {
+export function ColorContextProvider({ children }: ColorContextProviderProps) {
 	const { resolvedTheme } = useTheme();
 
 	const getEffectiveTheme = React.useCallback(() => {
@@ -67,34 +62,33 @@ export function ColorContextProvider({
 	// Session storage hooks with initial palette fallbacks
 	const [lightAccentValue, setLightAccentValue] = useSessionStorage(
 		"colors/light/accent",
-		initialPalette.accent,
+		"#1B115B",
 		{ initializeWithValue: false },
 	);
-
 	const [lightGrayValue, setLightGrayValue] = useSessionStorage(
 		"colors/light/gray",
-		initialPalette.gray,
+		"#8B8D98",
 		{ initializeWithValue: false },
 	);
 	const [lightBgValue, setLightBgValue] = useSessionStorage(
 		"colors/light/background",
-		initialPalette.bgLight,
+		"#FFFFFF",
 		{ initializeWithValue: false },
 	);
 
 	const [darkAccentValue, setDarkAccentValue] = useSessionStorage(
 		"colors/dark/accent",
-		initialPalette.accent,
+		"#1B115B",
 		{ initializeWithValue: false },
 	);
 	const [darkGrayValue, setDarkGrayValue] = useSessionStorage(
 		"colors/dark/gray",
-		initialPalette.gray,
+		"#8B8D98",
 		{ initializeWithValue: false },
 	);
 	const [darkBgValue, setDarkBgValue] = useSessionStorage(
 		"colors/dark/background",
-		initialPalette.bgDark,
+		"#111111",
 		{ initializeWithValue: false },
 	);
 

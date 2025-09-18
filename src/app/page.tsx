@@ -5,13 +5,10 @@ import { ComponentPreview } from "~/components/component-preview";
 import { Header } from "~/components/header";
 import { NoiseBackdrop } from "~/components/noise-backdrop";
 import { Separator } from "~/components/ui/separator";
-import { generateRandomPalette } from "~/lib/colors/generate-random-palette";
 
 export default function Home() {
-	const initialPalette = generateRandomPalette();
-
 	return (
-		<ColorContextProvider initialPalette={initialPalette}>
+		<ColorContextProvider>
 			<div className="relative">
 				<NoiseBackdrop />
 				<div className="mx-aut flex max-w-desktop flex-col pt-12 md:flex-row">
