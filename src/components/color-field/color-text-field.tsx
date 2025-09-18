@@ -176,6 +176,7 @@ export const ColorTextField = React.forwardRef<
 								type="color"
 								value={colorInputValue}
 								className="size-full [-webkit-tap-highlight-color:_transparent]"
+								placeholder="Select color"
 							/>
 							<div
 								className="pointer-events-none absolute inset-0 rounded-md border border-border"
