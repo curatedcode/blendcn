@@ -259,7 +259,7 @@ const toCssFormat = (value: string) => {
 		return value;
 	}
 
-	return "#" + value;
+	return `#${value}`;
 };
 
 const isColorFunction = (value: string) => {
