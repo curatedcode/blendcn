@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "~/components/ui/sonner";
 import "~/styles/globals.css";
@@ -7,18 +6,23 @@ import "~/styles/globals.css";
 export const viewport: Viewport = {
 	width: "device-width",
 	initialScale: 1.0,
-	maximumScale: 1,
-	themeColor: "#22b573",
 };
 
 export const metadata: Metadata = {
 	robots: "index, follow",
 	referrer: "strict-origin-when-cross-origin",
 	authors: [{ name: "Zackary Fotheringham", url: "https://zackaryf.com" }],
-	description: "Turn Radix-UI color palettes into a shadcn/ui theme",
+	description:
+		"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens",
 	manifest: "/manifest.json",
 	icons: [
 		{ rel: "icon", type: "image/svg+xml", url: "/assets/icons/favicon.svg" },
+		{
+			rel: "icon",
+			sizes: "32x32",
+			type: "image/png",
+			url: "/assets/icons/favicon-32x32.png",
+		},
 		{
 			rel: "apple-touch-icon",
 			sizes: "120x120",
@@ -34,6 +38,11 @@ export const metadata: Metadata = {
 			sizes: "180x180",
 			url: "/assets/icons/apple-touch-icon-180x180.png",
 		},
+		{
+			rel: "apple-touch-icon",
+			sizes: "512x512",
+			url: "/assets/icons/apple-touch-icon-512x512.png",
+		},
 	],
 	title: "Radix2Shadcn",
 	other: {
@@ -48,20 +57,22 @@ export const metadata: Metadata = {
 	twitter: {
 		card: "summary_large_image",
 		title: "Radix2Shadcn",
-		description: "Turn Radix-UI color palettes into a shadcn/ui theme",
+		description:
+			"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
 		siteId: "722408900213874688",
 		creator: "@IAmNotZack",
-		images: ["https://Radix2Shadcn.zackaryf.com/assets/icons/twitter-card.png"],
+		images: ["https://radix2shadcn.zackaryf.com/assets/icons/twitter-card.png"],
 	},
 	openGraph: {
 		type: "website",
 		title: "Radix2Shadcn",
-		description: "Turn Radix-UI color palettes into a shadcn/ui theme",
+		description:
+			"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
 		siteName: "Radix2Shadcn",
-		url: "https://Radix2Shadcn.zackaryf.com",
+		url: "https://radix2shadcn.zackaryf.com",
 		images: [
 			{
-				url: "https://Radix2Shadcn.zackaryf.com/assets/icons/twitter-card.png",
+				url: "https://radix2shadcn.zackaryf.com/assets/icons/twitter-card.png",
 				width: 1200,
 				height: 630,
 			},
@@ -70,16 +81,11 @@ export const metadata: Metadata = {
 	},
 };
 
-const geist = Geist({
-	subsets: ["latin"],
-	variable: "--font-geist-sans",
-});
-
 export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning>
 			<body className="font-body">
 				<ThemeProvider
 					enableSystem
