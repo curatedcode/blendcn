@@ -28,7 +28,6 @@ export function ColorPickerSection({ className }: { className?: string }) {
 					id="accent"
 					value={accentValue}
 					onValueChange={setAccentValue}
-					cssVariable="accent-base"
 				/>
 			</div>
 			<div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:pr-3">
@@ -37,7 +36,6 @@ export function ColorPickerSection({ className }: { className?: string }) {
 					id="gray"
 					value={grayValue}
 					onValueChange={setGrayValue}
-					cssVariable="gray-base"
 				/>
 			</div>
 			<div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:pr-3">
@@ -46,7 +44,6 @@ export function ColorPickerSection({ className }: { className?: string }) {
 					id="background"
 					value={bgValue}
 					onValueChange={setBgValue}
-					cssVariable="background-base"
 				/>
 			</div>
 		</div>
