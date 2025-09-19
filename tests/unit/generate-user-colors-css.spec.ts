@@ -23,9 +23,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -47,10 +48,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: "class",
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -72,10 +74,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: "data-attribute",
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -106,10 +109,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: "class",
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual([lightShouldBe, darkShouldBe].join("\n\n"));
 	});
@@ -137,9 +141,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: true,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual([shadcnVariablesShouldBe, paletteShouldBe].join("\n\n"));
 	});
@@ -164,9 +169,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -190,9 +196,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: true,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -216,9 +223,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "oklch",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -242,9 +250,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hsl",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -268,9 +277,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "srgb",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -292,9 +302,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -330,9 +341,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: true,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual([paletteShouldBe, supportsMediaShouldBe].join("\n\n"));
 	});
@@ -357,15 +369,16 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "oklch",
 				includeSupportsMediaQuery: true,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
 
 	// @theme inline variables
-	test("returns light theme CSS with :root selector", () => {
+	test("includes @theme inline variables when includeThemeInlineVariables is true", () => {
 		const keyValues = Object.entries(mockPaletteMappings.light).map(
 			([key, value]) => ({ key, value }),
 		);
@@ -388,11 +401,40 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: true,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual([themeInlineShouldBe, paletteShouldBe].join("\n\n"));
+	});
+
+	// Scrollbar styling
+	test("includes @layer base css styling when includeScrollbarStyling is true", () => {
+		const keyValues = Object.entries(allMockPaletteMappings.light).map(
+			([key, value]) => ({ key, value }),
+		);
+
+		const paletteShouldBe = [
+			":root {",
+			...keyValues.map(({ key, value }) => `\t--${key}: ${value};`),
+			"}",
+		].join("\n");
+
+		expect(
+			generateUserColorsCss({
+				theme: "light",
+				colorFormat: "hex",
+				includeSupportsMediaQuery: false,
+				includeThemeInlineVariables: false,
+				paletteMappings: allMockPaletteMappings,
+				indentation: { type: "tab" },
+				uppercaseHex: false,
+				includeScrollbarStyling: true,
+			}),
+		).toStrictEqual(
+			[paletteShouldBe, scrollbarStylingBaseLayerCss].join("\n\n"),
+		);
 	});
 
 	// Spacing
@@ -413,9 +455,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -437,9 +480,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "space", size: 2 },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -461,33 +505,10 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "space", size: 4 },
 				uppercaseHex: false,
-			}),
-		).toStrictEqual(shouldBe);
-	});
-
-	test("returns CSS with tab indentation when both themes, includeSupportsMediaQuery, includeThemeInlineVariables", () => {
-		const keyValues = Object.entries(mockPaletteMappings.light).map(
-			([key, value]) => ({ key, value }),
-		);
-
-		const shouldBe = [
-			":root {",
-			...keyValues.map(({ key, value }) => `\t--${key}: ${value};`),
-			"}",
-		].join("\n");
-
-		expect(
-			generateUserColorsCss({
-				theme: "light",
-				colorFormat: "hex",
-				includeSupportsMediaQuery: false,
-				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
-				indentation: { type: "tab" },
-				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -510,10 +531,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: undefined,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -544,10 +566,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: undefined,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual([lightShouldBe, darkShouldBe].join("\n\n"));
 	});
@@ -569,10 +592,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: undefined,
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -594,10 +618,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: "class",
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
@@ -619,20 +644,21 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: false,
 				includeThemeInlineVariables: false,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: false,
 				darkModeVariant: "data-attribute",
+				includeScrollbarStyling: false,
 			}),
 		).toStrictEqual(shouldBe);
 	});
 
 	// Max output
 	test("returns properly formatted CSS when all formatting options are enabled", () => {
-		const lightKeyValues = Object.entries(mockPaletteMappings.light).map(
+		const lightKeyValues = Object.entries(allMockPaletteMappings.light).map(
 			([key, value]) => ({ key, value }),
 		);
-		const darkKeyValues = Object.entries(mockPaletteMappings.dark).map(
+		const darkKeyValues = Object.entries(allMockPaletteMappings.dark).map(
 			([key, value]) => ({ key, value }),
 		);
 
@@ -683,10 +709,11 @@ describe("generateUserColorsCss fn output", () => {
 				colorFormat: "hex",
 				includeSupportsMediaQuery: true,
 				includeThemeInlineVariables: true,
-				paletteMappings: mockPaletteMappings,
+				paletteMappings: allMockPaletteMappings,
 				indentation: { type: "tab" },
 				uppercaseHex: true,
 				darkModeVariant: "class",
+				includeScrollbarStyling: true,
 			}),
 		).toStrictEqual(
 			[
@@ -694,6 +721,7 @@ describe("generateUserColorsCss fn output", () => {
 				lightPaletteShouldBe,
 				darkPaletteShouldBe,
 				supportsMediaShouldBe,
+				scrollbarStylingBaseLayerCss,
 			].join("\n\n"),
 		);
 	});
@@ -707,19 +735,144 @@ describe("generateUserColorsCss fn output", () => {
 				includeSupportsMediaQuery: true,
 				includeThemeInlineVariables: false,
 				paletteMappings: {
-					...mockPaletteMappings,
-					light: { ...mockPaletteMappings.light, background: "" },
+					...allMockPaletteMappings,
+					light: { ...allMockPaletteMappings.light, background: "" },
 				},
 				indentation: { type: "tab" },
 				uppercaseHex: false,
+				includeScrollbarStyling: false,
 			}),
 		).toThrowError();
 	});
 });
 
-const mockPaletteMappings: ReturnType<
+const scrollbarStylingBaseLayerCss = [
+	"@layer base {",
+	"\t*:not(body):not(html)::-webkit-scrollbar {",
+	"\t\twidth: 10px;",
+	"\t\theight: 10px;",
+	"\t}",
+	"\t*:not(body):not(html)::-webkit-scrollbar-track {",
+	"\t\tbackground: transparent;",
+	"\t\tborder-radius: inherit;",
+	"\t}",
+	"\t*:not(body):not(html)::-webkit-scrollbar-thumb {",
+	"\t\tbackground: var(--scrollbar-thumb);",
+	"\t\tborder-radius: 9999px;",
+	"\t\tborder: 2px solid transparent;",
+	"\t\tbackground-clip: padding-box;",
+	"\t\ttransition-property: background-color;",
+	"\t\ttransition-timing-function: var(--tw-ease, var(--default-transition-timing-function));",
+	"\t\ttransition-duration: var(--tw-duration, var(--default-transition-duration));",
+	"\t}",
+	"\t*:not(body):not(html)::-webkit-scrollbar-thumb:hover {",
+	"\t\tbackground: var(--scrollbar-thumb-hover);",
+	"\t\tborder: 2px solid transparent;",
+	"\t\tbackground-clip: padding-box;",
+	"\t}",
+	"\t*:not(body):not(html)::-webkit-scrollbar-thumb:active {",
+	"\t\tbackground: var(--scrollbar-thumb-active);",
+	"\t\tborder: 2px solid transparent;",
+	"\t\tbackground-clip: padding-box;",
+	"\t}",
+	"\t*:not(body):not(html)::-webkit-scrollbar-corner {",
+	"\t\tbackground: inherit;",
+	"\t\tborder-radius: inherit;",
+	"\t}",
+	"\t*:not(body):not(html)::-webkit-scrollbar-button {",
+	"\t\tdisplay: none;",
+	"\t}",
+	"}",
+].join("\n");
+
+const allMockPaletteMappings: ReturnType<
 	typeof useColorContext
 >["paletteMappings"] = {
+	light: {
+		background: "#f5f5f5",
+		foreground: "#1f1f1f",
+		card: "#ffffffcc",
+		"card-foreground": "#1f1f1f",
+		popover: "#e4e4e4",
+		"popover-foreground": "#1f1f1f",
+		primary: "#22b573",
+		"primary-foreground": "#f2f2f2",
+		secondary: "#dbdbdb",
+		"secondary-foreground": "#1f1f1f",
+		muted: "#ededed",
+		"muted-foreground": "#565656",
+		accent: "#b3dcc3",
+		"accent-foreground": "#1f1f1f",
+		destructive: "#ff383c",
+		border: "#cbcbcb",
+		input: "#e4e4e4",
+		ring: "#3aad73",
+		"chart-1": "#22b573",
+		"chart-2": "#b3dcc3",
+		"chart-3": "#dbdbdb",
+		"chart-4": "#31a66d",
+		"chart-5": "#bfbfbf",
+		sidebar: "#ededed",
+		"sidebar-foreground": "#565656",
+		"sidebar-primary": "#31a66d",
+		"sidebar-primary-foreground": "#1f1f1f",
+		"sidebar-accent": "#b3dcc3",
+		"sidebar-accent-foreground": "#1f1f1f",
+		"sidebar-border": "#bfbfbf",
+		"sidebar-ring": "#3aad73",
+		"apple-red": "#ff383c",
+		"scrollbar-thumb": "#cbcbcb",
+		"scrollbar-thumb-hover": "#bfbfbf",
+		"scrollbar-thumb-active": "#acacac",
+	},
+	dark: {
+		background: "#1a1a1a",
+		foreground: "#eee",
+		card: "rgba(0, 0, 0, 0.05)",
+		"card-foreground": "#eee",
+		popover: "#292929",
+		"popover-foreground": "#eee",
+		primary: "#36d07e",
+		"primary-foreground": "#eee",
+		secondary: "#2f2f2f",
+		"secondary-foreground": "#eee",
+		muted: "#212121",
+		"muted-foreground": "#b4b4b4",
+		accent: "#1e4b30",
+		"accent-foreground": "#eee",
+		destructive: "#ff383c",
+		border: "#3e3e3e",
+		input: "#292929",
+		ring: "#616161",
+		"chart-1": "#36d07e",
+		"chart-2": "#1e4b30",
+		"chart-3": "#2f2f2f",
+		"chart-4": "#22c573",
+		"chart-5": "#4a4a4a",
+		sidebar: "#212121",
+		"sidebar-foreground": "#b4b4b4",
+		"sidebar-primary": "#22c573",
+		"sidebar-primary-foreground": "#eee",
+		"sidebar-accent": "#1e4b30",
+		"sidebar-accent-foreground": "#eee",
+		"sidebar-border": "#4a4a4a",
+		"sidebar-ring": "#616161",
+		"apple-red": "#ff383c",
+		"scrollbar-thumb": "#3e3e3e",
+		"scrollbar-thumb-hover": "#4a4a4a",
+		"scrollbar-thumb-active": "#616161",
+	},
+};
+
+type ExcludingScrollbarStyles = Omit<
+	ReturnType<typeof useColorContext>["paletteMappings"]["light"],
+	"scrollbar-thumb" | "scrollbar-thumb-hover" | "scrollbar-thumb-active"
+>;
+
+const mockPaletteMappings: {
+	light: ExcludingScrollbarStyles;
+	dark: ExcludingScrollbarStyles;
+} = {
 	light: {
 		background: "#f5f5f5",
 		foreground: "#1f1f1f",

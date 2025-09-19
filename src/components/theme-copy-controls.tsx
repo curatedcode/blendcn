@@ -61,6 +61,7 @@ const formSchema = z.object({
 	darkModeVariant: z.enum(["class", "data-attribute"]),
 	uppercaseHex: z.boolean().default(false),
 	colorFormat: z.enum(["hex", "srgb", "hsl", "oklch"]),
+	includeScrollbarStyling: z.boolean().default(true),
 });
 
 const defaultFormValues: z.infer<typeof formSchema> = {
@@ -71,6 +72,7 @@ const defaultFormValues: z.infer<typeof formSchema> = {
 	darkModeVariant: "class",
 	uppercaseHex: false,
 	colorFormat: "hex",
+	includeScrollbarStyling: true,
 };
 
 export function ThemeCopyControls({ className }: { className?: string }) {
@@ -341,6 +343,22 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 														/>
 													</FormControl>
 													<FormLabel>Include Inline Theme Variables</FormLabel>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="includeScrollbarStyling"
+											render={({ field }) => (
+												<FormItem className="flex items-center gap-2">
+													<FormControl>
+														<Checkbox
+															checked={field.value}
+															onCheckedChange={field.onChange}
+														/>
+													</FormControl>
+													<FormLabel>Include Scrollbar Styling</FormLabel>
 													<FormMessage />
 												</FormItem>
 											)}
