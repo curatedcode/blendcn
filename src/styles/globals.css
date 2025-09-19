@@ -6,9 +6,6 @@
   --font-display: "Outfit", "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
   --font-body: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
 
-  --saturate-primary-active: 1.1;
-  --brightness-primary-active: 0.92;
-
   --breakpoint-xs: 30rem;
 
   --spacing-desktop: 120rem;
@@ -68,8 +65,8 @@
   --color-apple-red: var(--apple-red);
 
   --color-scrollbar-thumb: var(--scrollbar-thumb);
-  --color-scrollbar-thumb-hover: var(--scrollbar-thumb);
-  --color-scrollbar-thumb-active: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+  --color-scrollbar-thumb-active: var(--scrollbar-thumb-active);
 }
 
 :root {
@@ -291,7 +288,7 @@
   body {
     @apply bg-background text-foreground;
   }
-    *:not(body):not(html)::-webkit-scrollbar {
+  *:not(body):not(html)::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }

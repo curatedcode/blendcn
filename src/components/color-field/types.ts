@@ -150,9 +150,20 @@ export const shadcnCssVariables = [
 	"apple-red",
 ] as const;
 
+export const extendedCssVariables = [
+	"scrollbar-thumb",
+	"scrollbar-thumb-hover",
+	"scrollbar-thumb-active",
+] as const;
+
+export const allCssVariables = [
+	...shadcnCssVariables,
+	...extendedCssVariables,
+] as const;
+
 export const defaultColorMappings: Omit<
 	{
-		[K in (typeof shadcnCssVariables)[number]]: (typeof themeTokens)[number];
+		[K in (typeof allCssVariables)[number]]: (typeof themeTokens)[number];
 	},
 	"apple-red"
 > = {
@@ -187,6 +198,9 @@ export const defaultColorMappings: Omit<
 	"sidebar-accent-foreground": "gray-12",
 	"sidebar-border": "gray-7",
 	"sidebar-ring": "primary-8",
+	"scrollbar-thumb": "gray-6",
+	"scrollbar-thumb-hover": "gray-7",
+	"scrollbar-thumb-active": "gray-8",
 } as const;
 
 export function stripHexAlpha(color: string) {
