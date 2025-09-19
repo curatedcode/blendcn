@@ -71,21 +71,24 @@ export const CustomSwatch = ({
 					event.preventDefault();
 					contentRef.current?.focus();
 				}}
+				className="max-h-[calc(100%-2rem)] overflow-y-auto overflow-x-hidden px-2 pt-7.5 sm:px-6 sm:pt-6"
 			>
 				<DialogHeader className="sr-only">
 					<DialogTitle>
 						{scale} {step}
 					</DialogTitle>
 				</DialogHeader>
-				<div className="relative">
+				<div className="relative text-sm">
 					<div
 						className="h-60 w-full border"
 						style={{ backgroundColor: cssVariable }}
 					/>
-					<h3 className="mt-4 mb-4 font-semibold">{friendlyColorName}</h3>
-					<div className="flex flex-col gap-3">
+					<h3 className="mt-4 mb-3.5 font-semibold text-base">
+						{friendlyColorName}
+					</h3>
+					<div className="flex flex-col gap-1.5">
 						<div className="flex flex-col gap-1.5 sm:flex-row">
-							<span className="font-medium">Usage</span>
+							<span className="w-32 font-medium">Usage</span>
 							<div className="mb-1 xs:mb-0">
 								<span>
 									{["1", "2"].includes(step) && "Backgrounds"}
@@ -107,57 +110,60 @@ export const CustomSwatch = ({
 							</div>
 						</div>
 						<div className="flex flex-col gap-1.5 sm:flex-row">
-							<span className="font-medium">Pairs with</span>
+							<span className="w-32 font-medium">Pairs with</span>
 							<span>
 								{" "}
 								{["1", "2"].includes(step) && "Steps 11, 12 text"}
 								{["3"].includes(step) && "Steps 11 labels, Step 12 text"}
 								{["4"].includes(step) && "Steps 11, 12 labels"}
 								{["5"].includes(step) && "Step 12 labels"}
-								{["6", "7", "8"].includes(step) && "Steps 1–5 backgrounds"}
+								{["6", "7", "8"].includes(step) && "Steps 1-5 backgrounds"}
 								{["9", "10"].includes(step) &&
 									(brightColors.includes(scale) ? "Dark text" : "White text")}
 								{["11", "12"].includes(step) && "Background colors"}
 							</span>
 						</div>
-						<Separator className="my-1 xs:my-px" />
-						<div className="flex flex-col gap-1.5">
-							<span>Solid color</span>
+						<Separator className="my-2" />
+						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
+							<span className="w-32">Solid color</span>
 							<CopyButton>{hex}</CopyButton>
 						</div>
-						<div className="flex flex-col gap-1.5">
-							<div className="flex items-center gap-1.5">
-								<span className="-mt-px">Alpha color</span>
+						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
+							<div className="flex w-32 items-center gap-1.5">
+								<span>Alpha color</span>
 								<Popover modal>
 									<PopoverTrigger asChild>
-										<Button variant="ghost">
-											<InfoIcon className="size-4" />
+										<Button variant="ghost" size={"icon"} className="size-7">
+											<InfoIcon className="size-3.5" />
 											<span className="sr-only">Learn more</span>
 										</Button>
 									</PopoverTrigger>
-									<PopoverContent side="top" align="center" className="w-95">
-										<h1 className="mb-1">Alpha colors</h1>
+									<PopoverContent
+										side="top"
+										align="center"
+										className="flex w-95 flex-col gap-3"
+									>
 										<p className="mb-1">
 											Alpha color is a translucent color that achieves the same
 											look against a neutral background. Alpha colors are used
 											for elements that need to retain contrast when overlayed
-											over different backgrounds
+											over different backgrounds.
 										</p>
 										<p>
-											Radix Colors alphas are designed against white background
-											in light mode and Gray 1 in dark mode.
+											The alphas are designed against white background in light
+											mode and Gray 1 in dark mode.
 										</p>
 									</PopoverContent>
 								</Popover>
 							</div>
-							<CopyButton>{hexA}</CopyButton>
+							<CopyButton className="-mt-1 md:-mt-0">{hexA}</CopyButton>
 						</div>
-						<div className="flex flex-col gap-1.5">
-							<span>P3 color</span>
+						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
+							<span className="w-32">P3 color</span>
 							<CopyButton>{p3}</CopyButton>
 						</div>
-						<div className="flex flex-col gap-1.5">
-							<span>P3 alpha</span>
+						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
+							<span className="w-32">P3 alpha</span>
 							<CopyButton>{p3A}</CopyButton>
 						</div>
 					</div>
@@ -175,6 +181,7 @@ interface CopyButtonState {
 
 const CopyButton = ({
 	onClick,
+	className,
 	...props
 }: React.ComponentPropsWithoutRef<typeof Button>) => {
 	const ref = React.useRef<HTMLButtonElement>(null);
@@ -219,7 +226,7 @@ const CopyButton = ({
 				<Button
 					variant="ghost"
 					ref={ref}
-					className="w-fit select-auto"
+					className={cn("w-fit select-auto px-1.5 sm:px-3", className)}
 					onClick={(event) => {
 						onClick?.(event);
 						const originalDefaultPrevented = event.defaultPrevented;
@@ -239,6 +246,7 @@ const CopyButton = ({
 							}
 						}
 					}}
+					size={"sm"}
 					{...props}
 				/>
 			</TooltipTrigger>
