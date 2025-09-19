@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
-		name: "Radix2Shadcn",
-		short_name: "Radix2Shadcn",
+		name: "BlendCN",
+		short_name: "BlendCN",
 		description:
 			"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
 		lang: "en_US",

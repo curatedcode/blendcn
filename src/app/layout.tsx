@@ -44,11 +44,11 @@ export const metadata: Metadata = {
 			url: "/assets/icons/apple-touch-icon-512x512.png",
 		},
 	],
-	title: "Radix2Shadcn",
+	title: "BlendCN",
 	other: {
 		"mobile-web-app-capable": "yes",
 		"apple-mobile-web-app-capable": "yes",
-		"apple-mobile-web-app-title": "Radix2Shadcn",
+		"apple-mobile-web-app-title": "BlendCN",
 		"apple-mobile-web-app-status-bar-style": "default",
 	},
 	alternates: {
@@ -56,23 +56,23 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Radix2Shadcn",
+		title: "BlendCN",
 		description:
 			"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
 		siteId: "722408900213874688",
 		creator: "@IAmNotZack",
-		images: ["https://radix2shadcn.zackaryf.com/assets/icons/twitter-card.png"],
+		images: ["https://blendcn.zackaryf.com/assets/icons/twitter-card.png"],
 	},
 	openGraph: {
 		type: "website",
-		title: "Radix2Shadcn",
+		title: "BlendCN",
 		description:
 			"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
-		siteName: "Radix2Shadcn",
-		url: "https://radix2shadcn.zackaryf.com",
+		siteName: "BlendCN",
+		url: "https://blendcn.zackaryf.com",
 		images: [
 			{
-				url: "https://radix2shadcn.zackaryf.com/assets/icons/twitter-card.png",
+				url: "https://blendcn.zackaryf.com/assets/icons/twitter-card.png",
 				width: 1200,
 				height: 630,
 			},
