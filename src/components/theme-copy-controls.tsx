@@ -508,7 +508,7 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 										setCopied(true);
 									}}
 									size="sm"
-									className="absolute top-2.5 right-2.5 h-6 w-fit rounded bg-zinc-700 px-2 py-1 text-black text-xs hover:bg-zinc-800 dark:bg-black dark:text-white dark:hover:bg-zinc-800"
+									className="absolute top-2.5 right-2.5 h-6 w-fit rounded bg-zinc-200 px-2 py-1 text-black text-xs hover:bg-zinc-300 dark:bg-black dark:text-white dark:hover:bg-zinc-800"
 								>
 									{copied ? (
 										<>
