@@ -22,7 +22,7 @@ Thanks for your interest in contributing! Improvements, fixes, and new features 
 ## Getting started
 1. Clone it locally
 	```bash
-	git clone git@github.com:curatedcode/radix2shadcn.git
+	git clone git@github.com:curatedcode/blendcn.git
 	```
 2. Install dependencies
    ```bash

@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
 	return [
 		{
-			url: "https://radix2shadcn.zackaryf.com",
+			url: "https://blendcn.zackaryf.com",
 			lastModified: new Date(),
 			changeFrequency: "yearly",
 			priority: 1,
