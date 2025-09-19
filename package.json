@@ -1,6 +1,6 @@
 {
 	"name": "blendcn",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"private": false,
 	"type": "module",
 	"description": "Semantic theme builder for shadcn/ui with live previews, token mapping, and export-ready palettes.",
