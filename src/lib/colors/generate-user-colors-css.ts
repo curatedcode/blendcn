@@ -175,16 +175,26 @@ export function generateUserColorsCss<
 		"}",
 	].join("\n");
 
-	const scrollbarStyling = [
-		"@layer base {",
+	const shadcnBaseLayerCss = [
+		"\t* {",
+		"\t\t@apply border-border outline-ring/50",
+		"",
+		"\tbody {",
+		"\t\t@apply bg-background text-foreground",
+		"\t}",
+	];
+
+	const scrollbarBaseLayerCss = [
 		"\t*:not(body):not(html)::-webkit-scrollbar {",
 		"\t\twidth: 10px;",
 		"\t\theight: 10px;",
 		"\t}",
+		"",
 		"\t*:not(body):not(html)::-webkit-scrollbar-track {",
 		"\t\tbackground: transparent;",
 		"\t\tborder-radius: inherit;",
 		"\t}",
+		"",
 		"\t*:not(body):not(html)::-webkit-scrollbar-thumb {",
 		"\t\tbackground: var(--scrollbar-thumb);",
 		"\t\tborder-radius: 9999px;",
@@ -194,31 +204,47 @@ export function generateUserColorsCss<
 		"\t\ttransition-timing-function: var(--tw-ease, var(--default-transition-timing-function));",
 		"\t\ttransition-duration: var(--tw-duration, var(--default-transition-duration));",
 		"\t}",
+		"",
 		"\t*:not(body):not(html)::-webkit-scrollbar-thumb:hover {",
 		"\t\tbackground: var(--scrollbar-thumb-hover);",
 		"\t\tborder: 2px solid transparent;",
 		"\t\tbackground-clip: padding-box;",
 		"\t}",
+		"",
 		"\t*:not(body):not(html)::-webkit-scrollbar-thumb:active {",
 		"\t\tbackground: var(--scrollbar-thumb-active);",
 		"\t\tborder: 2px solid transparent;",
 		"\t\tbackground-clip: padding-box;",
 		"\t}",
+		"",
 		"\t*:not(body):not(html)::-webkit-scrollbar-corner {",
 		"\t\tbackground: inherit;",
 		"\t\tborder-radius: inherit;",
 		"\t}",
+		"",
 		"\t*:not(body):not(html)::-webkit-scrollbar-button {",
 		"\t\tdisplay: none;",
 		"\t}",
+	];
+
+	const baseLayerCss = [
+		"@layer base {",
+		...(includeThemeInlineVariables ? shadcnBaseLayerCss : []),
+		includeThemeInlineVariables && includeScrollbarStyling && "",
+		...(includeScrollbarStyling ? scrollbarBaseLayerCss : []),
 		"}",
-	].join("\n");
+	]
+		.filter((v): v is string => {
+			if (v === "") return true;
+			return Boolean(v);
+		})
+		.join("\n");
 
 	const cssToFormat: string[] = [
 		includeThemeInlineVariables && themeInlineVariables,
 		colorValuesCss,
 		supportsMediaQueryCss,
-		includeScrollbarStyling && scrollbarStyling,
+		(includeThemeInlineVariables || includeScrollbarStyling) && baseLayerCss,
 	].filter((v): v is string => Boolean(v));
 
 	return formatCode(cssToFormat.join("\n\n"), indentation);
