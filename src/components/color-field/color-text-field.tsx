@@ -52,22 +52,28 @@ export const ColorTextField = React.forwardRef<
 			return string ? string : committedColorRef.current;
 		}, [inputValue]);
 
-		const colorInputValue = React.useMemo(() => {
-			return toCssFormat(
-				toShortFormat(
-					new Color(toCssFormat(color)).to("srgb").toString({ format: "hex" }),
-				) ?? `#${defaultValue}`,
-			);
-		}, [color, defaultValue]);
+		const [colorInputValue, setColorInputValue] = React.useState(
+			formatForColorInput(color),
+		);
 
-		useIsomorphicLayoutEffect(() => {
+		const colorInputBgRef = React.useRef<HTMLDivElement>(null);
+
+		React.useEffect(() => {
 			const string = toShortFormat(value);
 
 			if (string) {
 				setInputValue(string);
 				committedColorRef.current = string;
+				setColorInputValue(formatForColorInput(string));
 			}
 		}, [value]);
+
+		// we need to force the bg preview to match the color input value
+		React.useEffect(() => {
+			if (colorInputBgRef.current) {
+				colorInputBgRef.current.style.backgroundColor = colorInputValue;
+			}
+		}, [colorInputValue]);
 
 		return (
 			// biome-ignore lint/a11y/noStaticElementInteractions: Allow us to react to any click in/on this div to highlight all text
@@ -166,6 +172,7 @@ export const ColorTextField = React.forwardRef<
 
 									if (string) {
 										committedColorRef.current = string;
+										setColorInputValue(formatForColorInput(string));
 										setInputValue(string);
 										onValueChange?.(toCssFormat(string));
 									}
@@ -175,10 +182,11 @@ export const ColorTextField = React.forwardRef<
 								tabIndex={-1}
 								type="color"
 								value={colorInputValue}
-								className="size-full [-webkit-tap-highlight-color:_transparent]"
+								className="opacity size-full cursor-pointer [-webkit-tap-highlight-color:_transparent]"
 								placeholder="Select color"
 							/>
 							<div
+								ref={colorInputBgRef}
 								className="pointer-events-none absolute inset-0 rounded-md border border-border"
 								style={{ backgroundColor: colorInputValue }}
 								suppressHydrationWarning
@@ -190,6 +198,14 @@ export const ColorTextField = React.forwardRef<
 		);
 	},
 );
+
+function formatForColorInput(value: string) {
+	return toCssFormat(
+		toShortFormat(
+			new Color(toCssFormat(value)).to("srgb").toString({ format: "hex" }),
+		) ?? "",
+	);
+}
 
 const hasSelection = (input: HTMLInputElement | null) => {
 	if (input) {
@@ -283,6 +299,3 @@ const isColorFunction = (value: string) => {
 		value.startsWith("xyz")
 	);
 };
-
-const useIsomorphicLayoutEffect =
-	typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
