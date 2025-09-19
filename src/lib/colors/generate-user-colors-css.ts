@@ -99,6 +99,9 @@ export function generateUserColorsCss<
 		.map(({ selector, theme }) =>
 			[
 				`${selector} {`,
+				includeThemeInlineVariables &&
+					selector === ":root" &&
+					"\t--radius: 0.625rem;",
 				...allCssVariables.map((key) => {
 					let color: string = paletteMappings[theme][key];
 					if (color === "") {
@@ -125,7 +128,9 @@ export function generateUserColorsCss<
 					return `\t--${key}: ${color};`;
 				}),
 				"}",
-			].join("\n"),
+			]
+				.filter((v): v is string => Boolean(v))
+				.join("\n"),
 		)
 		.join("\n\n");
 
@@ -162,6 +167,10 @@ export function generateUserColorsCss<
 
 	const themeInlineVariables = [
 		"@theme inline {",
+		"\t--radius-sm: calc(var(--radius) - 4px);",
+		"\t--radius-md: calc(var(--radius) - 2px);",
+		"\t--radius-lg: var(--radius);",
+		"\t--radius-xl: calc(var(--radius) + 4px);",
 		...allCssVariables.map((key) => `\t--color-${key}: var(--${key});`),
 		"}",
 	].join("\n");
