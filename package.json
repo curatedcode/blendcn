@@ -1,8 +1,31 @@
 {
 	"name": "blendcn",
 	"version": "0.0.2",
-	"private": true,
+	"private": false,
 	"type": "module",
+	"description": "Semantic theme builder for shadcn/ui with live previews, token mapping, and export-ready palettes.",
+	"keywords": [
+		"shadcn",
+		"radix",
+		"theme builder",
+		"design tokens",
+		"tailwind",
+		"ui system",
+		"palette editor",
+		"semantic mapping",
+		"component preview",
+		"color system"
+	],
+	"author": "Zackary Fotheringham <me@zackaryf.com>",
+	"license": "MIT",
+	"homepage": "https://blendcn.zackaryf.com",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/curatedcode/blendcn.git"
+	},
+	"bugs": {
+		"url": "https://github.com/curatedcode/blendcn/issues"
+	},
 	"scripts": {
 		"build": "next build",
 		"check": "biome check .",
