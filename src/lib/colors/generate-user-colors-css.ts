@@ -1,6 +1,9 @@
 import Color from "colorjs.io";
 import type { useColorContext } from "~/components/color-context";
-import { shadcnCssVariables } from "~/components/color-field/types";
+import {
+	allCssVariables as _allCssVariables,
+	shadcnCssVariables,
+} from "~/components/color-field/types";
 
 type TabIndentationType = {
 	type: "tab";
@@ -26,6 +29,7 @@ export type GenerateUserColorsCssArgs<
 	uppercaseHex: boolean;
 	paletteMappings: ReturnType<typeof useColorContext>["paletteMappings"];
 	colorFormat: (typeof supportedColorFormats)[number]["value"];
+	includeScrollbarStyling: boolean;
 };
 
 export function generateUserColorsCss<
@@ -39,6 +43,7 @@ export function generateUserColorsCss<
 	uppercaseHex,
 	paletteMappings,
 	colorFormat,
+	includeScrollbarStyling,
 }: GenerateUserColorsCssArgs<T>) {
 	let darkModeSelector =
 		darkModeVariant === "class"
@@ -85,12 +90,16 @@ export function generateUserColorsCss<
 		}
 	}
 
+	const allCssVariables = includeScrollbarStyling
+		? _allCssVariables
+		: shadcnCssVariables;
+
 	// this is ugly but if we don't do it then we get our output has awkward indentation. (same for the others below)
 	const colorValuesCss = selectors
 		.map(({ selector, theme }) =>
 			[
 				`${selector} {`,
-				...shadcnCssVariables.map((key) => {
+				...allCssVariables.map((key) => {
 					let color: string = paletteMappings[theme][key];
 					if (color === "") {
 						throw new Error(
@@ -130,7 +139,7 @@ export function generateUserColorsCss<
 				...selectors.map(({ selector, theme }) =>
 					[
 						`\t\t${selector} {`,
-						...shadcnCssVariables.map((key) => {
+						...allCssVariables.map((key) => {
 							const color = new Color(paletteMappings[theme][key])
 								.to("oklch")
 								.toString();
@@ -153,7 +162,46 @@ export function generateUserColorsCss<
 
 	const themeInlineVariables = [
 		"@theme inline {",
-		...shadcnCssVariables.map((key) => `\t--color-${key}: var(--${key});`),
+		...allCssVariables.map((key) => `\t--color-${key}: var(--${key});`),
+		"}",
+	].join("\n");
+
+	const scrollbarStyling = [
+		"@layer base {",
+		"\t*:not(body):not(html)::-webkit-scrollbar {",
+		"\t\twidth: 10px;",
+		"\t\theight: 10px;",
+		"\t}",
+		"\t*:not(body):not(html)::-webkit-scrollbar-track {",
+		"\t\tbackground: transparent;",
+		"\t\tborder-radius: inherit;",
+		"\t}",
+		"\t*:not(body):not(html)::-webkit-scrollbar-thumb {",
+		"\t\tbackground: var(--scrollbar-thumb);",
+		"\t\tborder-radius: 9999px;",
+		"\t\tborder: 2px solid transparent;",
+		"\t\tbackground-clip: padding-box;",
+		"\t\ttransition-property: background-color;",
+		"\t\ttransition-timing-function: var(--tw-ease, var(--default-transition-timing-function));",
+		"\t\ttransition-duration: var(--tw-duration, var(--default-transition-duration));",
+		"\t}",
+		"\t*:not(body):not(html)::-webkit-scrollbar-thumb:hover {",
+		"\t\tbackground: var(--scrollbar-thumb-hover);",
+		"\t\tborder: 2px solid transparent;",
+		"\t\tbackground-clip: padding-box;",
+		"\t}",
+		"\t*:not(body):not(html)::-webkit-scrollbar-thumb:active {",
+		"\t\tbackground: var(--scrollbar-thumb-active);",
+		"\t\tborder: 2px solid transparent;",
+		"\t\tbackground-clip: padding-box;",
+		"\t}",
+		"\t*:not(body):not(html)::-webkit-scrollbar-corner {",
+		"\t\tbackground: inherit;",
+		"\t\tborder-radius: inherit;",
+		"\t}",
+		"\t*:not(body):not(html)::-webkit-scrollbar-button {",
+		"\t\tdisplay: none;",
+		"\t}",
 		"}",
 	].join("\n");
 
@@ -161,6 +209,7 @@ export function generateUserColorsCss<
 		includeThemeInlineVariables && themeInlineVariables,
 		colorValuesCss,
 		supportsMediaQueryCss,
+		includeScrollbarStyling && scrollbarStyling,
 	].filter((v): v is string => Boolean(v));
 
 	return formatCode(cssToFormat.join("\n\n"), indentation);
