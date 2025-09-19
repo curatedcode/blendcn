@@ -125,12 +125,17 @@ describe("generateUserColorsCss fn output", () => {
 
 		const shadcnVariablesShouldBe = [
 			"@theme inline {",
+			"\t--radius-sm: calc(var(--radius) - 4px);",
+			"\t--radius-md: calc(var(--radius) - 2px);",
+			"\t--radius-lg: var(--radius);",
+			"\t--radius-xl: calc(var(--radius) + 4px);",
 			...shadcnCssVariables.map((key) => `\t--color-${key}: var(--${key});`),
 			"}",
 		].join("\n");
 
 		const paletteShouldBe = [
 			":root {",
+			"\t--radius: 0.625rem;",
 			...paletteKeyValues.map(({ key, value }) => `\t--${key}: ${value};`),
 			"}",
 		].join("\n");
@@ -385,12 +390,17 @@ describe("generateUserColorsCss fn output", () => {
 
 		const themeInlineShouldBe = [
 			"@theme inline {",
+			"\t--radius-sm: calc(var(--radius) - 4px);",
+			"\t--radius-md: calc(var(--radius) - 2px);",
+			"\t--radius-lg: var(--radius);",
+			"\t--radius-xl: calc(var(--radius) + 4px);",
 			...keyValues.map(({ key }) => `\t--color-${key}: var(--${key});`),
 			"}",
 		].join("\n");
 
 		const paletteShouldBe = [
 			":root {",
+			"\t--radius: 0.625rem;",
 			...keyValues.map(({ key, value }) => `\t--${key}: ${value};`),
 			"}",
 		].join("\n");
@@ -664,12 +674,17 @@ describe("generateUserColorsCss fn output", () => {
 
 		const themeInlineShouldBe = [
 			"@theme inline {",
+			"\t--radius-sm: calc(var(--radius) - 4px);",
+			"\t--radius-md: calc(var(--radius) - 2px);",
+			"\t--radius-lg: var(--radius);",
+			"\t--radius-xl: calc(var(--radius) + 4px);",
 			...lightKeyValues.map(({ key }) => `\t--color-${key}: var(--${key});`),
 			"}",
 		].join("\n");
 
 		const lightPaletteShouldBe = [
 			":root {",
+			"\t--radius: 0.625rem;",
 			...lightKeyValues.map(
 				({ key, value }) => `\t--${key}: ${value.toUpperCase()};`,
 			),
