@@ -124,8 +124,8 @@
   --apple-red: #ff383c; /* apple red (default) */
 
   --scrollbar-thumb: #cbcbcb; /* gray-6 */
-  --scrollbar-thumb-hover: #bfbfbf; /* gray-6 */
-  --scrollbar-thumb-active: #acacac; /* gray-6 */
+  --scrollbar-thumb-hover: #bfbfbf; /* gray-7 */
+  --scrollbar-thumb-active: #acacac; /* gray-8 */
 }
 
 .dark {
@@ -176,8 +176,8 @@
 	--sidebar-ring: #616161; /* primary-8 */
 
   --scrollbar-thumb: #3e3e3e; /* gray-6 */
-  --scrollbar-thumb-hover: #4a4a4a; /* gray-6 */
-  --scrollbar-thumb-active: #616161; /* gray-6 */
+  --scrollbar-thumb-hover: #4a4a4a; /* gray-7 */
+  --scrollbar-thumb-active: #616161; /* gray-8 */
 }
 
 @supports (color: color(display-p3 1 1 1)) {
