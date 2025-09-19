@@ -140,6 +140,12 @@ describe("generateUserColorsCss fn output", () => {
 			"}",
 		].join("\n");
 
+		const baseLayerShouldBe = [
+			"@layer base {",
+			...shadcnBaseLayerCss,
+			"}",
+		].join("\n");
+
 		expect(
 			generateUserColorsCss({
 				theme: "light",
@@ -151,7 +157,11 @@ describe("generateUserColorsCss fn output", () => {
 				uppercaseHex: false,
 				includeScrollbarStyling: false,
 			}),
-		).toStrictEqual([shadcnVariablesShouldBe, paletteShouldBe].join("\n\n"));
+		).toStrictEqual(
+			[shadcnVariablesShouldBe, paletteShouldBe, baseLayerShouldBe].join(
+				"\n\n",
+			),
+		);
 	});
 
 	// Color format
@@ -405,6 +415,12 @@ describe("generateUserColorsCss fn output", () => {
 			"}",
 		].join("\n");
 
+		const baseLayerShouldBe = [
+			"@layer base {",
+			...shadcnBaseLayerCss,
+			"}",
+		].join("\n");
+
 		expect(
 			generateUserColorsCss({
 				theme: "light",
@@ -416,7 +432,9 @@ describe("generateUserColorsCss fn output", () => {
 				uppercaseHex: false,
 				includeScrollbarStyling: false,
 			}),
-		).toStrictEqual([themeInlineShouldBe, paletteShouldBe].join("\n\n"));
+		).toStrictEqual(
+			[themeInlineShouldBe, paletteShouldBe, baseLayerShouldBe].join("\n\n"),
+		);
 	});
 
 	// Scrollbar styling
@@ -431,6 +449,12 @@ describe("generateUserColorsCss fn output", () => {
 			"}",
 		].join("\n");
 
+		const scrollbarBaseLayerShouldBe = [
+			"@layer base {",
+			...scrollbarBaseLayerCss,
+			"}",
+		].join("\n");
+
 		expect(
 			generateUserColorsCss({
 				theme: "light",
@@ -442,9 +466,7 @@ describe("generateUserColorsCss fn output", () => {
 				uppercaseHex: false,
 				includeScrollbarStyling: true,
 			}),
-		).toStrictEqual(
-			[paletteShouldBe, scrollbarStylingBaseLayerCss].join("\n\n"),
-		);
+		).toStrictEqual([paletteShouldBe, scrollbarBaseLayerShouldBe].join("\n\n"));
 	});
 
 	// Spacing
@@ -718,6 +740,14 @@ describe("generateUserColorsCss fn output", () => {
 			"}",
 		].join("\n");
 
+		const baseLayerShouldBe = [
+			"@layer base {",
+			...shadcnBaseLayerCss,
+			"",
+			...scrollbarBaseLayerCss,
+			"}",
+		].join("\n");
+
 		expect(
 			generateUserColorsCss({
 				theme: "both",
@@ -736,7 +766,7 @@ describe("generateUserColorsCss fn output", () => {
 				lightPaletteShouldBe,
 				darkPaletteShouldBe,
 				supportsMediaShouldBe,
-				scrollbarStylingBaseLayerCss,
+				baseLayerShouldBe,
 			].join("\n\n"),
 		);
 	});
@@ -761,16 +791,26 @@ describe("generateUserColorsCss fn output", () => {
 	});
 });
 
-const scrollbarStylingBaseLayerCss = [
-	"@layer base {",
+const shadcnBaseLayerCss = [
+	"\t* {",
+	"\t\t@apply border-border outline-ring/50",
+	"",
+	"\tbody {",
+	"\t\t@apply bg-background text-foreground",
+	"\t}",
+];
+
+const scrollbarBaseLayerCss = [
 	"\t*:not(body):not(html)::-webkit-scrollbar {",
 	"\t\twidth: 10px;",
 	"\t\theight: 10px;",
 	"\t}",
+	"",
 	"\t*:not(body):not(html)::-webkit-scrollbar-track {",
 	"\t\tbackground: transparent;",
 	"\t\tborder-radius: inherit;",
 	"\t}",
+	"",
 	"\t*:not(body):not(html)::-webkit-scrollbar-thumb {",
 	"\t\tbackground: var(--scrollbar-thumb);",
 	"\t\tborder-radius: 9999px;",
@@ -780,25 +820,28 @@ const scrollbarStylingBaseLayerCss = [
 	"\t\ttransition-timing-function: var(--tw-ease, var(--default-transition-timing-function));",
 	"\t\ttransition-duration: var(--tw-duration, var(--default-transition-duration));",
 	"\t}",
+	"",
 	"\t*:not(body):not(html)::-webkit-scrollbar-thumb:hover {",
 	"\t\tbackground: var(--scrollbar-thumb-hover);",
 	"\t\tborder: 2px solid transparent;",
 	"\t\tbackground-clip: padding-box;",
 	"\t}",
+	"",
 	"\t*:not(body):not(html)::-webkit-scrollbar-thumb:active {",
 	"\t\tbackground: var(--scrollbar-thumb-active);",
 	"\t\tborder: 2px solid transparent;",
 	"\t\tbackground-clip: padding-box;",
 	"\t}",
+	"",
 	"\t*:not(body):not(html)::-webkit-scrollbar-corner {",
 	"\t\tbackground: inherit;",
 	"\t\tborder-radius: inherit;",
 	"\t}",
+	"",
 	"\t*:not(body):not(html)::-webkit-scrollbar-button {",
 	"\t\tdisplay: none;",
 	"\t}",
-	"}",
-].join("\n");
+];
 
 const allMockPaletteMappings: ReturnType<
 	typeof useColorContext
