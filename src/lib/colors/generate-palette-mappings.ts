@@ -1,7 +1,7 @@
 import type { GeneratedColors } from "~/components/color-context";
-import type { shadcnCssVariables } from "~/components/color-field/types";
+import type { allCssVariables } from "~/components/color-field/types";
 
-type OutputColors = { [K in (typeof shadcnCssVariables)[number]]: string };
+type OutputColors = { [K in (typeof allCssVariables)[number]]: string };
 
 export function generatePaletteMappings(colors: {
 	light: GeneratedColors;
@@ -43,6 +43,9 @@ export function generatePaletteMappings(colors: {
 		"sidebar-border": palette.grayScale[6],
 		"sidebar-ring": palette.accentScale[7],
 		"apple-red": palette.appleRed,
+		"scrollbar-thumb": palette.grayScale[5],
+		"scrollbar-thumb-hover": palette.grayScale[6],
+		"scrollbar-thumb-active": palette.grayScale[7],
 	});
 
 	return {

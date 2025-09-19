@@ -136,28 +136,9 @@ export function ColorContextProvider({ children }: ColorContextProviderProps) {
 		() =>
 			getNewPreviewStyles({
 				lightColors: lightModeResult,
-				lightColorsBase: {
-					accent: lightAccentValue,
-					gray: lightGrayValue,
-					background: lightBgValue,
-				},
 				darkColors: darkModeResult,
-				darkColorsBase: {
-					accent: darkAccentValue,
-					gray: darkGrayValue,
-					background: darkBgValue,
-				},
 			}),
-		[
-			darkModeResult,
-			lightModeResult,
-			lightAccentValue,
-			lightGrayValue,
-			lightBgValue,
-			darkAccentValue,
-			darkGrayValue,
-			darkBgValue,
-		],
+		[darkModeResult, lightModeResult],
 	);
 
 	const paletteStylesElementRef = React.useRef<HTMLStyleElement>(null);
@@ -214,24 +195,12 @@ export function ColorContextProvider({ children }: ColorContextProviderProps) {
 
 interface GetNewPreviewStylesParams {
 	lightColors: GeneratedColors;
-	lightColorsBase: {
-		accent: string;
-		gray: string;
-		background: string;
-	};
 	darkColors: GeneratedColors;
-	darkColorsBase: {
-		accent: string;
-		gray: string;
-		background: string;
-	};
 }
 
 const getNewPreviewStyles = ({
 	lightColors,
-	lightColorsBase,
 	darkColors,
-	darkColorsBase,
 }: GetNewPreviewStylesParams) => {
 	const lightColorsCss = getColorCss({
 		isDarkMode: false,
@@ -303,10 +272,6 @@ const getNewPreviewStyles = ({
 	--gray-surface: ${lightColors.graySurface};
 
 	--apple-red: #ff383c;
-
-	--accent-base: ${lightColorsBase.accent};
-	--gray-base: ${lightColorsBase.gray};
-	--background-base: ${lightColorsBase.background};
 }
 
 .dark {
@@ -337,10 +302,6 @@ const getNewPreviewStyles = ({
   --gray-11: ${darkColors.grayScale[10]};
   --gray-12: ${darkColors.grayScale[11]};
 	--gray-surface: ${darkColors.graySurface};
-
-	--accent-base: ${darkColorsBase.accent};
-	--gray-base: ${darkColorsBase.gray};
-	--background-base: ${darkColorsBase.background};
 }
 
 ${lightColorsCss}
@@ -432,6 +393,10 @@ ${selector} {
 
 	--primary-surface: ${accent.surface};
 	--gray-surface: ${gray.surface};
+
+	--scrollbar-thumb: ${gray.scale[5]};
+	--scrollbar-thumb-hover: ${gray.scale[6]};
+	--scrollbar-thumb-active: ${gray.scale[7]};
 }
 
 @supports (color: color(display-p3 1 1 1)) {
@@ -483,6 +448,10 @@ ${selector} {
 
 			--primary-surface: ${accent.surfaceWideGamut};
 			--gray-surface: ${gray.surfaceWideGamut};
+
+			--scrollbar-thumb: ${gray.scaleWideGamut[5]};
+			--scrollbar-thumb-hover: ${gray.scaleWideGamut[6]};
+			--scrollbar-thumb-active: ${gray.scaleWideGamut[7]};
     }
   }
 }
