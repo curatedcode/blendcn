@@ -177,10 +177,11 @@ export function generateUserColorsCss<
 
 	const shadcnBaseLayerCss = [
 		"\t* {",
-		"\t\t@apply border-border outline-ring/50",
+		"\t\t@apply border-border outline-ring/50;",
+		"\t}",
 		"",
 		"\tbody {",
-		"\t\t@apply bg-background text-foreground",
+		"\t\t@apply bg-background text-foreground;",
 		"\t}",
 	];
 
