@@ -112,7 +112,7 @@ export function generateUserColorsCss<
 
 					if (colorFormat === "hex") {
 						if (uppercaseHex) {
-							color = color.toUpperCase();
+							color = color.charAt(0) === "#" ? color.toUpperCase() : color;
 						} else {
 							color = color.toLowerCase();
 						}
