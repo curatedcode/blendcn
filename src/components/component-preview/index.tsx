@@ -60,6 +60,7 @@ export function ComponentPreview() {
 				value="form-and-inputs"
 				title="Forms & Inputs"
 				description="Show how your system handles user input, validations, and layout"
+				initialOpen
 			>
 				<ButtonPreview />
 				<InputPreview />
