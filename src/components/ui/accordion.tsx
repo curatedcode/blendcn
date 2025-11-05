@@ -2,7 +2,7 @@
 
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "lucide-react";
-import type * as React from "react";
+import * as React from "react";
 import { cn } from "~/lib/utils";
 
 function Accordion({
@@ -49,12 +49,27 @@ function AccordionTrigger({
 function AccordionContent({
 	className,
 	children,
+	initialOpen,
 	...props
-}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+}: React.ComponentProps<typeof AccordionPrimitive.Content> & {
+	initialOpen?: boolean;
+}) {
+	const [_initialOpen, _setInitial] = React.useState(initialOpen);
+
+	React.useEffect(() => {
+		if (initialOpen) {
+			_setInitial(false);
+		}
+	}, [initialOpen]);
+
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+			className={cn(
+				"overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+				_initialOpen &&
+					"overflow-auto data-[state=closed]:animate-none data-[state=open]:animate-none",
+			)}
 			{...props}
 		>
 			<div className={cn("pt-0 pb-4", className)}>{children}</div>

@@ -11,6 +11,7 @@ export type ComponentAccordionItemsProps = {
 	description: string;
 	children: React.ReactNode;
 	className?: string;
+	initialOpen?: boolean;
 };
 
 export function ComponentAccordionItem({
@@ -19,6 +20,7 @@ export function ComponentAccordionItem({
 	description,
 	children,
 	className,
+	initialOpen,
 }: ComponentAccordionItemsProps) {
 	return (
 		<AccordionItem value={value}>
@@ -32,7 +34,10 @@ export function ComponentAccordionItem({
 					</p>
 				</div>
 			</AccordionTrigger>
-			<AccordionContent className={cn("space-y-9 px-1.5 md:px-3", className)}>
+			<AccordionContent
+				className={cn("space-y-9 px-1.5 md:px-3", className)}
+				initialOpen={initialOpen}
+			>
 				{children}
 			</AccordionContent>
 		</AccordionItem>
