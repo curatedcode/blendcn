@@ -7,7 +7,6 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { NotFoundGeneric } from "~/components/not-found-generic";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
 import appCss from "~/styles/globals.css?url";
@@ -172,7 +171,6 @@ export const Route = createRootRoute({
 		],
 	}),
 	shellComponent: RootLayout,
-	notFoundComponent: NotFoundGeneric,
 });
 
 function RootLayout() {
