@@ -3,15 +3,17 @@
 # dependencies
 /node_modules
 
-#tanstack
+# tanstack
 .tanstack
 
 # production
-/dist
+dist
+.amplify-hosting
 
 # misc
 .DS_Store
 *.pem
+.nitro
 
 # debug
 npm-debug.log*
