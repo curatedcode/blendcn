@@ -1,6 +1,4 @@
 // slightly modified from https://github.com/radix-ui/website/blob/main/components/ColorField.tsx
-"use client";
-
 import Color from "colorjs.io";
 import * as React from "react";
 import { Input } from "~/components/ui/input";

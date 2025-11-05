@@ -1,8 +1,5 @@
-"use client";
-
 import Color from "colorjs.io";
 import { RotateCcwIcon } from "lucide-react";
-import { useTheme } from "next-themes";
 import * as React from "react";
 import { useColorContext } from "~/components/color-context";
 import {
@@ -15,6 +12,7 @@ import {
 	stripHexAlpha,
 	type themeTokens,
 } from "~/components/color-field/types";
+import { useTheme } from "~/components/theme-provider";
 import { Button } from "~/components/ui/button";
 import {
 	Select,
@@ -58,7 +56,7 @@ export const ColorSelectField = React.forwardRef<
 		const { paletteStylesObject, paletteStylesElementRef, setPaletteMappings } =
 			useColorContext();
 
-		const { resolvedTheme } = useTheme();
+		const { theme: resolvedTheme } = useTheme();
 		const theme = React.useMemo(
 			() => (resolvedTheme ?? "light") as "light" | "dark",
 			[resolvedTheme],

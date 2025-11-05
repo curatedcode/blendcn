@@ -1,8 +1,5 @@
 /** biome-ignore-all lint/a11y/useValidAnchor: Not real links, these are all used for demo purposes */
-"use client";
-
 import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
-import Link from "next/link";
 import type * as React from "react";
 import {
 	ComponentAccordionGroup,
@@ -83,13 +80,13 @@ function NavigationMenuDemo() {
 									</a>
 								</NavigationMenuLink>
 							</li>
-							<ListItem href="#" title="Introduction">
+							<ListItem title="Introduction">
 								Re-usable components built using Radix UI and Tailwind CSS.
 							</ListItem>
-							<ListItem href="#" title="Installation">
+							<ListItem title="Installation">
 								How to install dependencies and structure your app.
 							</ListItem>
-							<ListItem href="#" title="Typography">
+							<ListItem title="Typography">
 								Styles for headings, paragraphs, lists...etc
 							</ListItem>
 						</ul>
@@ -100,11 +97,7 @@ function NavigationMenuDemo() {
 					<NavigationMenuContent>
 						<ul className="grid w-[300px] gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
 							{components.map((component) => (
-								<ListItem
-									key={component.title}
-									title={component.title}
-									href="#"
-								>
+								<ListItem key={component.title} title={component.title}>
 									{component.description}
 								</ListItem>
 							))}
@@ -202,18 +195,17 @@ function NavigationMenuDemo() {
 function ListItem({
 	title,
 	children,
-	href,
 	...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+}: React.ComponentPropsWithoutRef<"li">) {
 	return (
 		<li {...props}>
 			<NavigationMenuLink asChild>
-				<Link href={href}>
+				<a href="#">
 					<div className="font-medium text-sm leading-none">{title}</div>
 					<p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
 						{children}
 					</p>
-				</Link>
+				</a>
 			</NavigationMenuLink>
 		</li>
 	);
