@@ -1,7 +1,5 @@
-"use client";
-
-import { useTheme } from "next-themes";
 import * as React from "react";
+import { useTheme } from "~/components/theme-provider";
 import { useSessionStorage } from "~/hooks/use-session-storage";
 import { generateColors } from "~/lib/colors/generate-colors";
 import { generatePaletteMappings } from "~/lib/colors/generate-palette-mappings";
@@ -42,7 +40,7 @@ interface ColorContextProviderProps {
 }
 
 export function ColorContextProvider({ children }: ColorContextProviderProps) {
-	const { resolvedTheme } = useTheme();
+	const { theme: resolvedTheme } = useTheme();
 
 	const getEffectiveTheme = React.useCallback(() => {
 		if (typeof window === "undefined") return "light";

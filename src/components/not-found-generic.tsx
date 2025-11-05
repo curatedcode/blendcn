@@ -1,9 +1,9 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
 
-export default function NotFound() {
+export function NotFoundGeneric() {
 	return (
-		<main className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 py-16 sm:px-8">
+		<div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 py-16 sm:px-8">
 			<section className="relative z-10 mx-auto w-full max-w-xl text-center">
 				<div className="mx-auto mb-6 flex w-fit flex-col items-center gap-3 sm:flex-row sm:gap-6">
 					<svg
@@ -66,9 +66,9 @@ export default function NotFound() {
 					The page you’re looking for doesn’t exist or moved.
 				</p>
 				<Button asChild variant={"link"} className="text-blue-500">
-					<Link href="/">Return home</Link>
+					<Link to="/">Return home</Link>
 				</Button>
 			</section>
-		</main>
+		</div>
 	);
 }

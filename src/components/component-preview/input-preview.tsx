@@ -1,6 +1,4 @@
 /** biome-ignore-all lint/a11y/useValidAnchor: not used for actual links, only for demo purposes */
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";

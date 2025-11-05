@@ -10,16 +10,17 @@
 		"includes": [
 			"**",
 			"!.git",
-			"!.next",
 			"!.vscode",
 			"!node_modules",
 			"!.evn",
 			"!.env.example",
 			"!.gitignore",
-			"!next-env.d.ts",
 			"!package.json",
 			"!pnpm-lock.yaml",
-			"!src/styles"
+			"!src/styles",
+			"!src/routeTree.gen.ts",
+			"!.tanstack",
+			"!dist"
 		]
 	},
 	"formatter": {

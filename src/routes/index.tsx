@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { ColorContextProvider } from "~/components/color-context";
 import { ColorMappingSection } from "~/components/color-mapping-section";
 import { ColorPickerSection } from "~/components/color-picker-section";
@@ -7,7 +8,11 @@ import { Header } from "~/components/header";
 import { NoiseBackdrop } from "~/components/noise-backdrop";
 import { Separator } from "~/components/ui/separator";
 
-export default function Home() {
+export const Route = createFileRoute("/")({
+	component: RouteComponent,
+});
+
+function RouteComponent() {
 	return (
 		<ColorContextProvider>
 			<div className="relative">

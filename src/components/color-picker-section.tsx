@@ -1,5 +1,3 @@
-"use client";
-
 import { useColorContext } from "~/components/color-context";
 import { ColorTextField } from "~/components/color-field/color-text-field";
 import { Label } from "~/components/ui/label";

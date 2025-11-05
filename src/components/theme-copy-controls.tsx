@@ -1,14 +1,12 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckIcon, ClipboardIcon, MoonStarIcon, SunIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useTheme } from "next-themes";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod/v4";
 import { useColorContext } from "~/components/color-context";
+import { useTheme } from "~/components/theme-provider";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
 import {
@@ -76,7 +74,7 @@ const defaultFormValues: z.infer<typeof formSchema> = {
 };
 
 export function ThemeCopyControls({ className }: { className?: string }) {
-	const { resolvedTheme, setTheme } = useTheme();
+	const { theme: resolvedTheme, setTheme } = useTheme();
 	const { paletteMappings } = useColorContext();
 	const isHydrated = useIsHydrated();
 
@@ -144,6 +142,10 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 		const timeout = setTimeout(() => setCopied(false), 1000);
 		return () => clearTimeout(timeout);
 	}, [copied]);
+
+	React.useEffect(() => {
+		console.log({ resolvedTheme });
+	}, [resolvedTheme]);
 
 	if (!isHydrated) {
 		return (
