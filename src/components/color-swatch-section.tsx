@@ -1,5 +1,3 @@
-"use client";
-
 import { useColorContext } from "~/components/color-context";
 import { ColorUsageRange } from "~/components/color-usage-range";
 import { CustomSwatch } from "~/components/custom-swatch";

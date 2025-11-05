@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Image } from "@unpic/react";
 import * as React from "react";
 import {
 	ComponentAccordionGroup,

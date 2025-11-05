@@ -1,5 +1,3 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { parseDate } from "chrono-node";
 import dayjs from "dayjs";

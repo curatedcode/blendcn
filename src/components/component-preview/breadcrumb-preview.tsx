@@ -1,6 +1,4 @@
 /** biome-ignore-all lint/a11y/useValidAnchor: Demo links, they shouldn't navigate the user */
-"use client";
-
 import { ChevronDownIcon, SlashIcon } from "lucide-react";
 import * as React from "react";
 import {
