@@ -2,6 +2,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
@@ -18,15 +19,13 @@ export default defineConfig({
 				enabled: true,
 				crawlLinks: true,
 				failOnError: true,
-				onSuccess: ({ page }) => {
-					console.log(`Generated static route: ${page.path}`);
-				},
 			},
 			sitemap: {
 				enabled: true,
 				host: "https://blendcn.zackaryf.com",
 			},
 		}),
+		nitro({ config: { preset: "aws_amplify" } }),
 		viteReact(),
 	],
 });
