@@ -327,11 +327,7 @@ function RootLayout() {
 			</head>
 			<body className="font-body">
 				<Scripts />
-				<ThemeProvider
-					enableSystem
-					attribute={"class"}
-					disableTransitionOnChange
-				>
+				<ThemeProvider>
 					<main>
 						<Outlet />
 						<Toaster position="top-center" />

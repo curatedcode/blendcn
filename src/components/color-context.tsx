@@ -40,7 +40,7 @@ interface ColorContextProviderProps {
 }
 
 export function ColorContextProvider({ children }: ColorContextProviderProps) {
-	const { theme: resolvedTheme } = useTheme();
+	const { resolvedTheme } = useTheme();
 
 	const getEffectiveTheme = React.useCallback(() => {
 		if (typeof window === "undefined") return "light";
