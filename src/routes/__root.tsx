@@ -27,7 +27,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1, viewport-fit=cover",
 			},
 			{
-				"http-equiv": "X-UA-Compatible",
+				httpEquiv: "X-UA-Compatible",
 				content: "IE=edge",
 			},
 			{
