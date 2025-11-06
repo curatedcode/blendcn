@@ -45,23 +45,23 @@ export default defineConfig({
 				display_override: ["minimal-ui"],
 				icons: [
 					{
-						src: "192x192.png",
+						src: "/assets/icons/192x192.png",
 						sizes: "192x192",
 						type: "image/png",
 					},
 					{
-						src: "512x512.png",
+						src: "/assets/icons/512x512.png",
 						sizes: "512x512",
 						type: "image/png",
 					},
 					{
-						src: "512x512.png",
+						src: "/assets/icons/512x512.png",
 						sizes: "512x512",
 						type: "image/png",
 						purpose: "any",
 					},
 					{
-						src: "512x512.png",
+						src: "/assets/icons/512x512.png",
 						sizes: "512x512",
 						type: "image/png",
 						purpose: "maskable",
