@@ -1,5 +1,2 @@
-User-Agent: *
+User-agent: *
 Allow: /
-Disallow: /private/
-
-Sitemap: https://blendcn.zackaryf.com/sitemap.xml
