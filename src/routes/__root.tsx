@@ -303,15 +303,6 @@ export const Route = createRootRoute({
 				color: "#231f20",
 			},
 		],
-		scripts: [
-			{
-				"@context": "https://schema.org",
-				"@type": "WebSite",
-				name: "BlendCN",
-				url: "https://blendcn.zackaryf.com/",
-				type: "application/ld+json",
-			},
-		],
 	}),
 	shellComponent: RootLayout,
 });
@@ -321,6 +312,18 @@ function RootLayout() {
 		<html lang="en" suppressHydrationWarning>
 			<head prefix="og: https://ogp.me/ns#">
 				<HeadContent />
+				<script
+					type="application/ld+json"
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: Only way to create this without a warning.
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@type": "WebSite",
+							name: "BlendCN",
+							url: "https://blendcn.zackaryf.com/",
+						}),
+					}}
+				/>
 			</head>
 			<body className="font-body">
 				<Scripts />
