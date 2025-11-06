@@ -56,7 +56,7 @@ export const ColorSelectField = React.forwardRef<
 		const { paletteStylesObject, paletteStylesElementRef, setPaletteMappings } =
 			useColorContext();
 
-		const { theme: resolvedTheme } = useTheme();
+		const { resolvedTheme } = useTheme();
 		const theme = React.useMemo(
 			() => (resolvedTheme ?? "light") as "light" | "dark",
 			[resolvedTheme],

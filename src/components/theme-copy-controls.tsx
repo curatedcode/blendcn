@@ -74,7 +74,7 @@ const defaultFormValues: z.infer<typeof formSchema> = {
 };
 
 export function ThemeCopyControls({ className }: { className?: string }) {
-	const { theme: resolvedTheme, setTheme } = useTheme();
+	const { resolvedTheme, setTheme } = useTheme();
 	const { paletteMappings } = useColorContext();
 	const isHydrated = useIsHydrated();
 
@@ -142,10 +142,6 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 		const timeout = setTimeout(() => setCopied(false), 1000);
 		return () => clearTimeout(timeout);
 	}, [copied]);
-
-	React.useEffect(() => {
-		console.log({ resolvedTheme });
-	}, [resolvedTheme]);
 
 	if (!isHydrated) {
 		return (
@@ -470,10 +466,7 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 													<FormLabel>Indentation size</FormLabel>
 													<FormControl>
 														<RadioGroup
-															onValueChange={(v) => {
-																console.log("indentation", v, typeof v);
-																field.onChange(v);
-															}}
+															onValueChange={(v) => field.onChange(v)}
 															defaultValue={"4"}
 															className="flex flex-col"
 															disabled={
