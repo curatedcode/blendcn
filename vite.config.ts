@@ -70,17 +70,12 @@ export default defineConfig({
 			},
 		}),
 		tanstackStart({
-			prerender: {
-				enabled: true,
-				crawlLinks: true,
-				failOnError: true,
-			},
 			sitemap: {
 				enabled: true,
 				host: "https://blendcn.zackaryf.com",
 			},
 		}),
-		nitro({ config: { preset: "aws_amplify" } }),
 		viteReact(),
+		nitro({ config: { preset: "aws_amplify" } }),
 	],
 });
