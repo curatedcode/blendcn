@@ -31,7 +31,7 @@
 		"check": "biome check .",
 		"check:write": "biome check --write .",
 		"dev": "vite dev --host",
-		"preview": "pnpx serve dist/client",
+		"preview": "node .amplify-hosting/compute/default/server.js",
 		"test": "pnpm test:unit && pnpm test:e2e",
 		"test:unit": "vitest",
 		"test:e2e": "playwright run"
