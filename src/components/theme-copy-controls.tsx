@@ -34,8 +34,8 @@ import {
 	SelectValue,
 } from "~/components/ui/select";
 import { Separator } from "~/components/ui/separator";
+import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
 import { useIsHydrated } from "~/hooks/use-is-hydrated";
-import { copyToClipboard } from "~/lib/clipboard";
 import {
 	generateUserColorsCss,
 	supportedColorFormats,
@@ -77,6 +77,7 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 	const { resolvedTheme, setTheme } = useTheme();
 	const { paletteMappings } = useColorContext();
 	const isHydrated = useIsHydrated();
+	const { copyToClipboard } = useCopyToClipboard();
 
 	const [cssOutput, setCssOutput] = React.useState(
 		generateUserColorsCss({
