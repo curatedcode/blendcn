@@ -66,12 +66,12 @@ const formSchema = z.object({
 
 const defaultFormValues: z.infer<typeof formSchema> = {
 	theme: "both",
-	includeSupportsMediaQuery: true,
+	includeSupportsMediaQuery: false,
 	includeThemeInlineVariables: true,
 	indentation: { type: "tab" },
 	darkModeVariant: "class",
 	uppercaseHex: false,
-	colorFormat: "hex",
+	colorFormat: "oklch",
 	includeScrollbarStyling: true,
 };
 
