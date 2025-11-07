@@ -200,7 +200,8 @@ describe("generateUserColorsCss fn output", () => {
 		const shouldBe = [
 			":root {",
 			...keyValues.map(
-				({ key, value }) => `\t--${key}: ${value.toUpperCase()};`,
+				({ key, value }) =>
+					`\t--${key}: ${value.startsWith("#") ? value.toUpperCase() : value};`,
 			),
 			"}",
 		].join("\n");
@@ -708,7 +709,8 @@ describe("generateUserColorsCss fn output", () => {
 			":root {",
 			"\t--radius: 0.625rem;",
 			...lightKeyValues.map(
-				({ key, value }) => `\t--${key}: ${value.toUpperCase()};`,
+				({ key, value }) =>
+					`\t--${key}: ${value.startsWith("#") ? value.toUpperCase() : value};`,
 			),
 			"}",
 		].join("\n");
@@ -716,7 +718,8 @@ describe("generateUserColorsCss fn output", () => {
 		const darkPaletteShouldBe = [
 			".dark {",
 			...darkKeyValues.map(
-				({ key, value }) => `\t--${key}: ${value.toUpperCase()};`,
+				({ key, value }) =>
+					`\t--${key}: ${value.startsWith("#") ? value.toUpperCase() : value};`,
 			),
 			"}",
 		].join("\n");
