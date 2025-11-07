@@ -1,7 +1,6 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 import type * as React from "react";
-import { useIsMobile } from "~/hooks/use-mobile";
 import { cn } from "~/lib/utils";
 
 function Dialog({
@@ -44,22 +43,14 @@ function DialogOverlay({
 	);
 }
 
-type DialogContentProps = {
-	showCloseButton?: boolean | "onMobile";
-} & React.ComponentProps<typeof DialogPrimitive.Content>;
-
 function DialogContent({
 	className,
 	children,
-	showCloseButton = "onMobile",
+	showCloseButton = true,
 	...props
-}: DialogContentProps) {
-	const isMobile = useIsMobile();
-	const _showCloseButton =
-		showCloseButton === true
-			? true
-			: showCloseButton === "onMobile" && isMobile;
-
+}: React.ComponentProps<typeof DialogPrimitive.Content> & {
+	showCloseButton?: boolean;
+}) {
 	return (
 		<DialogPortal data-slot="dialog-portal">
 			<DialogOverlay />
@@ -72,10 +63,10 @@ function DialogContent({
 				{...props}
 			>
 				{children}
-				{_showCloseButton && (
+				{showCloseButton && (
 					<DialogPrimitive.Close
 						data-slot="dialog-close"
-						className="absolute top-2 right-2 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+						className="absolute top-4 right-4 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
 					>
 						<XIcon />
 						<span className="sr-only">Close</span>

@@ -19,7 +19,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "~/components/ui/tooltip";
-import { copyToClipboard } from "~/lib/clipboard";
+import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
 import { cn } from "~/lib/utils";
 
 const brightColors = ["amber", "yellow", "lime", "mint", "sky"];
@@ -185,7 +185,7 @@ const CopyButton = ({
 	...props
 }: React.ComponentPropsWithoutRef<typeof Button>) => {
 	const ref = React.useRef<HTMLButtonElement>(null);
-
+	const { copyToClipboard } = useCopyToClipboard();
 	const [state, setState] = React.useReducer(
 		(
 			prevState: CopyButtonState,
