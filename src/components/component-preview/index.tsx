@@ -1,6 +1,4 @@
 /** biome-ignore-all lint/a11y/useValidAnchor: no hrefs here are valid, just for demo purposes */
-"use client";
-
 import { AccordionPreview } from "~/components/component-preview/accordion-preview";
 import { AlertDialogPreview } from "~/components/component-preview/alert-dialog-preview";
 import { AlertPreview } from "~/components/component-preview/alert-preview";
@@ -8,6 +6,7 @@ import { AspectRatioPreview } from "~/components/component-preview/aspect-ratio-
 import { AvatarPreview } from "~/components/component-preview/avatar-preview";
 import { BadgePreview } from "~/components/component-preview/badge-preview";
 import { BreadcrumbPreview } from "~/components/component-preview/breadcrumb-preview";
+import { ButtonGroupPreview } from "~/components/component-preview/button-group-preview";
 import { ButtonPreview } from "~/components/component-preview/button-preview";
 import { CalendarPreview } from "~/components/component-preview/calendar-preview";
 import { CardPreview } from "~/components/component-preview/card-preview";
@@ -24,10 +23,16 @@ import { DatePickerPreview } from "~/components/component-preview/date-picker-pr
 import { DialogPreview } from "~/components/component-preview/dialog-preview";
 import { DrawerPreview } from "~/components/component-preview/drawer-preview";
 import { DropdownMenuPreview } from "~/components/component-preview/dropdown-menu-preview";
+import { EmptyPreview } from "~/components/component-preview/empty-preview";
+import { FieldPreview } from "~/components/component-preview/field-preview";
 import { HoverCardPreview } from "~/components/component-preview/hover-card-preview";
+import { InputGroupPreview } from "~/components/component-preview/input-group-preview";
 import { InputOTPPreview } from "~/components/component-preview/input-otp-preview";
 import { InputPreview } from "~/components/component-preview/input-preview";
+import { ItemPreview } from "~/components/component-preview/item-preview";
+import { KbdPreview } from "~/components/component-preview/kbd-preview";
 import { MenubarPreview } from "~/components/component-preview/menubar-preview";
+import { NativeSelectPreview } from "~/components/component-preview/native-select-preview";
 import { NavigationMenuPreview } from "~/components/component-preview/navigation-menu-preview";
 import { PaginationPreview } from "~/components/component-preview/pagination-preview";
 import { PopoverPreview } from "~/components/component-preview/popover-preview";
@@ -39,6 +44,7 @@ import { SheetPreview } from "~/components/component-preview/sheet-preview";
 import { SidebarPreview } from "~/components/component-preview/sidebar-preview";
 import { SkeletonPreview } from "~/components/component-preview/skeleton-preview";
 import { SliderPreview } from "~/components/component-preview/slider-preview";
+import { SpinnerPreview } from "~/components/component-preview/spinner-preview";
 import { SwitchPreview } from "~/components/component-preview/switch-preview";
 import { TablePreview } from "~/components/component-preview/table-preview";
 import { TabsPreview } from "~/components/component-preview/tabs-preview";
@@ -63,14 +69,19 @@ export function ComponentPreview() {
 				initialOpen
 			>
 				<ButtonPreview />
+				<ButtonGroupPreview />
 				<InputPreview />
+				<InputGroupPreview />
+				<KbdPreview />
 				<TextareaPreview />
+				<FieldPreview />
 				<InputOTPPreview />
 				<CheckboxPreview />
 				<SwitchPreview />
 				<TogglePreview />
 				<ToggleGroupPreview />
 				<SelectPreview />
+				<NativeSelectPreview />
 				<ComboboxPreview />
 				<DatePickerPreview />
 				<CalendarPreview />
@@ -85,7 +96,9 @@ export function ComponentPreview() {
 				<AlertDialogPreview />
 				<ToastPreview />
 				<ProgressPreview />
+				<SpinnerPreview />
 				<SkeletonPreview />
+				<EmptyPreview />
 			</ComponentAccordionItem>
 			<ComponentAccordionItem
 				value="navigation-and-structure"
@@ -139,6 +152,7 @@ export function ComponentPreview() {
 				description="Control spacing, aspect, and scroll behavior"
 			>
 				<CardPreview />
+				<ItemPreview />
 				<CarouselPreview />
 				<AspectRatioPreview />
 				<ResizablePreview />

@@ -117,9 +117,9 @@ function PaginationEllipsis({
 export {
 	Pagination,
 	PaginationContent,
-	PaginationEllipsis,
-	PaginationItem,
 	PaginationLink,
-	PaginationNext,
+	PaginationItem,
 	PaginationPrevious,
+	PaginationNext,
+	PaginationEllipsis,
 };
