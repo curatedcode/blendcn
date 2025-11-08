@@ -1,6 +1,15 @@
 import * as React from "react";
 
-export function useCopyToClipboard() {
+export type UseCopyToClipboardParams = {
+	/**
+	 * Time in ms to delay the isCopied state to off after is has successfully copied.
+	 *
+	 * Defaults to (0)
+	 */
+	delay?: number;
+};
+
+export function useCopyToClipboard(args: UseCopyToClipboardParams = {}) {
 	const [isCopied, setIsCopied] = React.useState(false);
 
 	const copyToClipboard = React.useCallback((value: string) => {
@@ -20,6 +29,18 @@ export function useCopyToClipboard() {
 
 		handleCopy();
 	}, []);
+
+	React.useEffect(() => {
+		if (!isCopied || !args.delay) return;
+		if (args.delay <= 0) {
+			setIsCopied(false);
+			return;
+		}
+
+		const timer = setTimeout(() => setIsCopied(false), args.delay);
+
+		return () => clearTimeout(timer);
+	}, [isCopied, args.delay]);
 
 	return { isCopied, copyToClipboard };
 }
