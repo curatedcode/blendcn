@@ -1,8 +1,9 @@
-import { InfoIcon } from "lucide-react";
+import { InfoIcon, XIcon } from "lucide-react";
 import * as React from "react";
 import { Button } from "~/components/ui/button";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
@@ -67,6 +68,7 @@ export const CustomSwatch = ({
 			</DialogTrigger>
 			<DialogContent
 				ref={contentRef}
+				showCloseButton={false}
 				onOpenAutoFocus={(event) => {
 					event.preventDefault();
 					contentRef.current?.focus();
@@ -168,6 +170,10 @@ export const CustomSwatch = ({
 						</div>
 					</div>
 				</div>
+				<DialogClose className="absolute top-2 right-2 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+					<XIcon />
+					<span className="sr-only">Close</span>
+				</DialogClose>
 			</DialogContent>
 		</Dialog>
 	);
