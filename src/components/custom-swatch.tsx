@@ -248,7 +248,7 @@ const CopyButton = ({
 							});
 
 							if (!originalDefaultPrevented) {
-								void copyToClipboard(text);
+								copyToClipboard(text);
 							}
 						}
 					}}
