@@ -77,7 +77,7 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 	const { resolvedTheme, setTheme } = useTheme();
 	const { paletteMappings } = useColorContext();
 	const isHydrated = useIsHydrated();
-	const { copyToClipboard } = useCopyToClipboard();
+	const { copyToClipboard, isCopied } = useCopyToClipboard({ delay: 1000 });
 
 	const [cssOutput, setCssOutput] = React.useState(
 		generateUserColorsCss({
@@ -91,7 +91,6 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 			paletteMappings,
 		}),
 	);
-	const [copied, setCopied] = React.useState(false);
 
 	const form = useForm({
 		resolver: zodResolver(formSchema),
@@ -137,12 +136,6 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 		const subscription = form.watch(() => form.handleSubmit(onSubmit)());
 		return () => subscription.unsubscribe();
 	}, [form.watch, form.handleSubmit, onSubmit]);
-
-	React.useEffect(() => {
-		if (!copied) return;
-		const timeout = setTimeout(() => setCopied(false), 1000);
-		return () => clearTimeout(timeout);
-	}, [copied]);
 
 	if (!isHydrated) {
 		return (
@@ -499,14 +492,11 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 						{cssOutput && (
 							<div className="relative col-span-2 size-full max-h-[calc(100vh-20rem)] min-w-0 font-mono text-white md:max-w-[calc(100%-1.5rem)] dark:text-black">
 								<Button
-									onClick={() => {
-										copyToClipboard(cssOutput);
-										setCopied(true);
-									}}
+									onClick={() => copyToClipboard(cssOutput)}
 									size="sm"
 									className="absolute top-2.5 right-2.5 h-6 w-fit rounded bg-zinc-200 px-2 py-1 text-black text-xs hover:bg-zinc-300 dark:bg-black dark:text-white dark:hover:bg-zinc-800"
 								>
-									{copied ? (
+									{isCopied ? (
 										<>
 											<CheckIcon className="size-3" />
 											<span>Copied</span>
