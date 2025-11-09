@@ -147,10 +147,9 @@ export const shadcnCssVariables = [
 	"sidebar-accent-foreground",
 	"sidebar-border",
 	"sidebar-ring",
-	"apple-red",
 ] as const;
 
-export const extendedCssVariables = [
+export const scrollbarCssVariables = [
 	"scrollbar-thumb",
 	"scrollbar-thumb-hover",
 	"scrollbar-thumb-active",
@@ -158,15 +157,12 @@ export const extendedCssVariables = [
 
 export const allCssVariables = [
 	...shadcnCssVariables,
-	...extendedCssVariables,
-] as const;
+	...scrollbarCssVariables,
+];
 
-export const defaultColorMappings: Omit<
-	{
-		[K in (typeof allCssVariables)[number]]: (typeof themeTokens)[number];
-	},
-	"apple-red"
-> = {
+export const colorMappings: {
+	[K in (typeof allCssVariables)[number]]: (typeof themeTokens)[number];
+} = {
 	background: "color-background",
 	foreground: "gray-12",
 	card: "gray-surface",
