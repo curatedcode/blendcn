@@ -1,7 +1,7 @@
 import Color from "colorjs.io";
 import type { useColorContext } from "~/components/color-context";
 import {
-	allCssVariables as _allCssVariables,
+	scrollbarCssVariables,
 	shadcnCssVariables,
 } from "~/components/color-field/types";
 
@@ -90,8 +90,8 @@ export function generateUserColorsCss<
 		}
 	}
 
-	const allCssVariables = includeScrollbarStyling
-		? _allCssVariables
+	const colorVariables = includeScrollbarStyling
+		? [...shadcnCssVariables, ...scrollbarCssVariables]
 		: shadcnCssVariables;
 
 	// this is ugly but if we don't do it then we get our output has awkward indentation. (same for the others below)
@@ -102,11 +102,12 @@ export function generateUserColorsCss<
 				includeThemeInlineVariables &&
 					selector === ":root" &&
 					"\t--radius: 0.625rem;",
-				...allCssVariables.map((key) => {
-					let color: string = paletteMappings[theme][key];
-					if (color === "") {
+				...colorVariables.map((key) => {
+					let color = paletteMappings[theme][key];
+
+					if (color === "" || !color) {
 						throw new Error(
-							`Invalid color value for ${key} in theme ${theme}. Received: ${color}`,
+							`Invalid color value for ${key} in theme ${theme}. Received ${color}.`,
 						);
 					}
 
@@ -120,7 +121,7 @@ export function generateUserColorsCss<
 						color = new Color(color).to(colorFormat).toString();
 						if (typeof color !== "string") {
 							throw new Error(
-								`Invalid color value for ${key} in theme ${theme}. Received '${paletteMappings[theme][key]}'`,
+								`Unable to transform color '${color}' into an oklch color.`,
 							);
 						}
 					}
@@ -144,18 +145,24 @@ export function generateUserColorsCss<
 				...selectors.map(({ selector, theme }) =>
 					[
 						`\t\t${selector} {`,
-						...allCssVariables.map((key) => {
-							const color = new Color(paletteMappings[theme][key])
-								.to("oklch")
-								.toString();
+						...colorVariables.map((key) => {
+							const color = paletteMappings[theme][key];
 
-							if (typeof color !== "string") {
+							if (color === "" || !color) {
 								throw new Error(
-									`Invalid color value for ${key} in theme ${theme}. Received '${paletteMappings[theme][key]}'`,
+									`Invalid color value for ${key} in theme ${theme}. Received ${color}.`,
 								);
 							}
 
-							return `\t\t\t--${key}: ${color};`;
+							const oklchColor = new Color(color).to("oklch").toString();
+
+							if (typeof oklchColor !== "string") {
+								throw new Error(
+									`Unable to transform color '${color}' into an oklch color.`,
+								);
+							}
+
+							return `\t\t\t--${key}: ${oklchColor};`;
 						}),
 						"\t\t}",
 					].join("\n"),
@@ -171,7 +178,10 @@ export function generateUserColorsCss<
 		"\t--radius-md: calc(var(--radius) - 2px);",
 		"\t--radius-lg: var(--radius);",
 		"\t--radius-xl: calc(var(--radius) + 4px);",
-		...allCssVariables.map((key) => `\t--color-${key}: var(--${key});`),
+		...[
+			...shadcnCssVariables,
+			...(includeScrollbarStyling ? scrollbarCssVariables : []),
+		].map((key) => `\t--color-${key}: var(--${key});`),
 		"}",
 	].join("\n");
 
