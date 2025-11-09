@@ -35,7 +35,6 @@ import {
 } from "~/components/ui/select";
 import { Separator } from "~/components/ui/separator";
 import { useCopyToClipboard } from "~/hooks/use-copy-to-clipboard";
-import { useIsHydrated } from "~/hooks/use-is-hydrated";
 import {
 	generateUserColorsCss,
 	supportedColorFormats,
@@ -76,7 +75,6 @@ const defaultFormValues: z.infer<typeof formSchema> = {
 export function ThemeCopyControls({ className }: { className?: string }) {
 	const { resolvedTheme, setTheme } = useTheme();
 	const { paletteMappings } = useColorContext();
-	const isHydrated = useIsHydrated();
 	const { copyToClipboard, isCopied } = useCopyToClipboard({ delay: 1000 });
 
 	const [cssOutput, setCssOutput] = React.useState(
@@ -137,36 +135,6 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 		return () => subscription.unsubscribe();
 	}, [form.watch, form.handleSubmit, onSubmit]);
 
-	if (!isHydrated) {
-		return (
-			<div
-				className={cn(
-					"fixed top-1.5 right-1.5 z-1 flex h-10 w-fit items-center gap-1.5 rounded-md border bg-background px-3 py-1 shadow-md md:static md:z-0 md:ml-auto md:h-fit md:border-transparent md:bg-transparent md:px-0 md:py-0 md:shadow-none",
-					className,
-				)}
-			>
-				<Button
-					variant={"outline"}
-					className="relative border-transparent shadow-none md:shadow-xs dark:border-transparent dark:bg-transparent md:dark:border-border md:dark:bg-background md:dark:hover:bg-accent/50 md:dark:hover:text-accent-foreground"
-					size={"icon"}
-					title="Switch theme"
-				>
-					<SunIcon />
-				</Button>
-				<Separator
-					orientation="vertical"
-					className="data-[orientation=vertical]:h-3/4 md:hidden"
-				/>
-				<Button
-					variant={"outline"}
-					className="relative border-transparent shadow-none md:shadow-xs dark:border-transparent dark:bg-transparent md:dark:border-border md:dark:bg-background md:dark:hover:bg-accent/50 md:dark:hover:text-accent-foreground"
-				>
-					Copy
-				</Button>
-			</div>
-		);
-	}
-
 	return (
 		<div
 			className={cn(
@@ -183,10 +151,9 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 			>
 				<span className="sr-only">Switch theme</span>
 				<AnimatePresence mode="wait">
-					{resolvedTheme === "light" && (
+					{resolvedTheme === "light" || !resolvedTheme ? (
 						<motion.div
 							key="light"
-							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.1 }}
@@ -194,11 +161,9 @@ export function ThemeCopyControls({ className }: { className?: string }) {
 						>
 							<SunIcon />
 						</motion.div>
-					)}
-					{resolvedTheme === "dark" && (
+					) : (
 						<motion.div
 							key="dark"
-							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.1 }}
