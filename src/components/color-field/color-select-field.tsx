@@ -3,9 +3,9 @@ import { RotateCcwIcon } from "lucide-react";
 import * as React from "react";
 import { useColorContext } from "~/components/color-context";
 import {
+	colorMappings,
 	convertHexToLonghand,
 	DEFAULT_COLOR,
-	defaultColorMappings,
 	extendedTokens,
 	formatColorVariable,
 	paletteTokens,
@@ -26,7 +26,7 @@ import {
 
 interface ColorSelectFieldProps
 	extends React.InputHTMLAttributes<HTMLSelectElement> {
-	cssVariable: keyof typeof defaultColorMappings;
+	cssVariable: keyof typeof colorMappings;
 }
 
 export const ColorSelectField = React.forwardRef<
@@ -47,7 +47,7 @@ export const ColorSelectField = React.forwardRef<
 		forwardedRef,
 	) => {
 		const defaultSelectValue: (typeof themeTokens)[number] =
-			defaultColorMappings[cssVariable];
+			colorMappings[cssVariable];
 
 		const [displayValue, setDisplayValue] = React.useState<string | undefined>(
 			formatColorVariable(defaultSelectValue),
@@ -259,7 +259,7 @@ function updateCssVariable({
 	setPaletteMappings,
 }: {
 	stylesheet: CSSStyleSheet;
-	cssVariable: keyof typeof defaultColorMappings;
+	cssVariable: keyof typeof colorMappings;
 	newHexValue: string;
 	newWideGamutValue: string;
 	theme: "light" | "dark";

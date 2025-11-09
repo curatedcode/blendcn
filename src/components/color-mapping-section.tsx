@@ -1,17 +1,17 @@
 import { ColorSelectField } from "~/components/color-field/color-select-field";
-import { defaultColorMappings } from "~/components/color-field/types";
+import { colorMappings } from "~/components/color-field/types";
 import { Label } from "~/components/ui/label";
 import { cn } from "~/lib/utils";
 
 export function ColorMappingSection({ className }: { className?: string }) {
 	const allVariables = Object.keys(
-		defaultColorMappings,
-	) as (keyof typeof defaultColorMappings)[];
+		colorMappings,
+	) as (keyof typeof colorMappings)[];
 
 	return (
 		<div className={cn("flex flex-col gap-3 md:pr-3", className)}>
 			<h1 className="flex h-9 items-center font-semibold text-lg">Mapping</h1>
-			{allVariables.map((key: keyof typeof defaultColorMappings) => (
+			{allVariables.map((key: keyof typeof colorMappings) => (
 				<div
 					className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
 					key={key}
@@ -24,7 +24,7 @@ export function ColorMappingSection({ className }: { className?: string }) {
 	);
 }
 
-function capitalizeVariable(value: keyof typeof defaultColorMappings) {
+function capitalizeVariable(value: keyof typeof colorMappings) {
 	const words = value.split("-");
 	const capitalized: string[] = [];
 
