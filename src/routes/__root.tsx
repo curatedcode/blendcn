@@ -204,7 +204,7 @@ export const Route = createRootRoute({
 			},
 			{
 				rel: "manifest",
-				href: "/assets/meta/manifest.json",
+				href: "/manifest.webmanifest",
 			},
 			{
 				rel: "canonical",
