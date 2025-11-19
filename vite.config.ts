@@ -68,6 +68,7 @@ export default defineConfig({
 					},
 				],
 			},
+			outDir: ".amplify-hosting/static",
 		}),
 		tanstackStart({
 			sitemap: {
