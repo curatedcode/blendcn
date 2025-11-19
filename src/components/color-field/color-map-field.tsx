@@ -98,6 +98,8 @@ export function ColorMapField({ id, cssVariable }: ColorMapFieldProps) {
 		const rawColor = toCssFormat(input);
 		const displayColor = toShortFormat(rawColor);
 
+		if (displayColor === color.displayColor) return;
+
 		if (displayColor) {
 			const newColor: ColorState = {
 				displayColor,
