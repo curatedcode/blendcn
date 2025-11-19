@@ -2,9 +2,9 @@ import dayjs from "dayjs";
 import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	Card,
 	CardContent,
@@ -28,22 +28,15 @@ import {
 	SelectValue,
 } from "~/components/ui/select";
 
-// add more chart demos
-
 export function ChartPreview() {
 	return (
-		<ComponentAccordionGroup title="Chart">
-			<ComponentAccordionSubGroup
-				title="Area Interactive"
-				className="w-full max-w-5xl"
-			>
+		<ComponentGroup title="Chart" id="chart-component">
+			<ComponentGroupPreview className="w-full max-w-5xl">
 				<ChartAreaInteractive />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }
-
-const _description = "An interactive area chart";
 
 const chartData = [
 	{ date: "2024-04-01", desktop: 222, mobile: 150 },

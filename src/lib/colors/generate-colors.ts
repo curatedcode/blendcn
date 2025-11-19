@@ -1,5 +1,5 @@
 /**
- * @link https://github.com/radix-ui/website/blob/main/components/generateColors.tsx
+ * Originally from https://github.com/radix-ui/website/blob/main/components/generateColors.tsx
  */
 
 import BezierEasing from "bezier-easing";
@@ -76,8 +76,7 @@ export const generateColors = ({
 		backgroundColor,
 	);
 
-	// Enforce srgb for the background color
-	const backgroundHex = backgroundColor.to("srgb").toString({ format: "hex" });
+	const backgroundOklch = backgroundColor.toString({ format: "oklch" });
 
 	// Make sure we use the tint from the gray scale for when base is pure white or black
 	const accentBaseHex = accentBaseColor.to("srgb").toString({ format: "hex" });
@@ -105,76 +104,63 @@ export const generateColors = ({
 		accentScaleColors[11].coords[1],
 	);
 
-	const accentScaleHex = accentScaleColors.map((color) =>
-		color.to("srgb").toString({ format: "hex" }),
-	) as ArrayOf12<string>;
+	// const accentScaleHex = accentScaleColors.map((color) =>
+	// 	color.to("srgb").toString({ format: "hex" }),
+	// ) as ArrayOf12<string>;
 
-	const accentScaleWideGamut = accentScaleColors.map(
+	const accentScaleOklch = accentScaleColors.map(
 		toOklchString,
 	) as ArrayOf12<string>;
 
-	const accentScaleAlphaHex = accentScaleHex.map((color) =>
-		getAlphaColorSrgb(color, backgroundHex),
+	// const accentScaleAlphaHex = accentScaleHex.map((color) =>
+	// 	getAlphaColorSrgb(color, backgroundHex),
+	// ) as ArrayOf12<string>;
+
+	const accentScaleAlphaP3String = accentScaleOklch.map((color) =>
+		getAlphaColorP3(color, backgroundOklch),
 	) as ArrayOf12<string>;
 
-	const accentScaleAlphaWideGamutString = accentScaleHex.map((color) =>
-		getAlphaColorP3(color, backgroundHex),
-	) as ArrayOf12<string>;
+	const accentContrastColorOklch = accentContrastColor.toString({
+		format: "oklch",
+	});
 
-	const accentContrastColorHex = accentContrastColor
-		.to("srgb")
-		.toString({ format: "hex" });
+	// const grayScaleHex = grayScaleColors.map((color) =>
+	// 	color.to("srgb").toString({ format: "hex" }),
+	// ) as ArrayOf12<string>;
 
-	const grayScaleHex = grayScaleColors.map((color) =>
-		color.to("srgb").toString({ format: "hex" }),
-	) as ArrayOf12<string>;
-
-	const grayScaleWideGamut = grayScaleColors.map(
+	const grayScaleOklch = grayScaleColors.map(
 		toOklchString,
 	) as ArrayOf12<string>;
 
-	const grayScaleAlphaHex = grayScaleHex.map((color) =>
-		getAlphaColorSrgb(color, backgroundHex),
+	// const grayScaleAlphaHex = grayScaleHex.map((color) =>
+	// 	getAlphaColorSrgb(color, backgroundHex),
+	// ) as ArrayOf12<string>;
+
+	const grayScaleAlphaP3String = grayScaleOklch.map((color) =>
+		getAlphaColorP3(color, backgroundOklch),
 	) as ArrayOf12<string>;
 
-	const grayScaleAlphaWideGamutString = grayScaleHex.map((color) =>
-		getAlphaColorP3(color, backgroundHex),
-	) as ArrayOf12<string>;
+	// const accentSurfaceHex =
+	// 	appearance === "light"
+	// 		? getAlphaColorSrgb(accentScaleHex[1], backgroundHex, 0.8)
+	// 		: getAlphaColorSrgb(accentScaleHex[1], backgroundHex, 0.5);
 
-	const accentSurfaceHex =
+	const accentSurfaceOklchString =
 		appearance === "light"
-			? getAlphaColorSrgb(accentScaleHex[1], backgroundHex, 0.8)
-			: getAlphaColorSrgb(accentScaleHex[1], backgroundHex, 0.5);
-
-	const accentSurfaceWideGamutString =
-		appearance === "light"
-			? getAlphaColorP3(accentScaleWideGamut[1], backgroundHex, 0.8)
-			: getAlphaColorP3(accentScaleWideGamut[1], backgroundHex, 0.5);
+			? getAlphaColorP3(accentScaleOklch[1], backgroundOklch, 0.8)
+			: getAlphaColorP3(accentScaleOklch[1], backgroundOklch, 0.5);
 
 	return {
-		accentScale: accentScaleHex,
-		accentScaleAlpha: accentScaleAlphaHex,
-		accentScaleWideGamut: accentScaleWideGamut,
-		accentScaleAlphaWideGamut: accentScaleAlphaWideGamutString,
-		accentContrast: accentContrastColorHex,
-
-		grayScale: grayScaleHex,
-		grayScaleAlpha: grayScaleAlphaHex,
-		grayScaleWideGamut: grayScaleWideGamut,
-		grayScaleAlphaWideGamut: grayScaleAlphaWideGamutString,
-
-		graySurface: appearance === "light" ? "#ffffffcc" : "rgba(0, 0, 0, 0.05)",
-		graySurfaceWideGamut:
-			appearance === "light"
-				? "color(display-p3 1 1 1 / 80%)"
-				: "color(display-p3 0 0 0 / 5%)",
-
-		accentSurface: accentSurfaceHex,
-		accentSurfaceWideGamut: accentSurfaceWideGamutString,
-
-		background: backgroundHex,
-
-		appleRed: "#ff383c",
+		accentScale: accentScaleOklch,
+		accentScaleAlpha: accentScaleAlphaP3String,
+		accentContrast: accentContrastColorOklch,
+		grayScale: grayScaleOklch,
+		grayScaleAlpha: grayScaleAlphaP3String,
+		graySurface:
+			appearance === "light" ? "oklch(1 0 0 / 80%)" : "oklch(0 0 0 / 5%)",
+		accentSurface: accentSurfaceOklchString,
+		background: backgroundOklch,
+		appleRed: "oklch(0.5938 0.2332 24.68)",
 	};
 };
 
@@ -558,7 +544,7 @@ function blendAlpha(
 	return background * (1 - alpha) + foreground * alpha;
 }
 
-function getAlphaColorSrgb(
+function _getAlphaColorSrgb(
 	targetColor: string,
 	backgroundColor: string,
 	targetAlpha?: number,

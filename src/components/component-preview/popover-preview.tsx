@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -13,8 +13,8 @@ import {
 
 export function PopoverPreview() {
 	return (
-		<ComponentAccordionGroup title="Popover">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Popover" id="popover-component">
+			<ComponentGroupPreview>
 				<Popover>
 					<PopoverTrigger asChild>
 						<Button variant="outline">Open popover</Button>
@@ -33,7 +33,7 @@ export function PopoverPreview() {
 									<Input
 										id="width"
 										defaultValue="100%"
-										className="col-span-2 h-8 bg-background"
+										className="col-span-2 h-8"
 									/>
 								</div>
 								<div className="grid grid-cols-3 items-center gap-4">
@@ -41,7 +41,7 @@ export function PopoverPreview() {
 									<Input
 										id="maxWidth"
 										defaultValue="300px"
-										className="col-span-2 h-8 bg-background"
+										className="col-span-2 h-8"
 									/>
 								</div>
 								<div className="grid grid-cols-3 items-center gap-4">
@@ -49,7 +49,7 @@ export function PopoverPreview() {
 									<Input
 										id="height"
 										defaultValue="25px"
-										className="col-span-2 h-8 bg-background"
+										className="col-span-2 h-8"
 									/>
 								</div>
 								<div className="grid grid-cols-3 items-center gap-4">
@@ -57,14 +57,14 @@ export function PopoverPreview() {
 									<Input
 										id="maxHeight"
 										defaultValue="none"
-										className="col-span-2 h-8 bg-background"
+										className="col-span-2 h-8"
 									/>
 								</div>
 							</div>
 						</div>
 					</PopoverContent>
 				</Popover>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

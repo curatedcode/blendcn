@@ -5,6 +5,7 @@ import {
 	Dialog,
 	DialogClose,
 	DialogContent,
+	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -29,10 +30,8 @@ type CustomSwatchProps = {
 	scale: string;
 	step: string;
 	cssVariable: string;
-	hex: string;
-	hexA: string;
-	p3: string;
-	p3A: string;
+	solidColor: string;
+	alphaColor: string;
 	className?: string;
 };
 
@@ -40,10 +39,8 @@ export const CustomSwatch = ({
 	scale,
 	step,
 	cssVariable,
-	hex,
-	hexA,
-	p3,
-	p3A,
+	solidColor,
+	alphaColor,
 	className,
 }: CustomSwatchProps) => {
 	const contentRef = React.useRef<HTMLDivElement | null>(null);
@@ -56,10 +53,7 @@ export const CustomSwatch = ({
 	return (
 		<Dialog>
 			<DialogTrigger
-				className={cn([
-					"h-20 max-h-20 w-full md:h-22.5 md:max-h-22.5",
-					className,
-				])}
+				className={cn(["h-16 md:size-20", className])}
 				style={{ background: cssVariable }}
 			>
 				<div className="sr-only">
@@ -79,6 +73,9 @@ export const CustomSwatch = ({
 					<DialogTitle>
 						{scale} {step}
 					</DialogTitle>
+					<DialogDescription>
+						Color swatch for {scale} {step}{" "}
+					</DialogDescription>
 				</DialogHeader>
 				<div className="relative text-sm">
 					<div
@@ -128,7 +125,7 @@ export const CustomSwatch = ({
 						<Separator className="my-2" />
 						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
 							<span className="w-32">Solid color</span>
-							<CopyButton>{hex}</CopyButton>
+							<CopyButton>{solidColor}</CopyButton>
 						</div>
 						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
 							<div className="flex w-32 items-center gap-1.5">
@@ -158,15 +155,7 @@ export const CustomSwatch = ({
 									</PopoverContent>
 								</Popover>
 							</div>
-							<CopyButton className="-mt-1 md:-mt-0">{hexA}</CopyButton>
-						</div>
-						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
-							<span className="w-32">P3 color</span>
-							<CopyButton>{p3}</CopyButton>
-						</div>
-						<div className="flex flex-col gap-0.5 md:flex-row md:items-center">
-							<span className="w-32">P3 alpha</span>
-							<CopyButton>{p3A}</CopyButton>
+							<CopyButton className="-mt-1 md:-mt-0">{alphaColor}</CopyButton>
 						</div>
 					</div>
 				</div>

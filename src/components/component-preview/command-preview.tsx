@@ -1,22 +1,18 @@
 import {
-	Calculator,
 	CalculatorIcon,
-	Calendar,
 	CalendarIcon,
-	CreditCard,
 	CreditCardIcon,
-	Settings,
 	SettingsIcon,
-	Smile,
 	SmileIcon,
-	User,
 	UserIcon,
 } from "lucide-react";
 import * as React from "react";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	Command,
 	CommandDialog,
@@ -31,8 +27,8 @@ import {
 
 export function CommandPreview() {
 	return (
-		<ComponentAccordionGroup title="Command">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Command" id="command-component">
+			<ComponentGroupPreview>
 				<Command className="rounded-lg border shadow-md md:min-w-[450px]">
 					<CommandInput placeholder="Type a command or search..." />
 					<CommandList>
@@ -71,11 +67,13 @@ export function CommandPreview() {
 						</CommandGroup>
 					</CommandList>
 				</Command>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Dialog">
-				<CommandDialogDemo />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="Dialog">
+					<CommandDialogDemo />
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }
 
@@ -112,48 +110,44 @@ function CommandDialogDemo() {
 
 	return (
 		<>
-			<div
-				className="flex items-center gap-1.5 text-muted-foreground text-sm"
-				ref={commandElRef}
-			>
-				<span>Press</span>{" "}
-				<kbd className="pointer-events-none inline-flex h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-medium font-mono text-base text-muted-foreground opacity-100">
-					<span className="pt-1">⌘</span>
-					<span className="pt-px">J</span>
+			<p className="text-muted-foreground text-sm" ref={commandElRef}>
+				Press{" "}
+				<kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-medium font-mono text-[10px] text-muted-foreground opacity-100">
+					<span className="text-xs">⌘</span>J
 				</kbd>
-			</div>
+			</p>
 			<CommandDialog open={open} onOpenChange={setOpen}>
 				<CommandInput placeholder="Type a command or search..." />
 				<CommandList>
 					<CommandEmpty>No results found.</CommandEmpty>
 					<CommandGroup heading="Suggestions">
 						<CommandItem>
-							<Calendar />
+							<CalendarIcon />
 							<span>Calendar</span>
 						</CommandItem>
 						<CommandItem>
-							<Smile />
+							<SmileIcon />
 							<span>Search Emoji</span>
 						</CommandItem>
 						<CommandItem>
-							<Calculator />
+							<CalculatorIcon />
 							<span>Calculator</span>
 						</CommandItem>
 					</CommandGroup>
 					<CommandSeparator />
 					<CommandGroup heading="Settings">
 						<CommandItem>
-							<User />
+							<UserIcon />
 							<span>Profile</span>
 							<CommandShortcut>⌘P</CommandShortcut>
 						</CommandItem>
 						<CommandItem>
-							<CreditCard />
+							<CreditCardIcon />
 							<span>Billing</span>
 							<CommandShortcut>⌘B</CommandShortcut>
 						</CommandItem>
 						<CommandItem>
-							<Settings />
+							<SettingsIcon />
 							<span>Settings</span>
 							<CommandShortcut>⌘S</CommandShortcut>
 						</CommandItem>

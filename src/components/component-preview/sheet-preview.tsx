@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -18,9 +18,8 @@ import {
 
 export function SheetPreview() {
 	return (
-		<ComponentAccordionGroup title="Sheet">
-			<ComponentAccordionSubGroup title="Example">
-				{/* Add a select menu here that changes what side its on */}
+		<ComponentGroup title="Sheet" id="sheet-component">
+			<ComponentGroupPreview>
 				<Sheet>
 					<SheetTrigger asChild>
 						<Button variant="outline">Open</Button>
@@ -34,11 +33,11 @@ export function SheetPreview() {
 							</SheetDescription>
 						</SheetHeader>
 						<div className="grid flex-1 auto-rows-min gap-6 px-4">
-							<div className="grid gap-2">
+							<div className="grid gap-3">
 								<Label htmlFor="sheet-demo-name">Name</Label>
 								<Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
 							</div>
-							<div className="grid gap-2">
+							<div className="grid gap-3">
 								<Label htmlFor="sheet-demo-username">Username</Label>
 								<Input id="sheet-demo-username" defaultValue="@peduarte" />
 							</div>
@@ -51,7 +50,7 @@ export function SheetPreview() {
 						</SheetFooter>
 					</SheetContent>
 				</Sheet>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

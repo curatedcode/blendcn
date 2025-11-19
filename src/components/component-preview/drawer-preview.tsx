@@ -2,9 +2,11 @@ import { Minus, Plus } from "lucide-react";
 import * as React from "react";
 import { Bar, BarChart, ResponsiveContainer } from "recharts";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import {
 	Dialog,
@@ -26,19 +28,21 @@ import {
 } from "~/components/ui/drawer";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { useIsMobile } from "~/hooks/use-mobile";
+import { useMediaQuery } from "~/hooks/use-media-query";
 import { cn } from "~/lib/utils";
 
 export function DrawerPreview() {
 	return (
-		<ComponentAccordionGroup title="Drawer">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Drawer" id="drawer-component">
+			<ComponentGroupPreview>
 				<DrawerDemo />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Responsive">
-				<DrawerDialogDemo />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="Responsive Dialog">
+					<DrawerDialogDemo />
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }
 
@@ -86,11 +90,9 @@ const data = [
 
 function DrawerDemo() {
 	const [goal, setGoal] = React.useState(350);
-
 	function onClick(adjustment: number) {
 		setGoal(Math.max(200, Math.min(400, goal + adjustment)));
 	}
-
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -163,59 +165,57 @@ function DrawerDemo() {
 
 function DrawerDialogDemo() {
 	const [open, setOpen] = React.useState(false);
-	const isMobile = useIsMobile();
+	const isDesktop = useMediaQuery("(min-width: 768px)");
 
-	if (isMobile) {
+	if (isDesktop) {
 		return (
-			<Drawer open={open} onOpenChange={setOpen}>
-				<DrawerTrigger asChild>
+			<Dialog open={open} onOpenChange={setOpen}>
+				<DialogTrigger asChild>
 					<Button variant="outline">Edit Profile</Button>
-				</DrawerTrigger>
-				<DrawerContent>
-					<DrawerHeader className="text-left">
-						<DrawerTitle>Edit profile</DrawerTitle>
-						<DrawerDescription>
+				</DialogTrigger>
+				<DialogContent className="sm:max-w-[425px]">
+					<DialogHeader>
+						<DialogTitle>Edit profile</DialogTitle>
+						<DialogDescription>
 							Make changes to your profile here. Click save when you&apos;re
 							done.
-						</DrawerDescription>
-					</DrawerHeader>
-					<ProfileForm className="px-4" />
-					<DrawerFooter className="pt-2">
-						<DrawerClose asChild>
-							<Button variant="outline">Cancel</Button>
-						</DrawerClose>
-					</DrawerFooter>
-				</DrawerContent>
-			</Drawer>
+						</DialogDescription>
+					</DialogHeader>
+					<ProfileForm />
+				</DialogContent>
+			</Dialog>
 		);
 	}
-
 	return (
-		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger asChild>
+		<Drawer open={open} onOpenChange={setOpen}>
+			<DrawerTrigger asChild>
 				<Button variant="outline">Edit Profile</Button>
-			</DialogTrigger>
-			<DialogContent className="sm:max-w-[425px]">
-				<DialogHeader>
-					<DialogTitle>Edit profile</DialogTitle>
-					<DialogDescription>
+			</DrawerTrigger>
+			<DrawerContent>
+				<DrawerHeader className="text-left">
+					<DrawerTitle>Edit profile</DrawerTitle>
+					<DrawerDescription>
 						Make changes to your profile here. Click save when you&apos;re done.
-					</DialogDescription>
-				</DialogHeader>
-				<ProfileForm />
-			</DialogContent>
-		</Dialog>
+					</DrawerDescription>
+				</DrawerHeader>
+				<ProfileForm className="px-4" />
+				<DrawerFooter className="pt-2">
+					<DrawerClose asChild>
+						<Button variant="outline">Cancel</Button>
+					</DrawerClose>
+				</DrawerFooter>
+			</DrawerContent>
+		</Drawer>
 	);
 }
-
 function ProfileForm({ className }: React.ComponentProps<"form">) {
 	return (
 		<form className={cn("grid items-start gap-6", className)}>
-			<div className="grid gap-2">
+			<div className="grid gap-3">
 				<Label htmlFor="email">Email</Label>
 				<Input type="email" id="email" defaultValue="shadcn@example.com" />
 			</div>
-			<div className="grid gap-2">
+			<div className="grid gap-3">
 				<Label htmlFor="username">Username</Label>
 				<Input id="username" defaultValue="@shadcn" />
 			</div>

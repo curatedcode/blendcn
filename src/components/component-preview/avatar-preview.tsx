@@ -1,13 +1,13 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 export function AvatarPreview() {
 	return (
-		<ComponentAccordionGroup title="Avatar">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Avatar" id="avatar-component">
+			<ComponentGroupPreview>
 				<div className="flex flex-row flex-wrap items-center gap-12">
 					<Avatar>
 						<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -26,7 +26,10 @@ export function AvatarPreview() {
 							<AvatarFallback>CN</AvatarFallback>
 						</Avatar>
 						<Avatar>
-							<AvatarImage src="https://github.com/leerob.png" alt="@leerob" />
+							<AvatarImage
+								src="https://github.com/maxleiter.png"
+								alt="@maxleiter"
+							/>
 							<AvatarFallback>LR</AvatarFallback>
 						</Avatar>
 						<Avatar>
@@ -38,7 +41,7 @@ export function AvatarPreview() {
 						</Avatar>
 					</div>
 				</div>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

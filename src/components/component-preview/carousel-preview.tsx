@@ -1,7 +1,10 @@
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: order never changes */
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Card, CardContent } from "~/components/ui/card";
 import {
 	Carousel,
@@ -11,34 +14,32 @@ import {
 	CarouselPrevious,
 } from "~/components/ui/carousel";
 
-const tags = Array.from({ length: 5 }, (_, i) => i + 1);
-
 export function CarouselPreview() {
 	return (
-		<ComponentAccordionGroup title="Carousel" className="flex-col flex-nowrap">
-			<ComponentAccordionSubGroup title="Example">
-				<div className="pl-10">
-					<Carousel className="w-full max-w-xs">
-						<CarouselContent>
-							{tags.map((num) => (
-								<CarouselItem key={num}>
-									<div className="p-1">
-										<Card>
-											<CardContent className="flex aspect-square items-center justify-center p-6">
-												<span className="font-semibold text-4xl">{num}</span>
-											</CardContent>
-										</Card>
-									</div>
-								</CarouselItem>
-							))}
-						</CarouselContent>
-						<CarouselPrevious />
-						<CarouselNext />
-					</Carousel>
-				</div>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Sizes">
-				<div className="pl-10">
+		<ComponentGroup title="Carousel" id="carousel-component">
+			<ComponentGroupPreview className="px-13">
+				<Carousel className="w-full max-w-sm">
+					<CarouselContent>
+						{Array.from({ length: 5 }).map((_, index) => (
+							<CarouselItem key={index}>
+								<div className="p-1">
+									<Card>
+										<CardContent className="flex aspect-square items-center justify-center p-6">
+											<span className="font-semibold text-4xl">
+												{index + 1}
+											</span>
+										</CardContent>
+									</Card>
+								</div>
+							</CarouselItem>
+						))}
+					</CarouselContent>
+					<CarouselPrevious />
+					<CarouselNext />
+				</Carousel>
+			</ComponentGroupPreview>
+			<ComponentGroupExamples className="flex flex-col">
+				<ComponentGroupExample title="Sizes" className="px-13">
 					<Carousel
 						opts={{
 							align: "start",
@@ -46,36 +47,17 @@ export function CarouselPreview() {
 						className="w-full max-w-sm"
 					>
 						<CarouselContent>
-							{tags.map((num) => (
-								<CarouselItem key={num} className="md:basis-1/2 lg:basis-1/3">
-									<div className="p-1">
-										<Card>
-											<CardContent className="flex aspect-square items-center justify-center p-6">
-												<span className="font-semibold text-3xl">{num}</span>
-											</CardContent>
-										</Card>
-									</div>
-								</CarouselItem>
-							))}
-						</CarouselContent>
-						<CarouselPrevious />
-						<CarouselNext />
-					</Carousel>
-				</div>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Spacing">
-				<div className="pl-10">
-					<Carousel className="w-full max-w-sm">
-						<CarouselContent className="-ml-1">
-							{tags.map((num) => (
+							{Array.from({ length: 5 }).map((_, index) => (
 								<CarouselItem
-									key={num}
-									className="pl-1 md:basis-1/2 lg:basis-1/3"
+									key={index}
+									className="basis-[90%] md:basis-1/2 lg:basis-1/3"
 								>
 									<div className="p-1">
 										<Card>
 											<CardContent className="flex aspect-square items-center justify-center p-6">
-												<span className="font-semibold text-2xl">{num}</span>
+												<span className="font-semibold text-3xl">
+													{index + 1}
+												</span>
 											</CardContent>
 										</Card>
 									</div>
@@ -85,24 +67,48 @@ export function CarouselPreview() {
 						<CarouselPrevious />
 						<CarouselNext />
 					</Carousel>
-				</div>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Orientation" className="mb-6">
-				<div className="pt-10">
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Spacing" className="px-13">
+					<Carousel className="w-full max-w-sm">
+						<CarouselContent className="-ml-1">
+							{Array.from({ length: 5 }).map((_, index) => (
+								<CarouselItem
+									key={index}
+									className="basis-[90%] pl-1 md:basis-1/2 lg:basis-1/3"
+								>
+									<div className="p-1">
+										<Card>
+											<CardContent className="flex aspect-square items-center justify-center p-6">
+												<span className="font-semibold text-2xl">
+													{index + 1}
+												</span>
+											</CardContent>
+										</Card>
+									</div>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious />
+						<CarouselNext />
+					</Carousel>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Orientation" className="py-16">
 					<Carousel
 						opts={{
 							align: "start",
 						}}
 						orientation="vertical"
-						className="w-full max-w-xs"
+						className="w-full max-w-sm"
 					>
-						<CarouselContent className="-mt-1 h-[200px]">
-							{tags.map((num) => (
-								<CarouselItem key={num} className="pt-1 md:basis-1/2">
+						<CarouselContent className="-mt-1 h-[150px]">
+							{Array.from({ length: 5 }).map((_, index) => (
+								<CarouselItem key={index} className="pt-1 md:basis-1/2">
 									<div className="p-1">
 										<Card>
 											<CardContent className="flex items-center justify-center p-6">
-												<span className="font-semibold text-3xl">{num}</span>
+												<span className="font-semibold text-3xl">
+													{index + 1}
+												</span>
 											</CardContent>
 										</Card>
 									</div>
@@ -112,8 +118,8 @@ export function CarouselPreview() {
 						<CarouselPrevious />
 						<CarouselNext />
 					</Carousel>
-				</div>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }

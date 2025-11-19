@@ -10,7 +10,6 @@ export function generatePaletteMappings(colors: {
 	light: OutputColors;
 	dark: OutputColors;
 } {
-	console.log(colors);
 	return {
 		light: {
 			background: colors.light.background,

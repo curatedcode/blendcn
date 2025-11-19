@@ -30,7 +30,7 @@ export function NoiseBackdrop() {
 					className="opacity-[0.3] dark:opacity-[0.08]"
 				></rect>
 			</svg>
-			<div className="pointer-events-none absolute top-0 left-0 z-[-1] size-full opacity-10 [background:_linear-gradient(to_bottom,_var(--primary-4),_transparent)] dark:opacity-3" />
+			<div className="pointer-events-none absolute top-0 left-0 z-[-1] h-screen w-full bg-gradient-to-b from-[var(--primary-5)] to-transparent opacity-70 dark:opacity-10" />
 		</>
 	);
 }

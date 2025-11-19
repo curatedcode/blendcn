@@ -62,7 +62,7 @@ const disableAnimation = () => {
 export function ThemeProvider({
 	children,
 	defaultTheme = "system",
-	storageKey = "conar.theme",
+	storageKey = "blendcn.theme",
 }: ThemeProviderProps) {
 	const [theme, setTheme] = React.useState<Theme>(defaultTheme);
 	const [resolvedTheme, setResolvedTheme] =
@@ -137,7 +137,6 @@ export function ThemeProvider({
 	);
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useTheme() {
 	const context = React.use(ThemeProviderContext);
 

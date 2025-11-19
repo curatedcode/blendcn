@@ -2,9 +2,11 @@
 import { ChevronDownIcon, SlashIcon } from "lucide-react";
 import * as React from "react";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	Breadcrumb,
 	BreadcrumbEllipsis,
@@ -31,121 +33,135 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { useIsMobile } from "~/hooks/use-mobile";
+import { useMediaQuery } from "~/hooks/use-media-query";
 
 export function BreadcrumbPreview() {
 	return (
-		<ComponentAccordionGroup title="Breadcrumb">
-			<ComponentAccordionSubGroup title="Custom Separator">
-				<BreadcrumbWithCustomSeparator />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Dropdown">
-				<BreadcrumbWithDropdown />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Collapsed">
-				<BreadcrumbCollapsed />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Responsive">
-				<BreadcrumbResponsive />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
-	);
-}
-
-/**
- * @todo add a note that says you need to update <BreadcrumbSeparator /> to a div instead of li otherwise you get a Hydration error saying li can't be a child of li
- * https://github.com/shadcn-ui/ui/issues/3818
- */
-
-function BreadcrumbWithCustomSeparator() {
-	return (
-		<Breadcrumb>
-			<BreadcrumbList>
-				<BreadcrumbItem>
-					<BreadcrumbLink asChild>
-						<a href="#">Home</a>
-					</BreadcrumbLink>
-				</BreadcrumbItem>
-				<BreadcrumbSeparator>
-					<SlashIcon />
-				</BreadcrumbSeparator>
-				<BreadcrumbItem>
-					<BreadcrumbLink asChild>
-						<a href="#">Components</a>
-					</BreadcrumbLink>
-				</BreadcrumbItem>
-				<BreadcrumbSeparator>
-					<SlashIcon />
-				</BreadcrumbSeparator>
-				<BreadcrumbItem>
-					<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-				</BreadcrumbItem>
-			</BreadcrumbList>
-		</Breadcrumb>
-	);
-}
-
-function BreadcrumbWithDropdown() {
-	return (
-		<Breadcrumb>
-			<BreadcrumbList>
-				<BreadcrumbItem>
-					<BreadcrumbLink asChild>
-						<a href="#">Home</a>
-					</BreadcrumbLink>
-				</BreadcrumbItem>
-				<BreadcrumbSeparator>
-					<SlashIcon />
-				</BreadcrumbSeparator>
-				<BreadcrumbItem>
-					<DropdownMenu>
-						<DropdownMenuTrigger className="flex items-center gap-1 [&_svg:not([class*='size-'])]:size-3.5 [&_svg]:pointer-events-none [&_svg]:shrink-0">
-							Components
-							<ChevronDownIcon />
-						</DropdownMenuTrigger>
-						<DropdownMenuContent align="start">
-							<DropdownMenuItem>Documentation</DropdownMenuItem>
-							<DropdownMenuItem>Themes</DropdownMenuItem>
-							<DropdownMenuItem>GitHub</DropdownMenuItem>
-						</DropdownMenuContent>
-					</DropdownMenu>
-				</BreadcrumbItem>
-				<BreadcrumbSeparator>
-					<SlashIcon />
-				</BreadcrumbSeparator>
-				<BreadcrumbItem>
-					<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-				</BreadcrumbItem>
-			</BreadcrumbList>
-		</Breadcrumb>
-	);
-}
-
-function BreadcrumbCollapsed() {
-	return (
-		<Breadcrumb>
-			<BreadcrumbList>
-				<BreadcrumbItem>
-					<BreadcrumbLink asChild>
-						<a href="#">Home</a>
-					</BreadcrumbLink>
-				</BreadcrumbItem>
-				<BreadcrumbSeparator />
-				<BreadcrumbItem>
-					<BreadcrumbEllipsis className="h-5 w-9" />
-				</BreadcrumbItem>
-				<BreadcrumbSeparator />
-				<BreadcrumbItem>
-					<BreadcrumbLink asChild>
-						<a href="#">Components</a>
-					</BreadcrumbLink>
-				</BreadcrumbItem>
-				<BreadcrumbSeparator />
-				<BreadcrumbItem>
-					<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-				</BreadcrumbItem>
-			</BreadcrumbList>
-		</Breadcrumb>
+		<ComponentGroup title="Breadcrumb" id="breadcrumb-component">
+			<ComponentGroupPreview>
+				<Breadcrumb>
+					<BreadcrumbList>
+						<BreadcrumbItem>
+							<BreadcrumbLink asChild>
+								<a href="#">Home</a>
+							</BreadcrumbLink>
+						</BreadcrumbItem>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							<DropdownMenu>
+								<DropdownMenuTrigger className="flex items-center gap-1">
+									<BreadcrumbEllipsis className="size-4" />
+									<span className="sr-only">Toggle menu</span>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent align="start">
+									<DropdownMenuItem>Documentation</DropdownMenuItem>
+									<DropdownMenuItem>Themes</DropdownMenuItem>
+									<DropdownMenuItem>GitHub</DropdownMenuItem>
+								</DropdownMenuContent>
+							</DropdownMenu>
+						</BreadcrumbItem>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							<BreadcrumbLink asChild>
+								<a href="#">Components</a>
+							</BreadcrumbLink>
+						</BreadcrumbItem>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+						</BreadcrumbItem>
+					</BreadcrumbList>
+				</Breadcrumb>
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="Custom Separator">
+					<Breadcrumb>
+						<BreadcrumbList>
+							<BreadcrumbItem>
+								<BreadcrumbLink asChild>
+									<a href="#">Home</a>
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator>
+								<SlashIcon />
+							</BreadcrumbSeparator>
+							<BreadcrumbItem>
+								<BreadcrumbLink asChild>
+									<a href="#">Components</a>
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator>
+								<SlashIcon />
+							</BreadcrumbSeparator>
+							<BreadcrumbItem>
+								<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+							</BreadcrumbItem>
+						</BreadcrumbList>
+					</Breadcrumb>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Dropdown">
+					<Breadcrumb>
+						<BreadcrumbList>
+							<BreadcrumbItem>
+								<BreadcrumbLink asChild>
+									<a href="#">Home</a>
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator>
+								<SlashIcon />
+							</BreadcrumbSeparator>
+							<BreadcrumbItem>
+								<DropdownMenu>
+									<DropdownMenuTrigger className="flex items-center gap-1 [&_svg:not([class*='size-'])]:size-3.5 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+										Components
+										<ChevronDownIcon />
+									</DropdownMenuTrigger>
+									<DropdownMenuContent align="start">
+										<DropdownMenuItem>Documentation</DropdownMenuItem>
+										<DropdownMenuItem>Themes</DropdownMenuItem>
+										<DropdownMenuItem>GitHub</DropdownMenuItem>
+									</DropdownMenuContent>
+								</DropdownMenu>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator>
+								<SlashIcon />
+							</BreadcrumbSeparator>
+							<BreadcrumbItem>
+								<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+							</BreadcrumbItem>
+						</BreadcrumbList>
+					</Breadcrumb>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Collapsed">
+					<Breadcrumb>
+						<BreadcrumbList>
+							<BreadcrumbItem>
+								<BreadcrumbLink asChild>
+									<a href="#">Home</a>
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								<BreadcrumbEllipsis />
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								<BreadcrumbLink asChild>
+									<a href="#">Components</a>
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+							</BreadcrumbItem>
+						</BreadcrumbList>
+					</Breadcrumb>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Responsive">
+					<BreadcrumbResponsive />
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }
 
@@ -161,7 +177,7 @@ const ITEMS_TO_DISPLAY = 3;
 
 function BreadcrumbResponsive() {
 	const [open, setOpen] = React.useState(false);
-	const isMobile = useIsMobile();
+	const isDesktop = useMediaQuery("(min-width: 768px)");
 
 	return (
 		<Breadcrumb>
@@ -175,7 +191,24 @@ function BreadcrumbResponsive() {
 				{items.length > ITEMS_TO_DISPLAY ? (
 					<>
 						<BreadcrumbItem>
-							{isMobile ? (
+							{isDesktop ? (
+								<DropdownMenu open={open} onOpenChange={setOpen}>
+									<DropdownMenuTrigger
+										className="flex items-center gap-1"
+										aria-label="Toggle menu"
+									>
+										<BreadcrumbEllipsis className="size-4" />
+									</DropdownMenuTrigger>
+									<DropdownMenuContent align="start">
+										{items.slice(1, -2).map((item, index) => (
+											// biome-ignore lint/suspicious/noArrayIndexKey: order doesn't change
+											<DropdownMenuItem key={index}>
+												<a href="#">{item.label}</a>
+											</DropdownMenuItem>
+										))}
+									</DropdownMenuContent>
+								</DropdownMenu>
+							) : (
 								<Drawer open={open} onOpenChange={setOpen}>
 									<DrawerTrigger aria-label="Toggle Menu">
 										<BreadcrumbEllipsis className="h-4 w-4" />
@@ -188,10 +221,11 @@ function BreadcrumbResponsive() {
 											</DrawerDescription>
 										</DrawerHeader>
 										<div className="grid gap-1 px-4">
-											{items.slice(1, -2).map((item) => (
+											{items.slice(1, -2).map((item, index) => (
 												<a
-													key={item.label}
-													href={item.href ?? "#"}
+													// biome-ignore lint/suspicious/noArrayIndexKey: order doesn't change
+													key={index}
+													href="#"
 													className="py-1 text-sm"
 												>
 													{item.label}
@@ -205,29 +239,14 @@ function BreadcrumbResponsive() {
 										</DrawerFooter>
 									</DrawerContent>
 								</Drawer>
-							) : (
-								<DropdownMenu open={open} onOpenChange={setOpen}>
-									<DropdownMenuTrigger
-										className="flex items-center gap-1"
-										aria-label="Toggle menu"
-									>
-										<BreadcrumbEllipsis className="size-4" />
-									</DropdownMenuTrigger>
-									<DropdownMenuContent align="start">
-										{items.slice(1, -2).map((item) => (
-											<DropdownMenuItem key={item.label}>
-												<a href={item.href ?? "#"}>{item.label}</a>
-											</DropdownMenuItem>
-										))}
-									</DropdownMenuContent>
-								</DropdownMenu>
 							)}
 						</BreadcrumbItem>
 						<BreadcrumbSeparator />
 					</>
 				) : null}
-				{items.slice(-ITEMS_TO_DISPLAY + 1).map((item) => (
-					<BreadcrumbItem key={item.label}>
+				{items.slice(-ITEMS_TO_DISPLAY + 1).map((item, index) => (
+					// biome-ignore lint/suspicious/noArrayIndexKey: order never changes
+					<BreadcrumbItem key={index}>
 						{item.href ? (
 							<>
 								<BreadcrumbLink
