@@ -18,7 +18,7 @@ function RouteComponent() {
 		<ColorContextProvider>
 			<div className="relative">
 				<NoiseBackdrop />
-				<div className="mx-auto max-w-desktop px-2 pt-20">
+				<div className="mx-auto min-h-screen max-w-desktop px-2 pt-20">
 					<div className="flex flex-col items-center gap-6">
 						<div className="mx-auto flex w-fit items-center gap-3">
 							<Logo
