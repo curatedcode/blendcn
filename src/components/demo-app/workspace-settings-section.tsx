@@ -321,7 +321,11 @@ export function WorkspaceSettingsSection({
 														<span className="inline-flex h-9 w-42 items-center justify-center overflow-hidden rounded-md border bg-background px-4 py-2 font-medium text-sm outline-none dark:border-input dark:bg-input/30">
 															{key}
 														</span>
-														<Button variant="outline" aria-label="Delete">
+														<Button
+															variant="outline"
+															aria-label="Delete"
+															onClick={(e) => e.preventDefault()}
+														>
 															<Trash2Icon />
 														</Button>
 													</ButtonGroup>
