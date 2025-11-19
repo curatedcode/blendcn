@@ -105,7 +105,7 @@ export function CalendarSection({
 						eventsToShow.map((event) => (
 							<div
 								key={event.id}
-								className="h-32 space-y-3 rounded-lg bg-secondary p-4 text-secondary-foreground"
+								className="h-34 space-y-3 rounded-lg bg-secondary p-4 text-secondary-foreground"
 							>
 								<div className="flex items-center gap-1.5">
 									<span className="font-semibold text-sm md:text-base">
@@ -186,7 +186,7 @@ export function CalendarSection({
 							</div>
 						))
 					) : (
-						<div className="flex h-32 items-center justify-center p-4 text-lg text-muted-foreground">
+						<div className="flex h-34 items-center justify-center p-4 text-lg text-muted-foreground">
 							<span>No events...</span>
 						</div>
 					)}
