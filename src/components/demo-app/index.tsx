@@ -99,12 +99,12 @@ export function DemoApp() {
 						</Breadcrumb>
 					</div>
 				</header>
-				<div className="w-full max-w-desktop">
-					<div className="mb-4 pl-3 md:pl-5">
-						<span className="font-medium text-sm">
-							{dayjs().format("ddd, MMMM Do")}
-						</span>
-					</div>
+				<div className="mb-4 pl-3 md:pl-5">
+					<span className="font-medium text-sm">
+						{dayjs().format("ddd, MMMM Do")}
+					</span>
+				</div>
+				<div className="mx-auto w-full max-w-desktop">
 					<div className="flex flex-col gap-8 p-2 pt-0 lg:flex-row lg:p-4 lg:*:basis-1/2">
 						<div className="flex flex-col gap-8">
 							<TasksSection tasks={tasks} />
