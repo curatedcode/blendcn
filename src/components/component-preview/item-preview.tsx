@@ -12,9 +12,11 @@ import {
 } from "lucide-react";
 import * as React from "react";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import {
@@ -37,237 +39,362 @@ import {
 
 export function ItemPreview() {
 	return (
-		<ComponentAccordionGroup title="Item">
-			<ComponentAccordionSubGroup title="Default">
-				<ItemDefault />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Variants">
-				<ItemVariants />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Size">
-				<ItemSize />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Icon">
-				<ItemIcon />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Avatar">
-				<ItemAvatar />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Image">
-				<ItemImage />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Group">
-				<ItemGroupDemo />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Header">
-				<ItemHeaderDemo />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Link">
-				<ItemLink />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Dropdown">
-				<ItemDropdown />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
-	);
-}
-
-function ItemDefault() {
-	return (
-		<div className="flex w-full max-w-md flex-col gap-6">
-			<Item variant="outline">
-				<ItemContent>
-					<ItemTitle>Basic Item</ItemTitle>
-					<ItemDescription>
-						A simple item with title and description.
-					</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button variant="outline" size="sm">
-						Action
-					</Button>
-				</ItemActions>
-			</Item>
-			<Item variant="outline" size="sm" asChild>
-				<a href="#">
-					<ItemMedia>
-						<BadgeCheckIcon className="size-5" />
-					</ItemMedia>
-					<ItemContent>
-						<ItemTitle>Your profile has been verified.</ItemTitle>
-					</ItemContent>
-					<ItemActions>
-						<ChevronRightIcon className="size-4" />
-					</ItemActions>
-				</a>
-			</Item>
-		</div>
-	);
-}
-
-function ItemVariants() {
-	return (
-		<div className="flex flex-col gap-6">
-			<Item>
-				<ItemContent>
-					<ItemTitle>Default Variant</ItemTitle>
-					<ItemDescription>
-						Standard styling with subtle background and borders.
-					</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button variant="outline" size="sm">
-						Open
-					</Button>
-				</ItemActions>
-			</Item>
-			<Item variant="outline">
-				<ItemContent>
-					<ItemTitle>Outline Variant</ItemTitle>
-					<ItemDescription>
-						Outlined style with clear borders and transparent background.
-					</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button variant="outline" size="sm">
-						Open
-					</Button>
-				</ItemActions>
-			</Item>
-			<Item variant="muted">
-				<ItemContent>
-					<ItemTitle>Muted Variant</ItemTitle>
-					<ItemDescription>
-						Subdued appearance with muted colors for secondary content.
-					</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button variant="outline" size="sm">
-						Open
-					</Button>
-				</ItemActions>
-			</Item>
-		</div>
-	);
-}
-
-function ItemSize() {
-	return (
-		<div className="flex w-full max-w-md flex-col gap-6">
-			<Item variant="outline">
-				<ItemContent>
-					<ItemTitle>Basic Item</ItemTitle>
-					<ItemDescription>
-						A simple item with title and description.
-					</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button variant="outline" size="sm">
-						Action
-					</Button>
-				</ItemActions>
-			</Item>
-			<Item variant="outline" size="sm" asChild>
-				<a href="#">
-					<ItemMedia>
-						<BadgeCheckIcon className="size-5" />
-					</ItemMedia>
-					<ItemContent>
-						<ItemTitle>Your profile has been verified.</ItemTitle>
-					</ItemContent>
-					<ItemActions>
-						<ChevronRightIcon className="size-4" />
-					</ItemActions>
-				</a>
-			</Item>
-		</div>
-	);
-}
-
-function ItemIcon() {
-	return (
-		<div className="flex w-full max-w-lg flex-col gap-6">
-			<Item variant="outline">
-				<ItemMedia variant="icon">
-					<ShieldAlertIcon />
-				</ItemMedia>
-				<ItemContent>
-					<ItemTitle>Security Alert</ItemTitle>
-					<ItemDescription>
-						New login detected from unknown device.
-					</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button size="sm" variant="outline">
-						Review
-					</Button>
-				</ItemActions>
-			</Item>
-		</div>
-	);
-}
-
-function ItemAvatar() {
-	return (
-		<div className="flex w-full max-w-lg flex-col gap-6">
-			<Item variant="outline">
-				<ItemMedia>
-					<Avatar className="size-10">
-						<AvatarImage src="https://github.com/evilrabbit.png" />
-						<AvatarFallback>ER</AvatarFallback>
-					</Avatar>
-				</ItemMedia>
-				<ItemContent>
-					<ItemTitle>Evil Rabbit</ItemTitle>
-					<ItemDescription>Last seen 5 months ago</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button
-						size="icon-sm"
-						variant="outline"
-						className="rounded-full"
-						aria-label="Invite"
-					>
-						<Plus />
-					</Button>
-				</ItemActions>
-			</Item>
-			<Item variant="outline">
-				<ItemMedia>
-					<div className="-space-x-2 flex *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale">
-						<Avatar className="hidden sm:flex">
-							<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-							<AvatarFallback>CN</AvatarFallback>
-						</Avatar>
-						<Avatar className="hidden sm:flex">
-							<AvatarImage
-								src="https://github.com/maxleiter.png"
-								alt="@maxleiter"
-							/>
-							<AvatarFallback>LR</AvatarFallback>
-						</Avatar>
-						<Avatar>
-							<AvatarImage
-								src="https://github.com/evilrabbit.png"
-								alt="@evilrabbit"
-							/>
-							<AvatarFallback>ER</AvatarFallback>
-						</Avatar>
+		<ComponentGroup title="Item" id="item-component">
+			<ComponentGroupPreview>
+				<div className="flex w-full max-w-md flex-col gap-6">
+					<Item variant="outline">
+						<ItemContent>
+							<ItemTitle>Basic Item</ItemTitle>
+							<ItemDescription>
+								A simple item with title and description.
+							</ItemDescription>
+						</ItemContent>
+						<ItemActions>
+							<Button variant="outline" size="sm">
+								Action
+							</Button>
+						</ItemActions>
+					</Item>
+					<Item variant="outline" size="sm" asChild>
+						<a href="#">
+							<ItemMedia>
+								<BadgeCheckIcon className="size-5" />
+							</ItemMedia>
+							<ItemContent>
+								<ItemTitle>Your profile has been verified.</ItemTitle>
+							</ItemContent>
+							<ItemActions>
+								<ChevronRightIcon className="size-4" />
+							</ItemActions>
+						</a>
+					</Item>
+				</div>
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="Variants">
+					<div className="flex flex-col gap-6">
+						<Item>
+							<ItemContent>
+								<ItemTitle>Default Variant</ItemTitle>
+								<ItemDescription>
+									Standard styling with subtle background and borders.
+								</ItemDescription>
+							</ItemContent>
+							<ItemActions>
+								<Button variant="outline" size="sm">
+									Open
+								</Button>
+							</ItemActions>
+						</Item>
+						<Item variant="outline">
+							<ItemContent>
+								<ItemTitle>Outline Variant</ItemTitle>
+								<ItemDescription>
+									Outlined style with clear borders and transparent background.
+								</ItemDescription>
+							</ItemContent>
+							<ItemActions>
+								<Button variant="outline" size="sm">
+									Open
+								</Button>
+							</ItemActions>
+						</Item>
+						<Item variant="muted">
+							<ItemContent>
+								<ItemTitle>Muted Variant</ItemTitle>
+								<ItemDescription>
+									Subdued appearance with muted colors for secondary content.
+								</ItemDescription>
+							</ItemContent>
+							<ItemActions>
+								<Button variant="outline" size="sm">
+									Open
+								</Button>
+							</ItemActions>
+						</Item>
 					</div>
-				</ItemMedia>
-				<ItemContent>
-					<ItemTitle>No Team Members</ItemTitle>
-					<ItemDescription>
-						Invite your team to collaborate on this project.
-					</ItemDescription>
-				</ItemContent>
-				<ItemActions>
-					<Button size="sm" variant="outline">
-						Invite
-					</Button>
-				</ItemActions>
-			</Item>
-		</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Size">
+					<div className="flex w-full max-w-md flex-col gap-6">
+						<Item variant="outline">
+							<ItemContent>
+								<ItemTitle>Basic Item</ItemTitle>
+								<ItemDescription>
+									A simple item with title and description.
+								</ItemDescription>
+							</ItemContent>
+							<ItemActions>
+								<Button variant="outline" size="sm">
+									Action
+								</Button>
+							</ItemActions>
+						</Item>
+						<Item variant="outline" size="sm" asChild>
+							<a href="#">
+								<ItemMedia>
+									<BadgeCheckIcon className="size-5" />
+								</ItemMedia>
+								<ItemContent>
+									<ItemTitle>Your profile has been verified.</ItemTitle>
+								</ItemContent>
+								<ItemActions>
+									<ChevronRightIcon className="size-4" />
+								</ItemActions>
+							</a>
+						</Item>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Icon">
+					<div className="flex w-full max-w-lg flex-col gap-6">
+						<Item variant="outline">
+							<ItemMedia variant="icon">
+								<ShieldAlertIcon />
+							</ItemMedia>
+							<ItemContent>
+								<ItemTitle>Security Alert</ItemTitle>
+								<ItemDescription>
+									New login detected from unknown device.
+								</ItemDescription>
+							</ItemContent>
+							<ItemActions>
+								<Button size="sm" variant="outline">
+									Review
+								</Button>
+							</ItemActions>
+						</Item>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Avatar">
+					<div className="flex w-full max-w-lg flex-col gap-6">
+						<Item variant="outline">
+							<ItemMedia>
+								<Avatar className="size-10">
+									<AvatarImage src="https://github.com/evilrabbit.png" />
+									<AvatarFallback>ER</AvatarFallback>
+								</Avatar>
+							</ItemMedia>
+							<ItemContent>
+								<ItemTitle>Evil Rabbit</ItemTitle>
+								<ItemDescription>Last seen 5 months ago</ItemDescription>
+							</ItemContent>
+							<ItemActions>
+								<Button
+									size="icon-sm"
+									variant="outline"
+									className="rounded-full"
+									aria-label="Invite"
+								>
+									<Plus />
+								</Button>
+							</ItemActions>
+						</Item>
+						<Item variant="outline">
+							<ItemMedia>
+								<div className="-space-x-2 flex *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale">
+									<Avatar className="hidden sm:flex">
+										<AvatarImage
+											src="https://github.com/shadcn.png"
+											alt="@shadcn"
+										/>
+										<AvatarFallback>CN</AvatarFallback>
+									</Avatar>
+									<Avatar className="hidden sm:flex">
+										<AvatarImage
+											src="https://github.com/maxleiter.png"
+											alt="@maxleiter"
+										/>
+										<AvatarFallback>LR</AvatarFallback>
+									</Avatar>
+									<Avatar>
+										<AvatarImage
+											src="https://github.com/evilrabbit.png"
+											alt="@evilrabbit"
+										/>
+										<AvatarFallback>ER</AvatarFallback>
+									</Avatar>
+								</div>
+							</ItemMedia>
+							<ItemContent>
+								<ItemTitle>No Team Members</ItemTitle>
+								<ItemDescription>
+									Invite your team to collaborate on this project.
+								</ItemDescription>
+							</ItemContent>
+							<ItemActions>
+								<Button size="sm" variant="outline">
+									Invite
+								</Button>
+							</ItemActions>
+						</Item>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Image">
+					<div className="flex w-full max-w-md flex-col gap-6">
+						<ItemGroup className="gap-4">
+							{music.map((song) => (
+								<Item
+									key={song.title}
+									variant="outline"
+									asChild
+									role="listitem"
+								>
+									<a href="#">
+										<ItemMedia variant="image">
+											<Image
+												src={`https://avatar.vercel.sh/${song.title}`}
+												alt={song.title}
+												width={32}
+												height={32}
+												className="object-cover grayscale"
+											/>
+										</ItemMedia>
+										<ItemContent>
+											<ItemTitle className="line-clamp-1">
+												{song.title} -{" "}
+												<span className="text-muted-foreground">
+													{song.album}
+												</span>
+											</ItemTitle>
+											<ItemDescription>{song.artist}</ItemDescription>
+										</ItemContent>
+										<ItemContent className="flex-none text-center">
+											<ItemDescription>{song.duration}</ItemDescription>
+										</ItemContent>
+									</a>
+								</Item>
+							))}
+						</ItemGroup>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Group">
+					<div className="flex w-full max-w-md flex-col gap-6">
+						<ItemGroup>
+							{people.map((person, index) => (
+								<React.Fragment key={person.username}>
+									<Item>
+										<ItemMedia>
+											<Avatar>
+												<AvatarImage
+													src={person.avatar}
+													className="grayscale"
+												/>
+												<AvatarFallback>
+													{person.username.charAt(0)}
+												</AvatarFallback>
+											</Avatar>
+										</ItemMedia>
+										<ItemContent className="gap-1">
+											<ItemTitle>{person.username}</ItemTitle>
+											<ItemDescription>{person.email}</ItemDescription>
+										</ItemContent>
+										<ItemActions>
+											<Button
+												variant="ghost"
+												size="icon"
+												className="rounded-full"
+											>
+												<PlusIcon />
+											</Button>
+										</ItemActions>
+									</Item>
+									{index !== people.length - 1 && <ItemSeparator />}
+								</React.Fragment>
+							))}
+						</ItemGroup>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Header">
+					<div className="flex w-full max-w-xl flex-col gap-6">
+						<ItemGroup className="grid grid-cols-3 gap-4">
+							{models.map((model) => (
+								<Item key={model.name} variant="outline">
+									<ItemHeader>
+										<Image
+											src={model.image}
+											alt={model.name}
+											width={128}
+											height={128}
+											className="aspect-square w-full rounded-sm object-cover"
+										/>
+									</ItemHeader>
+									<ItemContent>
+										<ItemTitle>{model.name}</ItemTitle>
+										<ItemDescription>{model.description}</ItemDescription>
+									</ItemContent>
+								</Item>
+							))}
+						</ItemGroup>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Link">
+					<div className="flex w-full max-w-md flex-col gap-4">
+						<Item asChild>
+							<a href="#">
+								<ItemContent>
+									<ItemTitle>Visit our documentation</ItemTitle>
+									<ItemDescription>
+										Learn how to get started with our components.
+									</ItemDescription>
+								</ItemContent>
+								<ItemActions>
+									<ChevronRightIcon className="size-4" />
+								</ItemActions>
+							</a>
+						</Item>
+						<Item variant="outline" asChild>
+							<a href="#" target="_blank" rel="noopener noreferrer">
+								<ItemContent>
+									<ItemTitle>External resource</ItemTitle>
+									<ItemDescription>
+										Opens in a new tab with security attributes.
+									</ItemDescription>
+								</ItemContent>
+								<ItemActions>
+									<ExternalLinkIcon className="size-4" />
+								</ItemActions>
+							</a>
+						</Item>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Dropdown">
+					<div className="flex w-full max-w-md flex-col items-center gap-6">
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<Button variant="outline" size="sm" className="w-fit">
+									Select <ChevronDownIcon />
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent
+								className="w-72 [--radius:0.65rem]"
+								align="end"
+							>
+								{people.map((person) => (
+									<DropdownMenuItem key={person.username} className="p-0">
+										<Item size="sm" className="w-full p-2">
+											<ItemMedia>
+												<Avatar className="size-8">
+													<AvatarImage
+														src={person.avatar}
+														className="grayscale"
+													/>
+													<AvatarFallback>
+														{person.username.charAt(0)}
+													</AvatarFallback>
+												</Avatar>
+											</ItemMedia>
+											<ItemContent className="gap-0.5">
+												<ItemTitle>{person.username}</ItemTitle>
+												<ItemDescription>{person.email}</ItemDescription>
+											</ItemContent>
+										</Item>
+									</DropdownMenuItem>
+								))}
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</div>
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }
 
@@ -291,39 +418,6 @@ const music = [
 		duration: "3:30",
 	},
 ];
-function ItemImage() {
-	return (
-		<div className="flex w-full max-w-md flex-col gap-6">
-			<ItemGroup className="gap-4">
-				{music.map((song) => (
-					<Item key={song.title} variant="outline" asChild role="listitem">
-						<a href="#">
-							<ItemMedia variant="image">
-								<Image
-									src={`https://avatar.vercel.sh/${song.title}`}
-									alt={song.title}
-									width={32}
-									height={32}
-									className="object-cover grayscale"
-								/>
-							</ItemMedia>
-							<ItemContent>
-								<ItemTitle className="line-clamp-1">
-									{song.title} -{" "}
-									<span className="text-muted-foreground">{song.album}</span>
-								</ItemTitle>
-								<ItemDescription>{song.artist}</ItemDescription>
-							</ItemContent>
-							<ItemContent className="flex-none text-center">
-								<ItemDescription>{song.duration}</ItemDescription>
-							</ItemContent>
-						</a>
-					</Item>
-				))}
-			</ItemGroup>
-		</div>
-	);
-}
 
 const people = [
 	{
@@ -342,37 +436,6 @@ const people = [
 		email: "evilrabbit@vercel.com",
 	},
 ];
-
-function ItemGroupDemo() {
-	return (
-		<div className="flex w-full max-w-md flex-col gap-6">
-			<ItemGroup>
-				{people.map((person, index) => (
-					<React.Fragment key={person.username}>
-						<Item>
-							<ItemMedia>
-								<Avatar>
-									<AvatarImage src={person.avatar} className="grayscale" />
-									<AvatarFallback>{person.username.charAt(0)}</AvatarFallback>
-								</Avatar>
-							</ItemMedia>
-							<ItemContent className="gap-1">
-								<ItemTitle>{person.username}</ItemTitle>
-								<ItemDescription>{person.email}</ItemDescription>
-							</ItemContent>
-							<ItemActions>
-								<Button variant="ghost" size="icon" className="rounded-full">
-									<PlusIcon />
-								</Button>
-							</ItemActions>
-						</Item>
-						{index !== people.length - 1 && <ItemSeparator />}
-					</React.Fragment>
-				))}
-			</ItemGroup>
-		</div>
-	);
-}
 
 const models = [
 	{
@@ -397,94 +460,3 @@ const models = [
 		credit: "Cherry Laithang on Unsplash",
 	},
 ];
-
-function ItemHeaderDemo() {
-	return (
-		<div className="flex w-full max-w-xl flex-col gap-6">
-			<ItemGroup className="grid grid-cols-3 gap-4">
-				{models.map((model) => (
-					<Item key={model.name} variant="outline">
-						<ItemHeader>
-							<Image
-								src={model.image}
-								alt={model.name}
-								width={128}
-								height={128}
-								className="aspect-square w-full rounded-sm object-cover"
-							/>
-						</ItemHeader>
-						<ItemContent>
-							<ItemTitle>{model.name}</ItemTitle>
-							<ItemDescription>{model.description}</ItemDescription>
-						</ItemContent>
-					</Item>
-				))}
-			</ItemGroup>
-		</div>
-	);
-}
-
-function ItemLink() {
-	return (
-		<div className="flex w-full max-w-md flex-col gap-4">
-			<Item asChild>
-				<a href="#">
-					<ItemContent>
-						<ItemTitle>Visit our documentation</ItemTitle>
-						<ItemDescription>
-							Learn how to get started with our components.
-						</ItemDescription>
-					</ItemContent>
-					<ItemActions>
-						<ChevronRightIcon className="size-4" />
-					</ItemActions>
-				</a>
-			</Item>
-			<Item variant="outline" asChild>
-				<a href="#" target="_blank" rel="noopener noreferrer">
-					<ItemContent>
-						<ItemTitle>External resource</ItemTitle>
-						<ItemDescription>
-							Opens in a new tab with security attributes.
-						</ItemDescription>
-					</ItemContent>
-					<ItemActions>
-						<ExternalLinkIcon className="size-4" />
-					</ItemActions>
-				</a>
-			</Item>
-		</div>
-	);
-}
-
-function ItemDropdown() {
-	return (
-		<div className="flex min-h-64 w-full max-w-md flex-col items-center gap-6">
-			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button variant="outline" size="sm" className="w-fit">
-						Select <ChevronDownIcon />
-					</Button>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent className="w-72 [--radius:0.65rem]" align="end">
-					{people.map((person) => (
-						<DropdownMenuItem key={person.username} className="p-0">
-							<Item size="sm" className="w-full p-2">
-								<ItemMedia>
-									<Avatar className="size-8">
-										<AvatarImage src={person.avatar} className="grayscale" />
-										<AvatarFallback>{person.username.charAt(0)}</AvatarFallback>
-									</Avatar>
-								</ItemMedia>
-								<ItemContent className="gap-0.5">
-									<ItemTitle>{person.username}</ItemTitle>
-									<ItemDescription>{person.email}</ItemDescription>
-								</ItemContent>
-							</Item>
-						</DropdownMenuItem>
-					))}
-				</DropdownMenuContent>
-			</DropdownMenu>
-		</div>
-	);
-}

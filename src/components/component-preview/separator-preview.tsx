@@ -1,13 +1,13 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Separator } from "~/components/ui/separator";
 
 export function SeparatorPreview() {
 	return (
-		<ComponentAccordionGroup title="Separator">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Separator" id="separator-component">
+			<ComponentGroupPreview>
 				<div>
 					<div className="space-y-1">
 						<h4 className="font-medium text-sm leading-none">
@@ -26,7 +26,7 @@ export function SeparatorPreview() {
 						<div>Source</div>
 					</div>
 				</div>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import {
 	Tooltip,
@@ -11,8 +11,8 @@ import {
 
 export function TooltipPreview() {
 	return (
-		<ComponentAccordionGroup title="Tooltip">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Tooltip" id="tooltip-component">
+			<ComponentGroupPreview>
 				<Tooltip>
 					<TooltipTrigger asChild>
 						<Button variant="outline">Hover</Button>
@@ -21,7 +21,7 @@ export function TooltipPreview() {
 						<p>Add to library</p>
 					</TooltipContent>
 				</Tooltip>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

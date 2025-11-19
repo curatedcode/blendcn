@@ -1,7 +1,9 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	ResizableHandle,
 	ResizablePanel,
@@ -10,8 +12,8 @@ import {
 
 export function ResizablePreview() {
 	return (
-		<ComponentAccordionGroup title="Resizable">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Resizable" id="resizable-component">
+			<ComponentGroupPreview>
 				<ResizablePanelGroup
 					direction="horizontal"
 					className="max-w-md rounded-lg border md:min-w-[450px]"
@@ -38,7 +40,45 @@ export function ResizablePreview() {
 						</ResizablePanelGroup>
 					</ResizablePanel>
 				</ResizablePanelGroup>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="Vertical">
+					<ResizablePanelGroup
+						direction="vertical"
+						className="min-h-[200px] max-w-md rounded-lg border md:min-w-[450px]"
+					>
+						<ResizablePanel defaultSize={25}>
+							<div className="flex h-full items-center justify-center p-6">
+								<span className="font-semibold">Header</span>
+							</div>
+						</ResizablePanel>
+						<ResizableHandle />
+						<ResizablePanel defaultSize={75}>
+							<div className="flex h-full items-center justify-center p-6">
+								<span className="font-semibold">Content</span>
+							</div>
+						</ResizablePanel>
+					</ResizablePanelGroup>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Handle">
+					<ResizablePanelGroup
+						direction="horizontal"
+						className="min-h-[200px] max-w-md rounded-lg border md:min-w-[450px]"
+					>
+						<ResizablePanel defaultSize={25}>
+							<div className="flex h-full items-center justify-center p-6">
+								<span className="font-semibold">Sidebar</span>
+							</div>
+						</ResizablePanel>
+						<ResizableHandle withHandle />
+						<ResizablePanel defaultSize={75}>
+							<div className="flex h-full items-center justify-center p-6">
+								<span className="font-semibold">Content</span>
+							</div>
+						</ResizablePanel>
+					</ResizablePanelGroup>
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }

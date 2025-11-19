@@ -26,9 +26,11 @@ import {
 } from "lucide-react";
 import * as React from "react";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import {
 	ButtonGroup,
@@ -75,47 +77,213 @@ import {
 
 export function ButtonGroupPreview() {
 	return (
-		<ComponentAccordionGroup title="Button Group">
-			<ComponentAccordionSubGroup title="Default">
-				<ButtonGroupDefault />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Orientation">
-				<ButtonGroupOrientation />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Size">
-				<ButtonGroupSize />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Nested">
-				<ButtonGroupNested />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Separator">
-				<ButtonGroupSeparatorDemo />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Split">
-				<ButtonGroupSplit />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Input">
-				<ButtonGroupInput />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Input Group">
-				<ButtonGroupInputGroup />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Dropdown">
-				<ButtonGroupDropdown />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Select">
-				<ButtonGroupSelect />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Popover">
-				<ButtonGroupPopover />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+		<ComponentGroup title="Button Group" id="button-group-component">
+			<ComponentGroupPreview>
+				<_ButtonGroupPreview />
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="Orientation">
+					<ButtonGroup
+						orientation="vertical"
+						aria-label="Media controls"
+						className="h-fit"
+					>
+						<Button variant="outline" size="icon">
+							<PlusIcon />
+						</Button>
+						<Button variant="outline" size="icon">
+							<MinusIcon />
+						</Button>
+					</ButtonGroup>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Size">
+					<div className="flex flex-col items-start gap-8">
+						<ButtonGroup>
+							<Button variant="outline" size="sm">
+								Small
+							</Button>
+							<Button variant="outline" size="sm">
+								Button
+							</Button>
+							<Button variant="outline" size="sm">
+								Group
+							</Button>
+							<Button variant="outline" size="icon-sm">
+								<PlusIcon />
+							</Button>
+						</ButtonGroup>
+						<ButtonGroup>
+							<Button variant="outline">Default</Button>
+							<Button variant="outline">Button</Button>
+							<Button variant="outline">Group</Button>
+							<Button variant="outline" size="icon">
+								<PlusIcon />
+							</Button>
+						</ButtonGroup>
+						<ButtonGroup>
+							<Button variant="outline" size="lg">
+								Large
+							</Button>
+							<Button variant="outline" size="lg">
+								Button
+							</Button>
+							<Button variant="outline" size="lg">
+								Group
+							</Button>
+							<Button variant="outline" size="icon-lg">
+								<PlusIcon />
+							</Button>
+						</ButtonGroup>
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Nested">
+					<ButtonGroup>
+						<ButtonGroup>
+							<Button variant="outline" size="sm">
+								1
+							</Button>
+							<Button variant="outline" size="sm">
+								2
+							</Button>
+							<Button variant="outline" size="sm">
+								3
+							</Button>
+							<Button variant="outline" size="sm">
+								4
+							</Button>
+							<Button variant="outline" size="sm">
+								5
+							</Button>
+						</ButtonGroup>
+						<ButtonGroup>
+							<Button variant="outline" size="icon-sm" aria-label="Previous">
+								<ArrowLeftIcon />
+							</Button>
+							<Button variant="outline" size="icon-sm" aria-label="Next">
+								<ArrowRightIcon />
+							</Button>
+						</ButtonGroup>
+					</ButtonGroup>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Separator">
+					<ButtonGroup>
+						<Button variant="secondary" size="sm">
+							Copy
+						</Button>
+						<ButtonGroupSeparator />
+						<Button variant="secondary" size="sm">
+							Paste
+						</Button>
+					</ButtonGroup>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Split">
+					<ButtonGroup>
+						<Button variant="secondary">Button</Button>
+						<ButtonGroupSeparator />
+						<Button size="icon" variant="secondary">
+							<IconPlus />
+						</Button>
+					</ButtonGroup>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Input">
+					<ButtonGroup>
+						<Input placeholder="Search..." />
+						<Button variant="outline" aria-label="Search">
+							<SearchIcon />
+						</Button>
+					</ButtonGroup>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Input Group">
+					<ButtonGroupInputGroup />
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Dropdown Menu">
+					<ButtonGroup>
+						<Button variant="outline">Follow</Button>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<Button variant="outline" className="!pl-2">
+									<ChevronDownIcon />
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align="end" className="[--radius:1rem]">
+								<DropdownMenuGroup>
+									<DropdownMenuItem>
+										<VolumeOffIcon />
+										Mute Conversation
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										<CheckIcon />
+										Mark as Read
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										<AlertTriangleIcon />
+										Report Conversation
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										<UserRoundXIcon />
+										Block User
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										<ShareIcon />
+										Share Conversation
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										<CopyIcon />
+										Copy Conversation
+									</DropdownMenuItem>
+								</DropdownMenuGroup>
+								<DropdownMenuSeparator />
+								<DropdownMenuGroup>
+									<DropdownMenuItem variant="destructive">
+										<TrashIcon />
+										Delete Conversation
+									</DropdownMenuItem>
+								</DropdownMenuGroup>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</ButtonGroup>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Select">
+					<ButtonGroupSelect />
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Popover">
+					<ButtonGroup>
+						<Button variant="outline">
+							<BotIcon /> Copilot
+						</Button>
+						<Popover>
+							<PopoverTrigger asChild>
+								<Button variant="outline" size="icon" aria-label="Open Popover">
+									<ChevronDownIcon />
+								</Button>
+							</PopoverTrigger>
+							<PopoverContent align="end" className="rounded-xl p-0 text-sm">
+								<div className="px-4 py-3">
+									<div className="font-medium text-sm">Agent Tasks</div>
+								</div>
+								<Separator />
+								<div className="p-4 text-sm *:[p:not(:last-child)]:mb-2">
+									<Textarea
+										placeholder="Describe your task in natural language."
+										className="mb-4 resize-none"
+									/>
+									<p className="font-medium">Start a new task with Copilot</p>
+									<p className="text-muted-foreground">
+										Describe your task in natural language. Copilot will work in
+										the background and open a pull request for your review.
+									</p>
+								</div>
+							</PopoverContent>
+						</Popover>
+					</ButtonGroup>
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }
 
-function ButtonGroupDefault() {
+function _ButtonGroupPreview() {
 	const [label, setLabel] = React.useState("personal");
-
 	return (
 		<ButtonGroup>
 			<ButtonGroup className="hidden sm:flex">
@@ -197,135 +365,6 @@ function ButtonGroupDefault() {
 	);
 }
 
-function ButtonGroupOrientation() {
-	return (
-		<ButtonGroup
-			orientation="vertical"
-			aria-label="Media controls"
-			className="mx-auto h-fit"
-		>
-			<Button variant="outline" size="icon">
-				<PlusIcon />
-			</Button>
-			<Button variant="outline" size="icon">
-				<MinusIcon />
-			</Button>
-		</ButtonGroup>
-	);
-}
-
-function ButtonGroupSize() {
-	return (
-		<div className="flex flex-col items-start gap-8">
-			<ButtonGroup>
-				<Button variant="outline" size="sm">
-					Small
-				</Button>
-				<Button variant="outline" size="sm">
-					Button
-				</Button>
-				<Button variant="outline" size="sm">
-					Group
-				</Button>
-				<Button variant="outline" size="icon-sm">
-					<PlusIcon />
-				</Button>
-			</ButtonGroup>
-			<ButtonGroup>
-				<Button variant="outline">Default</Button>
-				<Button variant="outline">Button</Button>
-				<Button variant="outline">Group</Button>
-				<Button variant="outline" size="icon">
-					<PlusIcon />
-				</Button>
-			</ButtonGroup>
-			<ButtonGroup>
-				<Button variant="outline" size="lg">
-					Large
-				</Button>
-				<Button variant="outline" size="lg">
-					Button
-				</Button>
-				<Button variant="outline" size="lg">
-					Group
-				</Button>
-				<Button variant="outline" size="icon-lg">
-					<PlusIcon />
-				</Button>
-			</ButtonGroup>
-		</div>
-	);
-}
-
-function ButtonGroupNested() {
-	return (
-		<ButtonGroup>
-			<ButtonGroup>
-				<Button variant="outline" size="sm">
-					1
-				</Button>
-				<Button variant="outline" size="sm">
-					2
-				</Button>
-				<Button variant="outline" size="sm">
-					3
-				</Button>
-				<Button variant="outline" size="sm">
-					4
-				</Button>
-				<Button variant="outline" size="sm">
-					5
-				</Button>
-			</ButtonGroup>
-			<ButtonGroup>
-				<Button variant="outline" size="icon-sm" aria-label="Previous">
-					<ArrowLeftIcon />
-				</Button>
-				<Button variant="outline" size="icon-sm" aria-label="Next">
-					<ArrowRightIcon />
-				</Button>
-			</ButtonGroup>
-		</ButtonGroup>
-	);
-}
-
-function ButtonGroupSeparatorDemo() {
-	return (
-		<ButtonGroup>
-			<Button variant="secondary" size="sm">
-				Copy
-			</Button>
-			<ButtonGroupSeparator />
-			<Button variant="secondary" size="sm">
-				Paste
-			</Button>
-		</ButtonGroup>
-	);
-}
-
-function ButtonGroupSplit() {
-	return (
-		<ButtonGroup>
-			<Button variant="secondary">Button</Button>
-			<ButtonGroupSeparator />
-			<Button size="icon" variant="secondary">
-				<IconPlus />
-			</Button>
-		</ButtonGroup>
-	);
-}
-
-function ButtonGroupInput() {
-	return (
-		<ButtonGroup>
-			<Input placeholder="Search..." />
-			<Button variant="outline" aria-label="Search">
-				<SearchIcon />
-			</Button>
-		</ButtonGroup>
-	);
-}
-
 function ButtonGroupInputGroup() {
 	const [voiceEnabled, setVoiceEnabled] = React.useState(false);
 	return (
@@ -361,56 +400,6 @@ function ButtonGroupInputGroup() {
 					</InputGroupAddon>
 				</InputGroup>
 			</ButtonGroup>
-		</ButtonGroup>
-	);
-}
-
-function ButtonGroupDropdown() {
-	return (
-		<ButtonGroup>
-			<Button variant="outline">Follow</Button>
-			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button variant="outline" className="!pl-2">
-						<ChevronDownIcon />
-					</Button>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent align="end" className="[--radius:1rem]">
-					<DropdownMenuGroup>
-						<DropdownMenuItem>
-							<VolumeOffIcon />
-							Mute Conversation
-						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<CheckIcon />
-							Mark as Read
-						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<AlertTriangleIcon />
-							Report Conversation
-						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<UserRoundXIcon />
-							Block User
-						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<ShareIcon />
-							Share Conversation
-						</DropdownMenuItem>
-						<DropdownMenuItem>
-							<CopyIcon />
-							Copy Conversation
-						</DropdownMenuItem>
-					</DropdownMenuGroup>
-					<DropdownMenuSeparator />
-					<DropdownMenuGroup>
-						<DropdownMenuItem variant="destructive">
-							<TrashIcon />
-							Delete Conversation
-						</DropdownMenuItem>
-					</DropdownMenuGroup>
-				</DropdownMenuContent>
-			</DropdownMenu>
 		</ButtonGroup>
 	);
 }
@@ -453,40 +442,6 @@ function ButtonGroupSelect() {
 					<ArrowRightIcon />
 				</Button>
 			</ButtonGroup>
-		</ButtonGroup>
-	);
-}
-
-function ButtonGroupPopover() {
-	return (
-		<ButtonGroup>
-			<Button variant="outline">
-				<BotIcon /> Copilot
-			</Button>
-			<Popover>
-				<PopoverTrigger asChild>
-					<Button variant="outline" size="icon" aria-label="Open Popover">
-						<ChevronDownIcon />
-					</Button>
-				</PopoverTrigger>
-				<PopoverContent align="end" className="rounded-xl p-0 text-sm">
-					<div className="px-4 py-3">
-						<div className="font-medium text-sm">Agent Tasks</div>
-					</div>
-					<Separator />
-					<div className="p-4 text-sm *:[p:not(:last-child)]:mb-2">
-						<Textarea
-							placeholder="Describe your task in natural language."
-							className="mb-4 resize-none"
-						/>
-						<p className="font-medium">Start a new task with Copilot</p>
-						<p className="text-muted-foreground">
-							Describe your task in natural language. Copilot will work in the
-							background and open a pull request for your review.
-						</p>
-					</div>
-				</PopoverContent>
-			</Popover>
 		</ButtonGroup>
 	);
 }

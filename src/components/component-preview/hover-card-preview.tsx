@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import {
@@ -12,9 +12,9 @@ import {
 
 export function HoverCardPreview() {
 	return (
-		<ComponentAccordionGroup title="Hover Card">
-			<ComponentAccordionSubGroup title="Example">
-				<HoverCard openDelay={250}>
+		<ComponentGroup title="Hover Card" id="hover-card-component">
+			<ComponentGroupPreview>
+				<HoverCard>
 					<HoverCardTrigger asChild>
 						<Button variant="link">@nextjs</Button>
 					</HoverCardTrigger>
@@ -36,7 +36,7 @@ export function HoverCardPreview() {
 						</div>
 					</HoverCardContent>
 				</HoverCard>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

@@ -1,33 +1,25 @@
 import * as React from "react";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Progress } from "~/components/ui/progress";
 
 export function ProgressPreview() {
 	return (
-		<ComponentAccordionGroup title="Progress">
-			<ComponentAccordionSubGroup title="Default">
+		<ComponentGroup title="Progress" id="progress-component">
+			<ComponentGroupPreview>
 				<ProgressDemo />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }
 
 function ProgressDemo() {
-	const [progress, setProgress] = React.useState(0);
-
+	const [progress, setProgress] = React.useState(13);
 	React.useEffect(() => {
-		const interval = setInterval(() => {
-			if (progress >= 100) {
-				setProgress(0);
-				return;
-			}
-			setProgress((v) => v + 2);
-		}, 500);
-		return () => clearInterval(interval);
-	}, [progress]);
-
-	return <Progress value={progress} className="w-60" />;
+		const timer = setTimeout(() => setProgress(66), 500);
+		return () => clearTimeout(timer);
+	}, []);
+	return <Progress value={progress} className="w-[60%]" />;
 }

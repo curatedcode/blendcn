@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	Pagination,
 	PaginationContent,
@@ -14,8 +14,8 @@ import {
 
 export function PaginationPreview() {
 	return (
-		<ComponentAccordionGroup title="Pagination">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Pagination" id="pagination-component">
+			<ComponentGroupPreview>
 				<Pagination>
 					<PaginationContent>
 						<PaginationItem>
@@ -40,7 +40,7 @@ export function PaginationPreview() {
 						</PaginationItem>
 					</PaginationContent>
 				</Pagination>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }
