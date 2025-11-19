@@ -371,7 +371,7 @@ export function TasksSection({
 							value="to-do"
 							title="To Do"
 							tasks={todoTasks}
-							color={"color-mix(in oklab, var(--color-muted) 100%, #000 10%)"}
+							color={"#dbdbdd"}
 							setSelectedTask={setSelectedTask}
 						/>
 						<TaskAccordionItem
@@ -434,7 +434,7 @@ function TaskAccordionItem({
 			<AccordionTrigger className="flex items-center gap-1.5 text-sm hover:[text-decoration-line:none]!">
 				<div className="flex items-center gap-1.5">
 					<span
-						className="rounded-md px-3 py-0.5 uppercase shadow-sm"
+						className="rounded-md px-3 py-0.5 text-neutral-800 uppercase shadow-sm"
 						style={{ backgroundColor: color }}
 					>
 						{title}
