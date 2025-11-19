@@ -3,10 +3,11 @@ import { ColorContextProvider } from "~/components/color-context";
 import { ColorMappingSection } from "~/components/color-mapping-section";
 import { ColorPickerSection } from "~/components/color-picker-section";
 import { ColorSwatchSection } from "~/components/color-swatch-section";
-import { ComponentPreview } from "~/components/component-preview";
-import { Header } from "~/components/header";
+import { DemoApp } from "~/components/demo-app";
+import { Logo } from "~/components/logo";
 import { NoiseBackdrop } from "~/components/noise-backdrop";
-import { Separator } from "~/components/ui/separator";
+import { ThemeExportDialog } from "~/components/theme-export-dialog";
+import { ThemeSwitcher } from "~/components/theme-switcher";
 
 export const Route = createFileRoute("/")({
 	component: RouteComponent,
@@ -17,22 +18,31 @@ function RouteComponent() {
 		<ColorContextProvider>
 			<div className="relative">
 				<NoiseBackdrop />
-				<div className="mx-aut flex max-w-desktop flex-col pt-12 md:flex-row">
-					<div className="flex w-full flex-col gap-3 px-3 md:max-w-[400px] md:pr-0 md:pl-3">
+				<div className="mx-auto max-w-desktop px-2 pt-20">
+					<div className="flex flex-col items-center gap-6">
+						<div className="mx-auto flex w-fit items-center gap-3">
+							<Logo
+								variant="transparent"
+								className="spin-in-180 zoom-in-40 fade-in size-24 animate-in duration-800"
+							/>
+							<div className="fade-in max-w-xs animate-in duration-800">
+								<span className="font-semibold text-3xl">BlendCN</span>
+								<p className="text-muted-foreground">
+									Radix-based theme builder with live shadcn/ui previews.
+								</p>
+							</div>
+						</div>
+						<div className="mb-6 grid w-fit gap-2">
+							<ThemeSwitcher />
+							<ThemeExportDialog />
+						</div>
 						<ColorPickerSection />
-						<Separator className="mt-2" />
-						<ColorMappingSection />
-						<Separator className="mt-2" />
 						<ColorSwatchSection />
-					</div>
-					<div className="flex w-full flex-col md:border-l">
-						<Separator className="mx-auto mt-5 mb-2 data-[orientation=horizontal]:w-[calc(100%-24px)] md:hidden" />
-						<Header />
-						<Separator className="mx-auto hidden data-[orientation=horizontal]:w-[calc(100%-24px)] md:block md:data-[orientation=horizontal]:w-full" />
-						<ComponentPreview />
+						<ColorMappingSection />
 					</div>
 				</div>
 			</div>
+			<DemoApp />
 		</ColorContextProvider>
 	);
 }

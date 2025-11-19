@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	ContextMenu,
 	ContextMenuCheckboxItem,
@@ -20,8 +20,8 @@ import {
 
 export function ContextMenuPreview() {
 	return (
-		<ComponentAccordionGroup title="Context Menu">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Context Menu" id="context-menu-component">
+			<ComponentGroupPreview>
 				<ContextMenu>
 					<ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
 						Right click here
@@ -68,7 +68,7 @@ export function ContextMenuPreview() {
 						</ContextMenuRadioGroup>
 					</ContextMenuContent>
 				</ContextMenu>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

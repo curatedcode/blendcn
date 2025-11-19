@@ -13,9 +13,9 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import * as React from "react";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
 import {
@@ -39,16 +39,13 @@ import {
 
 export function DataTablePreview() {
 	return (
-		<ComponentAccordionGroup
-			title="Date Table"
-			className="flex-col flex-nowrap"
-		>
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Data Table" id="data-table-component">
+			<ComponentGroupPreview>
 				<div className="w-full overflow-x-auto">
 					<DataTableDemo />
 				</div>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }
 
@@ -142,13 +139,11 @@ const columns: ColumnDef<Payment>[] = [
 		header: () => <div className="text-right">Amount</div>,
 		cell: ({ row }) => {
 			const amount = parseFloat(row.getValue("amount"));
-
 			// Format the amount as a dollar amount
 			const formatted = new Intl.NumberFormat("en-US", {
 				style: "currency",
 				currency: "USD",
 			}).format(amount);
-
 			return <div className="text-right font-medium">{formatted}</div>;
 		},
 	},
@@ -157,7 +152,6 @@ const columns: ColumnDef<Payment>[] = [
 		enableHiding: false,
 		cell: ({ row }) => {
 			const payment = row.original;
-
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
@@ -191,7 +185,6 @@ function DataTableDemo() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-
 	const table = useReactTable({
 		data,
 		columns,
@@ -210,9 +203,8 @@ function DataTableDemo() {
 			rowSelection,
 		},
 	});
-
 	return (
-		<div className="w-150">
+		<div className="w-full">
 			<div className="flex items-center py-4">
 				<Input
 					placeholder="Filter emails..."

@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	Table,
 	TableBody,
@@ -15,13 +15,39 @@ import {
 
 export function TablePreview() {
 	return (
-		<ComponentAccordionGroup title="Table" className="flex-col flex-nowrap">
-			<ComponentAccordionSubGroup title="Example">
-				<div className="w-full overflow-x-auto">
-					<TableDemo />
-				</div>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+		<ComponentGroup title="Table" id="table-component">
+			<ComponentGroupPreview className="max-w-150">
+				<Table>
+					<TableCaption>A list of your recent invoices.</TableCaption>
+					<TableHeader>
+						<TableRow>
+							<TableHead className="w-[100px]">Invoice</TableHead>
+							<TableHead>Status</TableHead>
+							<TableHead>Method</TableHead>
+							<TableHead className="text-right">Amount</TableHead>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						{invoices.map((invoice) => (
+							<TableRow key={invoice.invoice}>
+								<TableCell className="font-medium">{invoice.invoice}</TableCell>
+								<TableCell>{invoice.paymentStatus}</TableCell>
+								<TableCell>{invoice.paymentMethod}</TableCell>
+								<TableCell className="text-right">
+									{invoice.totalAmount}
+								</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+					<TableFooter>
+						<TableRow>
+							<TableCell colSpan={3}>Total</TableCell>
+							<TableCell className="text-right">$2,500.00</TableCell>
+						</TableRow>
+					</TableFooter>
+				</Table>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }
 
@@ -69,35 +95,3 @@ const invoices = [
 		paymentMethod: "Credit Card",
 	},
 ];
-
-function TableDemo() {
-	return (
-		<Table className="w-150">
-			<TableCaption>A list of your recent invoices.</TableCaption>
-			<TableHeader>
-				<TableRow>
-					<TableHead className="w-[100px]">Invoice</TableHead>
-					<TableHead>Status</TableHead>
-					<TableHead>Method</TableHead>
-					<TableHead className="text-right">Amount</TableHead>
-				</TableRow>
-			</TableHeader>
-			<TableBody>
-				{invoices.map((invoice) => (
-					<TableRow key={invoice.invoice}>
-						<TableCell className="font-medium">{invoice.invoice}</TableCell>
-						<TableCell>{invoice.paymentStatus}</TableCell>
-						<TableCell>{invoice.paymentMethod}</TableCell>
-						<TableCell className="text-right">{invoice.totalAmount}</TableCell>
-					</TableRow>
-				))}
-			</TableBody>
-			<TableFooter>
-				<TableRow>
-					<TableCell colSpan={3}>Total</TableCell>
-					<TableCell className="text-right">$2,500.00</TableCell>
-				</TableRow>
-			</TableFooter>
-		</Table>
-	);
-}

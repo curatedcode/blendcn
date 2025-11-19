@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -17,8 +17,8 @@ import { Button } from "~/components/ui/button";
 
 export function AlertDialogPreview() {
 	return (
-		<ComponentAccordionGroup title="Alert Dialog">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Alert Dialog" id="alert-dialog-component">
+			<ComponentGroupPreview>
 				<AlertDialog>
 					<AlertDialogTrigger asChild>
 						<Button variant="outline">Show Dialog</Button>
@@ -37,7 +37,7 @@ export function AlertDialogPreview() {
 						</AlertDialogFooter>
 					</AlertDialogContent>
 				</AlertDialog>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

@@ -1,9 +1,9 @@
-import { ThemeCopyControls } from "~/components/theme-copy-controls";
+import { ThemeCopyControls } from "~/components/theme-export-dialog";
 
 export function Header() {
 	return (
-		<div className="flex w-full items-center gap-1.5 px-3 md:pb-1 md:pl-3">
-			<h1 className="flex h-9 items-center font-semibold text-lg">
+		<div className="flex w-full items-center gap-1.5">
+			<h1 className="mx-auto text-center font-semibold text-lg md:mx-0 md:pl-3 md:text-left">
 				Components
 			</h1>
 			<ThemeCopyControls />

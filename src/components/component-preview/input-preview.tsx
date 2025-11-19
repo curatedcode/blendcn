@@ -1,115 +1,45 @@
 /** biome-ignore-all lint/a11y/useValidAnchor: not used for actual links, only for demo purposes */
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import z from "zod/v4";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
-import {
-	Form,
-	FormControl,
-	FormDescription,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 
 export function InputPreview() {
 	return (
-		<ComponentAccordionGroup title="Input">
-			<ComponentAccordionSubGroup title="Default">
-				<Input type="email" placeholder="Email" className="w-56 sm:w-64" />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="File">
-				<Input type="file" className="w-56 sm:w-64" />
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Disabled">
-				<Input
-					disabled
-					type="email"
-					placeholder="Email"
-					className="w-56 sm:w-64"
-				/>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="With Button">
-				<div className="flex items-center gap-3">
-					<Input type="email" placeholder="Email" className="w-56 sm:w-64" />
-					<Button type="submit" variant="outline">
-						Submit
-					</Button>
-				</div>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="With Label">
-				<div className="grid items-center gap-2">
-					<Label htmlFor="email">Email</Label>
-					<Input
-						type="email"
-						id="email"
-						placeholder="Email"
-						className="w-56 sm:w-64"
-					/>
-				</div>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Form">
-				<InputFormDemo />
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
-	);
-}
-
-function InputFormDemo() {
-	const schema = z.object({
-		username: z.string().min(2, {
-			message: "Username must be at least 2 characters.",
-		}),
-	});
-
-	const form = useForm<z.infer<typeof schema>>({
-		resolver: zodResolver(schema),
-		defaultValues: {
-			username: "",
-		},
-	});
-	function onSubmit(data: z.infer<typeof schema>) {
-		toast("You submitted the following values", {
-			description: (
-				<pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-					<code className="text-white">{JSON.stringify(data, null, 2)}</code>
-				</pre>
-			),
-		});
-	}
-	return (
-		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-				<FormField
-					control={form.control}
-					name="username"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Username</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="shadcn"
-									className="w-56 sm:w-64"
-									{...field}
-								/>
-							</FormControl>
-							<FormDescription>
-								This is your public display name.
-							</FormDescription>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<Button type="submit">Submit</Button>
-			</form>
-		</Form>
+		<ComponentGroup title="Input" id="input-component">
+			<ComponentGroupPreview>
+				<Input type="email" placeholder="Email" />
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="File">
+					<div className="flex w-full flex-col gap-3 sm:max-w-sm">
+						<Label htmlFor="picture">Picture</Label>
+						<Input id="picture" type="file" />
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="Disabled">
+					<Input disabled type="email" placeholder="Email" />
+				</ComponentGroupExample>
+				<ComponentGroupExample title="With Label">
+					<div className="grid w-full items-center gap-3 sm:max-w-sm">
+						<Label htmlFor="email">Email</Label>
+						<Input type="email" id="email" placeholder="Email" />
+					</div>
+				</ComponentGroupExample>
+				<ComponentGroupExample title="With Button">
+					<div className="flex w-full items-center gap-2 sm:max-w-sm">
+						<Input type="email" placeholder="Email" />
+						<Button type="submit" variant="outline">
+							Subscribe
+						</Button>
+					</div>
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }

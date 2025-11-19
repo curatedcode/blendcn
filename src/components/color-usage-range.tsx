@@ -11,6 +11,6 @@ export const ColorUsageRange = ({
 		{...props}
 	>
 		<span className="px-4 text-center font-medium text-sm">{children}</span>
-		<div className="h-px [background:linear-gradient(to_right,_transparent,_var(--gray-8)_20%,_var(--gray-8)_70%,_transparent)]" />
+		{/* <div className="h-px [background:linear-gradient(to_right,_transparent,_var(--gray-8)_20%,_var(--gray-8)_70%,_transparent)]" /> */}
 	</div>
 );

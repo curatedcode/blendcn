@@ -1,7 +1,9 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupExample,
+	ComponentGroupExamples,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import {
 	Dialog,
@@ -18,8 +20,8 @@ import { Label } from "~/components/ui/label";
 
 export function DialogPreview() {
 	return (
-		<ComponentAccordionGroup title="Dialog">
-			<ComponentAccordionSubGroup title="Example">
+		<ComponentGroup title="Dialog" id="dialog-component">
+			<ComponentGroupPreview>
 				<Dialog>
 					<form>
 						<DialogTrigger asChild>
@@ -34,11 +36,11 @@ export function DialogPreview() {
 								</DialogDescription>
 							</DialogHeader>
 							<div className="grid gap-4">
-								<div className="grid gap-2">
+								<div className="grid gap-3">
 									<Label htmlFor="name-1">Name</Label>
 									<Input id="name-1" name="name" defaultValue="Pedro Duarte" />
 								</div>
-								<div className="grid gap-2">
+								<div className="grid gap-3">
 									<Label htmlFor="username-1">Username</Label>
 									<Input
 										id="username-1"
@@ -56,41 +58,43 @@ export function DialogPreview() {
 						</DialogContent>
 					</form>
 				</Dialog>
-			</ComponentAccordionSubGroup>
-			<ComponentAccordionSubGroup title="Custom Close Button">
-				<Dialog>
-					<DialogTrigger asChild>
-						<Button variant="outline">Share</Button>
-					</DialogTrigger>
-					<DialogContent className="sm:max-w-md">
-						<DialogHeader>
-							<DialogTitle>Share link</DialogTitle>
-							<DialogDescription>
-								Anyone who has this link will be able to view this.
-							</DialogDescription>
-						</DialogHeader>
-						<div className="flex items-center gap-2">
-							<div className="grid flex-1 gap-2">
-								<Label htmlFor="link" className="sr-only">
-									Link
-								</Label>
-								<Input
-									id="link"
-									defaultValue="https://ui.shadcn.com/docs/installation"
-									readOnly
-								/>
+			</ComponentGroupPreview>
+			<ComponentGroupExamples>
+				<ComponentGroupExample title="Custom Close Button">
+					<Dialog>
+						<DialogTrigger asChild>
+							<Button variant="outline">Share</Button>
+						</DialogTrigger>
+						<DialogContent className="sm:max-w-md">
+							<DialogHeader>
+								<DialogTitle>Share link</DialogTitle>
+								<DialogDescription>
+									Anyone who has this link will be able to view this.
+								</DialogDescription>
+							</DialogHeader>
+							<div className="flex items-center gap-2">
+								<div className="grid flex-1 gap-2">
+									<Label htmlFor="link" className="sr-only">
+										Link
+									</Label>
+									<Input
+										id="link"
+										defaultValue="https://ui.shadcn.com/docs/installation"
+										readOnly
+									/>
+								</div>
 							</div>
-						</div>
-						<DialogFooter className="sm:justify-start">
-							<DialogClose asChild>
-								<Button type="button" variant="secondary">
-									Close
-								</Button>
-							</DialogClose>
-						</DialogFooter>
-					</DialogContent>
-				</Dialog>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+							<DialogFooter className="sm:justify-start">
+								<DialogClose asChild>
+									<Button type="button" variant="secondary">
+										Close
+									</Button>
+								</DialogClose>
+							</DialogFooter>
+						</DialogContent>
+					</Dialog>
+				</ComponentGroupExample>
+			</ComponentGroupExamples>
+		</ComponentGroup>
 	);
 }

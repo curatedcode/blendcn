@@ -7,9 +7,9 @@ import {
 } from "lucide-react";
 import * as React from "react";
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import {
 	Collapsible,
@@ -41,14 +41,14 @@ import {
 
 export function SidebarPreview() {
 	return (
-		<ComponentAccordionGroup title="Sidebar">
-			<ComponentAccordionSubGroup title="Collapsible Sections">
+		<ComponentGroup title="Sidebar" id="sidebar-component">
+			<ComponentGroupPreview>
 				<SidebarProvider defaultOpen={false} className="min-h-0 flex-col">
 					<SidebarDemo />
 					<SidebarDemoTrigger />
 				</SidebarProvider>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }
 

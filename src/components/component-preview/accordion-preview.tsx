@@ -1,7 +1,7 @@
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import {
 	Accordion,
 	AccordionContent,
@@ -11,12 +11,12 @@ import {
 
 export function AccordionPreview() {
 	return (
-		<ComponentAccordionGroup title="Accordion">
-			<ComponentAccordionSubGroup title="Example" className="w-full max-w-4xl">
+		<ComponentGroup title="Accordion" id="accordion-component">
+			<ComponentGroupPreview>
 				<Accordion
 					type="single"
 					collapsible
-					className="w-full"
+					className="w-md"
 					defaultValue="item-1"
 				>
 					<AccordionItem value="item-1">
@@ -64,7 +64,7 @@ export function AccordionPreview() {
 						</AccordionContent>
 					</AccordionItem>
 				</Accordion>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

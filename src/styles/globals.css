@@ -94,7 +94,7 @@
   --accent: oklch(85.9% 0.0554 157.5); /* primary-5 */
   --accent-foreground: oklch(24% 0 none); /* gray-12 */
 
-  --destructive: oklch(0.6532 0.2328 25.74); /* apple red (default) */
+  --destructive: oklch(0.6532 0.2328 25.74); /* apple red (light high-contrast) */
 
   --border: oklch(84.1% 0 none); /* gray-6 */
   --input: oklch(91.8% 0 none); /* gray-3 */
@@ -118,7 +118,7 @@
   --sidebar-border: oklch(80.5% 0 none); /* gray-7 */
   --sidebar-ring: oklch(66.8% 0.1346 157.5); /* primary-8 */
 
-  --apple-red: oklch(0.6532 0.2328 25.74); /* apple red (default) */
+  --apple-red: oklch(0.6532 0.2328 25.74); /* apple red (light high-contrast) */
 
   --scrollbar-thumb: oklch(84.1% 0 none); /* gray-6 */
   --scrollbar-thumb-hover: oklch(80.5% 0 none); /* gray-7 */

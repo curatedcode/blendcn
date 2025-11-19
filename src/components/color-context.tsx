@@ -61,33 +61,27 @@ export function ColorContextProvider({ children }: ColorContextProviderProps) {
 	const [lightAccentValue, setLightAccentValue] = useSessionStorage(
 		"colors/light/accent",
 		"#1B115B",
-		{ initializeWithValue: false },
 	);
 	const [lightGrayValue, setLightGrayValue] = useSessionStorage(
 		"colors/light/gray",
 		"#8B8D98",
-		{ initializeWithValue: false },
 	);
 	const [lightBgValue, setLightBgValue] = useSessionStorage(
 		"colors/light/background",
 		"#FFFFFF",
-		{ initializeWithValue: false },
 	);
 
 	const [darkAccentValue, setDarkAccentValue] = useSessionStorage(
 		"colors/dark/accent",
 		"#1B115B",
-		{ initializeWithValue: false },
 	);
 	const [darkGrayValue, setDarkGrayValue] = useSessionStorage(
 		"colors/dark/gray",
 		"#8B8D98",
-		{ initializeWithValue: false },
 	);
 	const [darkBgValue, setDarkBgValue] = useSessionStorage(
 		"colors/dark/background",
 		"#111111",
-		{ initializeWithValue: false },
 	);
 
 	const lightModeResult = React.useMemo(
@@ -205,17 +199,13 @@ const getNewPreviewStyles = ({
 		accent: {
 			contrast: lightColors.accentContrast,
 			scale: lightColors.accentScale,
-			scaleWideGamut: lightColors.accentScaleWideGamut,
 			surface: lightColors.accentSurface,
-			surfaceWideGamut: lightColors.accentSurfaceWideGamut,
 		},
 		background: lightColors.background,
 		gray: {
 			contrast: "#fff",
 			scale: lightColors.grayScale,
-			scaleWideGamut: lightColors.grayScaleWideGamut,
 			surface: lightColors.graySurface,
-			surfaceWideGamut: lightColors.graySurfaceWideGamut,
 		},
 	});
 
@@ -224,17 +214,13 @@ const getNewPreviewStyles = ({
 		accent: {
 			contrast: darkColors.accentContrast,
 			scale: darkColors.accentScale,
-			scaleWideGamut: darkColors.accentScaleWideGamut,
 			surface: darkColors.accentSurface,
-			surfaceWideGamut: darkColors.accentSurfaceWideGamut,
 		},
 		background: darkColors.background,
 		gray: {
 			contrast: "#fff",
 			scale: darkColors.grayScale,
-			scaleWideGamut: darkColors.grayScaleWideGamut,
 			surface: darkColors.graySurface,
-			surfaceWideGamut: darkColors.graySurfaceWideGamut,
 		},
 	});
 
@@ -269,7 +255,7 @@ const getNewPreviewStyles = ({
   --gray-12: ${lightColors.grayScale[11]};
 	--gray-surface: ${lightColors.graySurface};
 
-	--apple-red: #ff383c;
+	--apple-red: oklch(0.5938 0.2332 24.68);
 }
 
 .dark {
@@ -318,17 +304,13 @@ interface GetColorCssParams {
 	isDarkMode: boolean;
 	gray: {
 		scale: GeneratedColors["accentScale"];
-		scaleWideGamut: GeneratedColors["accentScaleWideGamut"];
 		contrast: GeneratedColors["accentContrast"];
 		surface: GeneratedColors["accentSurface"];
-		surfaceWideGamut: GeneratedColors["accentSurfaceWideGamut"];
 	};
 	accent: {
 		scale: GeneratedColors["accentScale"];
-		scaleWideGamut: GeneratedColors["accentScaleWideGamut"];
 		contrast: GeneratedColors["accentContrast"];
 		surface: GeneratedColors["accentSurface"];
-		surfaceWideGamut: GeneratedColors["accentSurfaceWideGamut"];
 	};
 	background: string;
 }
@@ -395,63 +377,6 @@ ${selector} {
 	--scrollbar-thumb: ${gray.scale[5]};
 	--scrollbar-thumb-hover: ${gray.scale[6]};
 	--scrollbar-thumb-active: ${gray.scale[7]};
-}
-
-@supports (color: color(display-p3 1 1 1)) {
-  @media (color-gamut: p3) {
-    ${selector} {
-      --foreground: ${gray.scaleWideGamut[11]};
-
-      --card: ${gray.surfaceWideGamut};
-      --card-foreground: ${gray.scaleWideGamut[11]};
-
-      --popover: ${gray.scaleWideGamut[2]};
-      --popover-foreground: ${gray.scaleWideGamut[11]};
-
-      --primary: ${accent.scaleWideGamut[8]};
-      --primary-foreground: ${accent.contrast};
-      
-      --secondary: ${gray.scaleWideGamut[3]};
-      --secondary-foreground: ${gray.scaleWideGamut[11]};
-
-      --muted: ${gray.scaleWideGamut[1]};
-      --muted-foreground: ${gray.scaleWideGamut[10]};
-
-      --accent: ${accent.scaleWideGamut[4]};
-      --accent-foreground: ${gray.scaleWideGamut[11]};
-
-      --destructive: var(--apple-red);
-
-      --border: ${gray.scaleWideGamut[5]};
-      --input: ${gray.scaleWideGamut[2]};
-      --ring: ${accent.scaleWideGamut[7]};
-
-      --chart-1: ${accent.scaleWideGamut[8]};
-      --chart-2: ${accent.scaleWideGamut[4]};
-      --chart-3: ${gray.scaleWideGamut[3]};
-      --chart-4: ${accent.scaleWideGamut[9]};
-      --chart-5: ${gray.scaleWideGamut[6]};
-
-      --sidebar: ${gray.scaleWideGamut[1]};
-      --sidebar-foreground: ${gray.scaleWideGamut[10]};
-
-      --sidebar-primary: ${accent.scaleWideGamut[9]};
-      --sidebar-primary-foreground: ${gray.scaleWideGamut[11]};
-
-      --sidebar-accent: ${accent.scaleWideGamut[4]};
-      --sidebar-accent-foreground: ${gray.scaleWideGamut[11]};
-
-      --sidebar-border: ${gray.scaleWideGamut[6]};
-      --sidebar-ring: ${accent.scaleWideGamut[7]};
-
-			--primary-surface: ${accent.surfaceWideGamut};
-			--gray-surface: ${gray.surfaceWideGamut};
-
-			--scrollbar-thumb: ${gray.scaleWideGamut[5]};
-			--scrollbar-thumb-hover: ${gray.scaleWideGamut[6]};
-			--scrollbar-thumb-active: ${gray.scaleWideGamut[7]};
-    }
-  }
 }
   `.trim();
 }

@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/a11y/useValidAnchor: No navigation links are actually used, they are just for demo */
 import {
-	ComponentAccordionGroup,
-	ComponentAccordionSubGroup,
-} from "~/components/component-preview/component-accordion";
+	ComponentGroup,
+	ComponentGroupPreview,
+} from "~/components/component-preview";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -18,9 +18,9 @@ import { Label } from "~/components/ui/label";
 
 export function CardPreview() {
 	return (
-		<ComponentAccordionGroup title="Card">
-			<ComponentAccordionSubGroup title="Example">
-				<Card className="w-80">
+		<ComponentGroup title="Card" id="card-component">
+			<ComponentGroupPreview>
+				<Card className="w-full max-w-sm">
 					<CardHeader>
 						<CardTitle>Login to your account</CardTitle>
 						<CardDescription>
@@ -66,7 +66,7 @@ export function CardPreview() {
 						</Button>
 					</CardFooter>
 				</Card>
-			</ComponentAccordionSubGroup>
-		</ComponentAccordionGroup>
+			</ComponentGroupPreview>
+		</ComponentGroup>
 	);
 }

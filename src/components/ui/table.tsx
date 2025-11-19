@@ -1,11 +1,17 @@
 import type * as React from "react";
 import { cn } from "~/lib/utils";
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+function Table({
+	className,
+	...props
+}: React.ComponentProps<"table"> & { "data-empty"?: boolean | string }) {
 	return (
 		<div
 			data-slot="table-container"
-			className="relative w-full overflow-x-auto"
+			className={cn(
+				"relative w-full overflow-x-auto",
+				props["data-empty"] && "overflow-x-hidden",
+			)}
 		>
 			<table
 				data-slot="table"
