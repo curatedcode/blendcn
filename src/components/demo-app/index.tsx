@@ -24,7 +24,7 @@ import { cn } from "~/lib/utils";
 
 dayjs.extend(advancedFormatPlugin);
 
-export function DemoApp() {
+export default function DemoApp() {
 	const routeApi = getRouteApi("/");
 	const {
 		userData,

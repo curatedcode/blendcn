@@ -1,12 +1,12 @@
 import { faker } from "@faker-js/faker";
-import { ClientOnly, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { createServerOnlyFn } from "@tanstack/react-start";
 import dayjs from "dayjs";
+import * as React from "react";
 import { ColorContextProvider } from "~/components/color-context";
 import { ColorMappingSection } from "~/components/color-mapping-section";
 import { ColorPickerSection } from "~/components/color-picker-section";
 import { ColorSwatchSection } from "~/components/color-swatch-section";
-import { DemoApp } from "~/components/demo-app";
 import {
 	generateApiKeys,
 	generateCalendarEvents,
@@ -21,6 +21,9 @@ import { Logo } from "~/components/logo";
 import { NoiseBackdrop } from "~/components/noise-backdrop";
 import { ThemeExportDialog } from "~/components/theme-export-dialog";
 import { ThemeSwitcher } from "~/components/theme-switcher";
+import { Skeleton } from "~/components/ui/skeleton";
+
+const DemoApp = React.lazy(() => import("~/components/demo-app"));
 
 const getDemoAppData = createServerOnlyFn(() => {
 	const projects = generateProjects();
@@ -121,9 +124,11 @@ function RouteComponent() {
 					</div>
 				</div>
 			</div>
-			<ClientOnly fallback={null}>
+			<React.Suspense
+				fallback={<Skeleton className="h-screen w-full bg-muted" />}
+			>
 				<DemoApp />
-			</ClientOnly>
+			</React.Suspense>
 		</ColorContextProvider>
 	);
 }
