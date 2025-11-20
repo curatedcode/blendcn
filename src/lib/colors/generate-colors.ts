@@ -76,7 +76,10 @@ export const generateColors = ({
 		backgroundColor,
 	);
 
-	const backgroundOklch = backgroundColor.toString({ format: "oklch" });
+	// "none" in oklch string errors lighthouse contrast check. We just replace it with 0. https://github.com/dequelabs/axe-core/issues/4894
+	const backgroundOklch = backgroundColor
+		.toString({ format: "oklch" })
+		.replaceAll("none", "0");
 
 	// Make sure we use the tint from the gray scale for when base is pure white or black
 	const accentBaseHex = accentBaseColor.to("srgb").toString({ format: "hex" });
@@ -646,8 +649,12 @@ function _transposeProgressionEnd(
 // https://github.com/radix-ui/themes/issues/420
 function toOklchString(color: Color) {
 	const L = +(color.coords[0] * 100).toFixed(1);
-	return color
-		.to("oklch")
-		.toString({ precision: 4 })
-		.replace(/(\S+)(.+)/, `oklch(${L}%$2`);
+	return (
+		color
+			.to("oklch")
+			.toString({ precision: 4 })
+			// "none" in oklch string errors lighthouse contrast check. We just replace it with 0. https://github.com/dequelabs/axe-core/issues/4894
+			.replaceAll("none", "0")
+			.replace(/(\S+)(.+)/, `oklch(${L}%$2`)
+	);
 }

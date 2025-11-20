@@ -178,7 +178,8 @@ export function ColorTextField({
 						<div
 							className="pointer-events-none absolute inset-0 rounded-md border border-border transition-colors"
 							style={{ backgroundColor: color.rawColor }}
-							suppressHydrationWarning
+							role="presentation"
+							aria-hidden="true"
 						/>
 					</div>
 				</div>
