@@ -114,10 +114,16 @@ export function ColorMappingSection({ className }: { className?: string }) {
 					>
 						{category.variables.map((variable) => (
 							<div key={variable} className="flex flex-col gap-2">
-								<Label htmlFor={variable} className="ml-1">
+								<Label
+									htmlFor={`theme-mapping-input-${variable}`}
+									className="ml-1"
+								>
 									{formatCssVariable(variable)}
 								</Label>
-								<ColorMapField id={variable} cssVariable={variable} />
+								<ColorMapField
+									id={`theme-mapping-input-${variable}`}
+									cssVariable={variable}
+								/>
 							</div>
 						))}
 					</TabsContent>

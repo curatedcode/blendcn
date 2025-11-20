@@ -219,9 +219,11 @@ export function TasksSection({
 												field.state.meta.isTouched && !field.state.meta.isValid;
 											return (
 												<Field data-invalid={isInvalid}>
-													<FieldLabel htmlFor={field.name}>Title</FieldLabel>
+													<FieldLabel htmlFor={`tasks-input-${field.name}`}>
+														Title
+													</FieldLabel>
 													<Input
-														id={field.name}
+														id={`tasks-input-${field.name}`}
 														name={field.name}
 														value={field.state.value}
 														onBlur={field.handleBlur}
@@ -244,9 +246,11 @@ export function TasksSection({
 												field.state.meta.isTouched && !field.state.meta.isValid;
 											return (
 												<Field data-invalid={isInvalid}>
-													<FieldLabel htmlFor={field.name}>Due Date</FieldLabel>
+													<FieldLabel htmlFor={`tasks-input-${field.name}`}>
+														Due Date
+													</FieldLabel>
 													<DatePicker
-														id={field.name}
+														id={`tasks-input-${field.name}`}
 														name={field.name}
 														value={field.state.value}
 														onBlur={field.handleBlur}
@@ -268,7 +272,7 @@ export function TasksSection({
 												field.state.meta.isTouched && !field.state.meta.isValid;
 											return (
 												<Field data-invalid={isInvalid}>
-													<FieldLabel htmlFor="task-priority">
+													<FieldLabel htmlFor="tasks-input-task-priority">
 														Priority
 													</FieldLabel>
 													<Select
@@ -281,7 +285,7 @@ export function TasksSection({
 														}
 													>
 														<SelectTrigger
-															id="task-priority"
+															id="tasks-input-task-priority"
 															className="w-[180px]"
 															aria-invalid={isInvalid}
 														>
@@ -309,7 +313,9 @@ export function TasksSection({
 												field.state.meta.isTouched && !field.state.meta.isValid;
 											return (
 												<Field data-invalid={isInvalid}>
-													<FieldLabel htmlFor="task-stage">Stage</FieldLabel>
+													<FieldLabel htmlFor="tasks-input-task-stage">
+														Stage
+													</FieldLabel>
 													<Select
 														name={field.name}
 														value={field.state.value}
@@ -320,7 +326,7 @@ export function TasksSection({
 														}
 													>
 														<SelectTrigger
-															id="task-stage"
+															id="tasks-input-task-stage"
 															className="w-[180px]"
 															aria-invalid={isInvalid}
 														>
@@ -606,7 +612,6 @@ function DatePicker({ value, onChange, ...props }: DatePickerProps) {
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
 					<Button
-						id="date-picker"
 						variant="ghost"
 						className="-translate-y-1/2 absolute top-1/2 right-2 size-6"
 					>

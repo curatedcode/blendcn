@@ -99,23 +99,25 @@ export function WorkspaceSettingsSection({
 							</FieldDescription>
 							<FieldGroup>
 								<Field>
-									<FieldLabel htmlFor="workspace-name">
+									<FieldLabel htmlFor="workspace-settings-input-name">
 										Workspace Name
 									</FieldLabel>
 									<Input
-										id="workspace-name"
+										id="workspace-settings-input-name"
 										placeholder="Acme Team"
 										className="max-w-[350px]! placeholder:text-sm"
 									/>
 								</Field>
 								<Field className="max-w-[350px]!">
-									<FieldLabel htmlFor="workspace-url">Workspace URL</FieldLabel>
+									<FieldLabel htmlFor="workspace-settings-input-url">
+										Workspace URL
+									</FieldLabel>
 									<InputGroup>
 										<InputGroupAddon>
 											<InputGroupText>https://example.com/</InputGroupText>
 										</InputGroupAddon>
 										<InputGroupInput
-											id="workspace-url"
+											id="workspace-settings-input-url"
 											placeholder="acme"
 											className="pl-0.5!"
 										/>
@@ -123,8 +125,10 @@ export function WorkspaceSettingsSection({
 								</Field>
 								<DescriptionTextareaField />
 								<Field className="max-w-[350px]!">
-									<FieldLabel htmlFor="workspace-locale">Locale</FieldLabel>
-									<NativeSelect id="workspace-locale">
+									<FieldLabel htmlFor="workspace-settings-input-locale">
+										Locale
+									</FieldLabel>
+									<NativeSelect id="workspace-settings-input-locale">
 										<NativeSelectOption value="english-us">
 											English (US)
 										</NativeSelectOption>
@@ -143,12 +147,12 @@ export function WorkspaceSettingsSection({
 									</NativeSelect>
 								</Field>
 								<Field>
-									<FieldLabel htmlFor="workspace-density">
+									<FieldLabel htmlFor="workspace-settings-input-density">
 										Layout Density
 									</FieldLabel>
 									<ToggleGroup
 										type="single"
-										id="workspace-density"
+										id="workspace-settings-input-density"
 										variant={"outline"}
 										defaultValue="comfortable"
 									>
@@ -187,34 +191,63 @@ export function WorkspaceSettingsSection({
 							</FieldDescription>
 							<FieldGroup>
 								<Field className="w-fit" orientation={"horizontal"}>
-									<FieldLabel htmlFor="workspace-backups" className="w-32.5">
+									<FieldLabel
+										htmlFor="workspace-settings-input-backups"
+										className="w-32.5"
+									>
 										Automatic Backups
 									</FieldLabel>
-									<Switch defaultChecked id="workspace-backups" />
+									<Switch
+										defaultChecked
+										id="workspace-settings-input-backups"
+									/>
 								</Field>
 								<Field className="w-fit" orientation={"horizontal"}>
 									<FieldLabel
-										htmlFor="workspace-beta-features"
+										htmlFor="workspace-settings-input-beta-features"
 										className="w-32.5"
 									>
 										Beta Features
 									</FieldLabel>
-									<Checkbox id="workspace-beta-features" className="ml-2" />
+									<Checkbox
+										id="workspace-settings-input-beta-features"
+										className="ml-2"
+									/>
 								</Field>
 								<Field>
-									<FieldLabel htmlFor="workspace-theme">Theme Mode</FieldLabel>
-									<RadioGroup defaultValue="comfortable" id="workspace-theme">
+									<FieldLabel htmlFor="workspace-settings-input-theme">
+										Theme Mode
+									</FieldLabel>
+									<RadioGroup
+										defaultValue="comfortable"
+										id="workspace-settings-input-theme"
+									>
 										<div className="flex items-center gap-3">
-											<RadioGroupItem value="default" id="r1" />
-											<Label htmlFor="r1">System</Label>
+											<RadioGroupItem
+												value="default"
+												id="workspace-settings-input-theme-r1"
+											/>
+											<Label htmlFor="workspace-settings-input-theme-r1">
+												System
+											</Label>
 										</div>
 										<div className="flex items-center gap-3">
-											<RadioGroupItem value="comfortable" id="r2" />
-											<Label htmlFor="r2">Light</Label>
+											<RadioGroupItem
+												value="comfortable"
+												id="workspace-settings-input-theme-r2"
+											/>
+											<Label htmlFor="workspace-settings-input-theme-r2">
+												Light
+											</Label>
 										</div>
 										<div className="flex items-center gap-3">
-											<RadioGroupItem value="compact" id="r3" />
-											<Label htmlFor="r3">Dark</Label>
+											<RadioGroupItem
+												value="compact"
+												id="workspace-settings-input-theme-r3"
+											/>
+											<Label htmlFor="workspace-settings-input-theme-r3">
+												Dark
+											</Label>
 										</div>
 									</RadioGroup>
 								</Field>
@@ -228,12 +261,12 @@ export function WorkspaceSettingsSection({
 							<FieldGroup>
 								<Field className="w-fit" orientation={"horizontal"}>
 									<FieldLabel
-										htmlFor="workspace-email-notifications"
+										htmlFor="workspace-settings-input-email-notifications"
 										className="w-32.5"
 									>
 										Email Notifications
 									</FieldLabel>
-									<Switch id="workspace-email-notifications" />
+									<Switch id="workspace-settings-input-email-notifications" />
 								</Field>
 								<ReminderNudgesField />
 							</FieldGroup>
@@ -246,13 +279,13 @@ export function WorkspaceSettingsSection({
 							</FieldDescription>
 							<FieldGroup>
 								<Field>
-									<FieldLabel htmlFor="workspace-invite-via-email">
+									<FieldLabel htmlFor="workspace-settings-input-invite-via-email">
 										Invite via Email
 									</FieldLabel>
 									<InputGroup className="max-w-[350px]!">
 										<InputGroupInput
 											placeholder="name@example.com"
-											id="workspace-invite-via-email"
+											id="workspace-settings-input-invite-via-email"
 										/>
 										<InputGroupAddon align="inline-end">
 											<InputGroupButton variant={"default"}>
@@ -263,7 +296,9 @@ export function WorkspaceSettingsSection({
 								</Field>
 								<Field>
 									<div className="flex gap-1.5">
-										<FieldLabel>Member Roles</FieldLabel>
+										<FieldLabel htmlFor="workspace-settings-input-member-roles">
+											Member Roles
+										</FieldLabel>
 										<Tooltip>
 											<TooltipTrigger>
 												<span className="sr-only">Info</span>
@@ -275,7 +310,7 @@ export function WorkspaceSettingsSection({
 										</Tooltip>
 									</div>
 									<div
-										id="workspace-member-roles"
+										id="workspace-settings-input-member-roles"
 										className="flex flex-col gap-1.5 text-sm"
 									>
 										{members.map((member) => (
@@ -292,10 +327,10 @@ export function WorkspaceSettingsSection({
 							</FieldDescription>
 							<FieldGroup>
 								<Field>
-									<FieldLabel htmlFor="workspace-2fa">
+									<FieldLabel htmlFor="workspace-settings-input-2fa">
 										Two-Factor Authentication
 									</FieldLabel>
-									<InputOTP maxLength={6} id="workspace-2fa">
+									<InputOTP maxLength={6} id="workspace-settings-input-2fa">
 										<InputOTPGroup>
 											<InputOTPSlot index={0} />
 											<InputOTPSlot index={1} />
@@ -310,11 +345,14 @@ export function WorkspaceSettingsSection({
 									</InputOTP>
 								</Field>
 								<Field>
-									<FieldLabel htmlFor="workspace-api-access">
+									<FieldLabel htmlFor="workspace-settings-input-api-access">
 										API Access
 									</FieldLabel>
 									{apiKeys.length ? (
-										<ol className="flex flex-col gap-3">
+										<ol
+											className="flex flex-col gap-3"
+											id="workspace-settings-input-api-access"
+										>
 											{apiKeys.map((key) => (
 												<li key={key}>
 													<ButtonGroup>
@@ -386,12 +424,12 @@ function ReminderNudgesField() {
 
 	return (
 		<Field>
-			<FieldLabel htmlFor="workspace-reminders">
+			<FieldLabel htmlFor="workspace-settings-input-reminders">
 				Reminder Nudges (minutes)
 			</FieldLabel>
 			<div className="flex max-w-68 items-center gap-3">
 				<Slider
-					id="workspace-reminders"
+					id="workspace-settings-input-reminders"
 					aria-label="Reminder nudges (in minutes)"
 					min={0}
 					max={100}
@@ -411,10 +449,12 @@ function DescriptionTextareaField() {
 
 	return (
 		<Field>
-			<FieldLabel htmlFor="workspace-description">Description</FieldLabel>
+			<FieldLabel htmlFor="workspace-settings-input-description">
+				Description
+			</FieldLabel>
 			<InputGroup>
 				<InputGroupTextarea
-					id="workspace-description"
+					id="workspace-settings-input-description"
 					maxLength={maxLength}
 					onChange={(v) =>
 						setCharactersLeft(maxLength - v.currentTarget.value.length)
