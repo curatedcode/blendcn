@@ -431,7 +431,10 @@ function TaskAccordionItem({
 
 	return (
 		<AccordionItem value={value}>
-			<AccordionTrigger className="flex items-center gap-1.5 text-sm hover:[text-decoration-line:none]!">
+			<AccordionTrigger
+				as="h2"
+				className="flex items-center gap-1.5 text-sm hover:[text-decoration-line:none]!"
+			>
 				<div className="flex items-center gap-1.5">
 					<span
 						className="rounded-md px-3 py-0.5 text-neutral-800 uppercase shadow-sm"
