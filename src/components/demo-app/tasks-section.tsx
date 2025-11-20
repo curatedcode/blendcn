@@ -450,15 +450,17 @@ function TaskAccordionItem({
 			<AccordionContent>
 				<Table data-empty={tasks.length ? undefined : true}>
 					<TableHeader>
-						<TableHead>Name</TableHead>
-						<TableHead>Priority</TableHead>
-						<TableHead className="text-right">Due</TableHead>
-						<TableHead
-							data-empty={tasks.length ? undefined : true}
-							className="data-empty:px-0 data-empty:pl-[11px]"
-						>
-							<span className="sr-only">Actions</span>
-						</TableHead>
+						<TableRow>
+							<TableHead>Name</TableHead>
+							<TableHead>Priority</TableHead>
+							<TableHead className="text-right">Due</TableHead>
+							<TableHead
+								data-empty={tasks.length ? undefined : true}
+								className="data-empty:px-0 data-empty:pl-[11px]"
+							>
+								<span className="sr-only">Actions</span>
+							</TableHead>
+						</TableRow>
 					</TableHeader>
 					<TableBody>
 						{tasks.length ? (
