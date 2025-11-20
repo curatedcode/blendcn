@@ -46,8 +46,14 @@ export function ColorMapField({ id, cssVariable }: ColorMapFieldProps) {
 	const { resolvedTheme } = useTheme();
 	const theme = React.useMemo(() => resolvedTheme ?? "light", [resolvedTheme]);
 
-	const { paletteStylesObject, paletteStylesElementRef, setPaletteMappings } =
-		useColorContext();
+	const {
+		paletteStylesObject,
+		paletteStylesElementRef,
+		setPaletteMappings,
+		accentValue,
+		grayValue,
+		bgValue,
+	} = useColorContext();
 
 	const defaultSelectValue: (typeof themeTokens)[number] =
 		colorMappings[cssVariable];
@@ -215,6 +221,11 @@ export function ColorMapField({ id, cssVariable }: ColorMapFieldProps) {
 		setColor(newColor);
 		setInputValue(toShortFormat(newColor) ?? color.displayColor);
 	}, [theme, paletteStylesObject]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: We need to reset the input state when the base colors have changed
+	React.useEffect(() => {
+		setSelectedVar(defaultSelectValue);
+	}, [accentValue, grayValue, bgValue]);
 
 	return (
 		// biome-ignore lint/a11y/noStaticElementInteractions: Allow us to react to any click in/on this div to highlight all text
