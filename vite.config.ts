@@ -76,7 +76,10 @@ export default defineConfig({
 				host: "https://blendcn.zackaryf.com",
 			},
 		}),
+		nitro(),
 		viteReact(),
-		nitro({ config: { preset: "aws_amplify" } }),
 	],
+	nitro: {
+		preset: "aws-amplify",
+	},
 });
