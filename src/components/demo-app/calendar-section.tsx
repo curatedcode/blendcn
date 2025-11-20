@@ -142,7 +142,7 @@ export function CalendarSection({
 										{event.participants.slice(0, 4).map((person) => (
 											<HoverCard key={person.id}>
 												<HoverCardTrigger asChild>
-													<Avatar className="border-2 border-background">
+													<Avatar className="xs:flex hidden border-2 border-background">
 														<AvatarImage
 															src={person.avatarUrl}
 															alt={`${person.name.firstName} ${person.name.lastName}`}
@@ -176,8 +176,11 @@ export function CalendarSection({
 												</HoverCardContent>
 											</HoverCard>
 										))}
+										<div className="z-1 flex xs:hidden size-8 cursor-default select-none items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground text-xs">
+											+{event.participants.length}
+										</div>
 										{event.participants.length > 4 && (
-											<div className="z-1 flex size-8 cursor-default select-none items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground text-xs">
+											<div className="z-1 xs:flex hidden size-8 cursor-default select-none items-center justify-center rounded-full border-2 border-background bg-primary text-primary-foreground text-xs">
 												+{event.participants.length - 4}
 											</div>
 										)}
