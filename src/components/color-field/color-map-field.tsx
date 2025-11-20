@@ -204,7 +204,7 @@ export function ColorMapField({ id, cssVariable }: ColorMapFieldProps) {
 		});
 	}
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: Only want to run this when the theme changes
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Only want to run this when the theme/palette changes
 	React.useEffect(() => {
 		const newColor = getColorFromPalette({
 			variable: defaultSelectValue,
@@ -214,7 +214,7 @@ export function ColorMapField({ id, cssVariable }: ColorMapFieldProps) {
 
 		setColor(newColor);
 		setInputValue(toShortFormat(newColor) ?? color.displayColor);
-	}, [theme]);
+	}, [theme, paletteStylesObject]);
 
 	return (
 		// biome-ignore lint/a11y/noStaticElementInteractions: Allow us to react to any click in/on this div to highlight all text
