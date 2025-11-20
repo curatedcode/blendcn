@@ -76,7 +76,7 @@ describe("generateColors fn output", () => {
 			],
 			graySurface: "oklch(1 0 0 / 80%)",
 			accentSurface: "color(display-p3 0.9608 0.9725 0.9961 / 0.8)",
-			background: "oklch(100% 0 none)",
+			background: "oklch(100% 0 0)",
 			appleRed: "oklch(0.5938 0.2332 24.68)",
 		};
 
@@ -157,7 +157,7 @@ describe("generateColors fn output", () => {
 			],
 			graySurface: "oklch(0 0 0 / 5%)",
 			accentSurface: "color(display-p3 0.0706 0.1098 0.2118 / 0.5)",
-			background: "oklch(17.764% 0 none)",
+			background: "oklch(17.764% 0 0)",
 			appleRed: "oklch(0.5938 0.2332 24.68)",
 		};
 
