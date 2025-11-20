@@ -51,7 +51,10 @@ export function NavUser({
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						>
 							<Avatar className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm tracking-wider">
-								<AvatarImage src={user.avatarUrl} />
+								<AvatarImage
+									src={user.avatarUrl}
+									alt={`${user.name.firstName} ${user.name.lastName}`}
+								/>
 								<AvatarFallback>
 									{userFirstNameFirstLetter}
 									{userLastNameFirstLetter}
