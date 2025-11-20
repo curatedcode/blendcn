@@ -19,11 +19,8 @@ import {
 	BreadcrumbSeparator,
 } from "~/components/ui/breadcrumb";
 import { Separator } from "~/components/ui/separator";
-import {
-	SidebarInset,
-	SidebarProvider,
-	SidebarTrigger,
-} from "~/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
+import { cn } from "~/lib/utils";
 
 dayjs.extend(advancedFormatPlugin);
 
@@ -44,8 +41,13 @@ export function DemoApp() {
 	return (
 		<SidebarProvider>
 			<AppSidebar className="absolute" user={userData} projects={projects} />
-			<SidebarInset className="bg-sidebar md:peer-data-[variant=inset]:shadow-none">
-				<header className="flex h-16 shrink-0 flex-col justify-center gap-2 px-2.5 md:px-4">
+			<div
+				className={cn(
+					"relative flex w-full flex-1 flex-col bg-sidebar",
+					"md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2 md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl",
+				)}
+			>
+				<div className="flex h-16 shrink-0 flex-col justify-center gap-2 px-2.5 md:px-4">
 					<div className="flex items-center gap-2">
 						<SidebarTrigger className="-ml-1" />
 						<Separator
@@ -64,7 +66,7 @@ export function DemoApp() {
 							</BreadcrumbList>
 						</Breadcrumb>
 					</div>
-				</header>
+				</div>
 				<div className="mb-4 pl-3 md:pl-5">
 					<span className="font-medium text-sm">
 						{dayjs().format("ddd, MMMM Do")}
@@ -89,7 +91,7 @@ export function DemoApp() {
 						</div>
 					</div>
 				</div>
-			</SidebarInset>
+			</div>
 		</SidebarProvider>
 	);
 }
