@@ -1,4 +1,4 @@
-import { IconCloud } from "@tabler/icons-react";
+import { CloudIcon } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
 	Empty,
@@ -15,7 +15,7 @@ export function EmptySection({ className }: { className?: string }) {
 		<Empty className={cn("max-h-[500px] border shadow-sm", className)}>
 			<EmptyHeader>
 				<EmptyMedia variant="icon">
-					<IconCloud className="size-8 text-primary" />
+					<CloudIcon className="size-8 text-primary" />
 				</EmptyMedia>
 				<EmptyTitle>Cloud Storage Empty</EmptyTitle>
 				<EmptyDescription>
