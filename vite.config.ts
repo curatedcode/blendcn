@@ -82,7 +82,7 @@ export default defineConfig({
 	nitro: {
 		preset: "aws-amplify",
 		externals: {
-			inline: ["@radix-ui/colors", "decimal.js-light"],
+			inline: ["decimal.js-light"],
 		},
 	},
 });
