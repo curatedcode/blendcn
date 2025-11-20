@@ -25,14 +25,14 @@ export function ProjectsSection({
 				{projects.map((project, index) => (
 					<div key={project.title} className="flex gap-3">
 						<div
-							className="relative size-11 overflow-hidden rounded-md opacity-70 dark:opacity-80"
+							className="relative size-11 overflow-hidden rounded-md"
 							style={{
 								// backgroundImage: `linear-gradient(to bottom, color-mix(in oklab, ${project.color} 70%, transparent 100%), ${project.color})`,
-								backgroundColor: project.color,
+								backgroundColor: `color-mix(in oklab, ${project.color} 100%, transparent 20%)`,
 							}}
 						>
 							<SparkleIcon
-								className="absolute size-14 fill-card stroke-transparent dark:stroke-[0.5] dark:stroke-white/50"
+								className="absolute size-14 fill-white/80 stroke-transparent dark:fill-white/60"
 								style={{
 									rotate: `${Math.floor(Math.random() * 44) * index}deg`,
 									left: `${index * 2}px`,
