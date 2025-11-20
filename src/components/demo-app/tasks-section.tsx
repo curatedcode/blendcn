@@ -513,8 +513,8 @@ function TaskTableRow({ setSelectedTask, ...task }: TaskTableRowProps) {
 				<div
 					className={cn(
 						"w-fit",
-						task.priority === "high" && "text-destructive",
-						task.priority === "medium" && "text-primary",
+						task.priority === "high" && "text-red-600 dark:text-red-500",
+						task.priority === "medium" && "text-blue-600 dark:text-blue-500",
 					)}
 				>
 					<span>{capitalizeTaskPriority(task.priority)}</span>
@@ -523,8 +523,8 @@ function TaskTableRow({ setSelectedTask, ...task }: TaskTableRowProps) {
 			<TableCell
 				className={cn(
 					"text-right",
-					relativeDueDate === "Overdue" && "text-red-500",
-					relativeDueDate === "Today" && "text-blue-500",
+					relativeDueDate === "Overdue" && "text-red-600 dark:text-red-500",
+					relativeDueDate === "Today" && "text-blue-600 dark:text-blue-500",
 				)}
 			>
 				{relativeDueDate}
