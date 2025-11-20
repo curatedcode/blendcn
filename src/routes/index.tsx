@@ -11,7 +11,6 @@ import { ThemeSwitcher } from "~/components/theme-switcher";
 
 export const Route = createFileRoute("/")({
 	component: RouteComponent,
-	ssr: false,
 });
 
 function RouteComponent() {
