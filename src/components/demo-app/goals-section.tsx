@@ -43,6 +43,7 @@ export function GoalsSection({
 								className="hidden bg-muted md:block"
 								// biome-ignore lint/suspicious/noExplicitAny: pass custom vars
 								style={{ "--primary": goal.project.color } as any}
+								aria-label={`Goal completion`}
 							/>
 							<span className="font-medium text-sm">{goal.completion}%</span>
 						</div>

@@ -392,6 +392,7 @@ function ReminderNudgesField() {
 			<div className="flex max-w-68 items-center gap-3">
 				<Slider
 					id="workspace-reminders"
+					aria-label="Reminder nudges (in minutes)"
 					min={0}
 					max={100}
 					step={5}
