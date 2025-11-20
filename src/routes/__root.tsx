@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { DefaultErrorComponent } from "~/components/default-error-component";
+import { DefaultNotFoundComponent } from "~/components/default-not-found-component";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
 import appCss from "~/styles/globals.css?url";
@@ -307,6 +308,7 @@ export const Route = createRootRoute({
 	}),
 	shellComponent: RootLayout,
 	errorComponent: DefaultErrorComponent,
+	notFoundComponent: DefaultNotFoundComponent,
 });
 
 function RootLayout() {
