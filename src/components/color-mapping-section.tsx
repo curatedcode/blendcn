@@ -1,3 +1,4 @@
+import React from "react";
 import { ColorMapField } from "~/components/color-field/color-map-field";
 import { formatCssVariable } from "~/components/color-field/helpers";
 import { allCssVariables } from "~/components/color-field/types";
@@ -71,6 +72,8 @@ const categories: { title: string; variables: typeof allCssVariables }[] = [
 ];
 
 export function ColorMappingSection({ className }: { className?: string }) {
+	const [activeTab, setActiveTab] = React.useState("Base");
+
 	return (
 		<div
 			className={cn(
@@ -82,6 +85,8 @@ export function ColorMappingSection({ className }: { className?: string }) {
 			<Tabs
 				defaultValue="Base"
 				className="flex-row gap-0 rounded-lg border bg-muted md:h-[392px] lg:h-[244px]"
+				value={activeTab}
+				onValueChange={setActiveTab}
 			>
 				<TabsList className="flex h-full flex-col justify-start gap-1.5 py-2 pl-2">
 					{categories.map((category) => (
@@ -103,6 +108,9 @@ export function ColorMappingSection({ className }: { className?: string }) {
 						key={category.title}
 						value={category.title}
 						className="grid auto-rows-min gap-4 py-4.5 pr-2 md:grid-cols-2 lg:grid-cols-3"
+						forceMount={true}
+						hidden={category.title !== activeTab}
+						aria-hidden={category.title !== activeTab}
 					>
 						{category.variables.map((variable) => (
 							<div key={variable} className="flex flex-col gap-2">
