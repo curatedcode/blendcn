@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { ColorMapField } from "~/components/color-field/color-map-field";
 import { formatCssVariable } from "~/components/color-field/helpers";
 import { allCssVariables } from "~/components/color-field/types";
