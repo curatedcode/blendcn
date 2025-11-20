@@ -9,11 +9,12 @@
 # production
 dist
 .amplify-hosting
+.nitro
 
 # misc
 .DS_Store
 *.pem
-.nitro
+src/styles/temp.css
 
 # debug
 npm-debug.log*
