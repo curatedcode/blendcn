@@ -1,18 +1,9 @@
-import { faker } from "@faker-js/faker";
+import { getRouteApi } from "@tanstack/react-router";
 import dayjs from "dayjs";
 import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import { AppSidebar } from "~/components/demo-app/app-sidebar";
 import { CalendarSection } from "~/components/demo-app/calendar-section";
 import { ChartSection } from "~/components/demo-app/chart-section";
-import {
-	generateApiKeys,
-	generateCalendarEvents,
-	generateChartData,
-	generateProjects,
-	generateReminders,
-	generateWorkspaceMembers,
-	type Project,
-} from "~/components/demo-app/demo-data";
 import { EmptySection } from "~/components/demo-app/empty-section";
 import { GoalsSection } from "~/components/demo-app/goals-section";
 import { ProjectsSection } from "~/components/demo-app/projects-section";
@@ -37,47 +28,22 @@ import {
 dayjs.extend(advancedFormatPlugin);
 
 export function DemoApp() {
-	const projects = generateProjects();
-	const reminders = generateReminders();
-	const chartData = generateChartData(
-		dayjs().subtract(3, "months").toDate(),
-		new Date(),
-	);
-	const workspaceApiKeys = generateApiKeys();
-	const workspaceMembers = generateWorkspaceMembers(
-		faker.number.int({ min: 3, max: 6 }),
-	);
-
-	const tasks = projects.flatMap((v) => v.tasks);
-	const goals: Parameters<typeof GoalsSection>[0]["goals"] = [];
-	const teammates = new Set<Project["teammates"][number]>();
-
-	for (const project of projects) {
-		for (const goal of project.goals) {
-			goals.push({
-				project: {
-					id: project.id,
-					title: project.title,
-					color: project.color,
-				},
-				...goal,
-			});
-		}
-		for (const teammate of project.teammates) {
-			teammates.add(teammate);
-		}
-	}
-
-	const events = generateCalendarEvents({
-		count: 12,
-		events: [],
-		startDate: dayjs().subtract(3, "days").toDate(),
-		teammates: Array.from(teammates),
-	});
+	const routeApi = getRouteApi("/");
+	const {
+		userData,
+		projects,
+		tasks,
+		goals,
+		reminders,
+		events,
+		chartData,
+		workspaceApiKeys,
+		workspaceMembers,
+	} = routeApi.useLoaderData();
 
 	return (
 		<SidebarProvider>
-			<AppSidebar className="absolute" projects={projects} />
+			<AppSidebar className="absolute" user={userData} projects={projects} />
 			<SidebarInset className="bg-sidebar md:peer-data-[variant=inset]:shadow-none">
 				<header className="flex h-16 shrink-0 flex-col justify-center gap-2 px-2.5 md:px-4">
 					<div className="flex items-center gap-2">

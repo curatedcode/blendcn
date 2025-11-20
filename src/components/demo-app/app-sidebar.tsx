@@ -1,6 +1,4 @@
 /** biome-ignore-all lint/a11y/useValidAnchor: Demo links */
-
-import { faker } from "@faker-js/faker";
 import {
 	CalendarDaysIcon,
 	ClipboardListIcon,
@@ -27,61 +25,56 @@ import {
 	useSidebar,
 } from "~/components/ui/sidebar";
 
+const navData = {
+	main: [
+		{
+			title: "Home",
+			icon: HomeIcon,
+			isActive: true,
+		},
+		{
+			title: "My Tasks",
+			icon: ClipboardListIcon,
+		},
+		{
+			title: "Inbox",
+			icon: InboxIcon,
+		},
+		{
+			title: "Calendar",
+			icon: CalendarDaysIcon,
+		},
+	],
+	secondary: [
+		{
+			title: "Support",
+			url: "#",
+			icon: LifeBuoyIcon,
+		},
+		{
+			title: "Feedback",
+			url: "#",
+			icon: SendIcon,
+		},
+	],
+};
+
 export function AppSidebar({
 	projects,
+	user,
 	...props
 }: React.ComponentProps<typeof Sidebar> & {
 	projects: Project[];
+	user: {
+		name: {
+			firstName: string;
+			lastName: string;
+		};
+		email: string;
+		avatarUrl: string;
+	};
 }) {
 	const { state } = useSidebar();
-
-	const userSex = faker.helpers.arrayElement(["male", "female"]);
-	const user = {
-		firstName: faker.person.firstName(userSex),
-		lastName: faker.person.lastName(userSex),
-	};
-
-	const data = {
-		user: {
-			name: `${user.firstName} ${user.lastName}`,
-			email: faker.internet.email({
-				firstName: user.firstName,
-				lastName: user.lastName,
-			}),
-			avatarUrl: `/assets/images/avatars/${userSex}/${faker.number.int({ min: 1, max: 40 })}.webp`,
-		},
-		navMain: [
-			{
-				title: "Home",
-				icon: HomeIcon,
-				isActive: true,
-			},
-			{
-				title: "My Tasks",
-				icon: ClipboardListIcon,
-			},
-			{
-				title: "Inbox",
-				icon: InboxIcon,
-			},
-			{
-				title: "Calendar",
-				icon: CalendarDaysIcon,
-			},
-		],
-		navSecondary: [
-			{
-				title: "Support",
-				url: "#",
-				icon: LifeBuoyIcon,
-			},
-			{
-				title: "Feedback",
-				url: "#",
-				icon: SendIcon,
-			},
-		],
-	};
 
 	return (
 		<div
@@ -110,12 +103,12 @@ export function AppSidebar({
 						</SidebarMenu>
 					</SidebarHeader>
 					<SidebarContent>
-						<NavMain items={data.navMain} />
+						<NavMain items={navData.main} />
 						<NavProjects projects={projects} />
-						<NavSecondary items={data.navSecondary} className="mt-auto" />
+						<NavSecondary items={navData.secondary} className="mt-auto" />
 					</SidebarContent>
 					<SidebarFooter>
-						<NavUser user={data.user} />
+						<NavUser user={user} />
 					</SidebarFooter>
 				</Sidebar>
 			</div>

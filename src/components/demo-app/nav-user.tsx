@@ -27,17 +27,19 @@ export function NavUser({
 	user,
 }: {
 	user: {
-		name: string;
+		name: {
+			firstName: string;
+			lastName: string;
+		};
 		email: string;
 		avatarUrl: string;
 	};
 }) {
 	const { isMobile } = useSidebar();
 
-	const userFirstName = user.name.split(" ")[0];
-	const userLastName = user.name.split(" ")[1];
-	const userFirstNameFirstLetter = userFirstName ? userFirstName[0] : null;
-	const userLastNameFirstLetter = userLastName ? userLastName[0] : null;
+	const userFirstNameFirstLetter = user.name.firstName.charAt(0) ?? null;
+	const userLastNameFirstLetter = user.name.lastName.charAt(0) ?? null;
+	const userFullName = `${user.name.firstName} ${user.name.lastName}`;
 
 	return (
 		<SidebarMenu>
@@ -56,7 +58,7 @@ export function NavUser({
 								</AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-medium">{user.name}</span>
+								<span className="truncate font-medium">{userFullName}</span>
 								<span className="truncate text-xs">{user.email}</span>
 							</div>
 							<ChevronsUpDownIcon className="ml-auto size-4" />
@@ -78,7 +80,7 @@ export function NavUser({
 									</AvatarFallback>
 								</Avatar>
 								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="truncate font-medium">{user.name}</span>
+									<span className="truncate font-medium">{userFullName}</span>
 									<span className="truncate text-xs">{user.email}</span>
 								</div>
 							</div>
