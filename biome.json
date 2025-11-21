@@ -20,7 +20,9 @@
 			"!src/styles",
 			"!src/routeTree.gen.ts",
 			"!.tanstack",
-			"!dist"
+			"!dist",
+			"!.amplify-hosting",
+			"!stats.html"
 		]
 	},
 	"formatter": {
