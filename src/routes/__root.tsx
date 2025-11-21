@@ -38,7 +38,7 @@ export const Route = createRootRoute({
 			{
 				name: "description",
 				content:
-					"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens",
+					"A shadcn/ui theme builder using Radix color steps. Live component previews, customizable palettes, and export-ready design tokens.",
 			},
 			{
 				name: "author",
@@ -79,7 +79,7 @@ export const Route = createRootRoute({
 			{
 				property: "og:description",
 				content:
-					"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
+					"A shadcn/ui theme builder using Radix color steps. Live component previews, customizable palettes, and export-ready design tokens.",
 			},
 			{
 				property: "og:url",
@@ -148,11 +148,15 @@ export const Route = createRootRoute({
 			{
 				name: "twitter:description",
 				content:
-					"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
+					"A shadcn/ui theme builder using Radix color steps. Live component previews, customizable palettes, and export-ready design tokens.",
+			},
+			{
+				name: "twitter:url",
+				content: "https://blendcn.zackaryf.com",
 			},
 			{
 				name: "twitter:image",
-				content: "https://blendcn.zackaryf.com/assets/icons/twitter-card.png",
+				content: "https://blendcn.zackaryf.com/assets/meta/twitter-card.png",
 			},
 			{
 				name: "twitter:image:alt",

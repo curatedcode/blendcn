@@ -17,12 +17,13 @@ export default defineConfig({
 		devtools(),
 		VitePWA({
 			injectRegister: "auto",
+			outDir: ".amplify-hosting/static",
 			manifest: {
 				name: "BlendCN",
 				short_name: "BlendCN",
 				description:
-					"A semantic theme builder that maps Radix color steps to shadcn/ui tokens with live component previews, customizable palettes, and export-ready design tokens.",
-				lang: "en_US",
+					"A shadcn/ui theme builder using Radix color steps. Live component previews, customizable palettes, and export-ready design tokens.",
+				lang: "en-US",
 				dir: "ltr",
 				categories: [
 					"radix",
@@ -39,10 +40,9 @@ export default defineConfig({
 				id: "/",
 				theme_color: "#E5E7EB",
 				background_color: "#F9FAFB",
-				display: "browser",
+				display: "minimal-ui",
 				scope: "/",
 				start_url: "/",
-				display_override: ["minimal-ui"],
 				icons: [
 					{
 						src: "/assets/icons/192x192.png",
@@ -67,8 +67,33 @@ export default defineConfig({
 						purpose: "maskable",
 					},
 				],
+				screenshots: [
+					{
+						src: "/assets/meta/pwa-desktop-1.png",
+						type: "image/png",
+						sizes: "1920x929",
+						form_factor: "wide",
+					},
+					{
+						src: "/assets/meta/pwa-desktop-2.png",
+						type: "image/png",
+						sizes: "1920x929",
+						form_factor: "wide",
+					},
+					{
+						src: "/assets/meta/pwa-mobile-1.png",
+						type: "image/png",
+						sizes: "540x720",
+						form_factor: "narrow",
+					},
+					{
+						src: "/assets/meta/pwa-mobile-1.png",
+						type: "image/png",
+						sizes: "540x720",
+						form_factor: "narrow",
+					},
+				],
 			},
-			outDir: ".amplify-hosting/static",
 		}),
 		tanstackStart({
 			sitemap: {
