@@ -8,8 +8,13 @@ import { Logo } from "~/components/logo";
 import { NoiseBackdrop } from "~/components/noise-backdrop";
 import { ThemeExportDialog } from "~/components/theme-export-dialog";
 import { ThemeSwitcher } from "~/components/theme-switcher";
+import { Skeleton } from "~/components/ui/skeleton";
 
-const DemoApp = React.lazy(() => import("~/components/demo-app"));
+const DemoApp = React.lazy(() =>
+	import("~/components/demo-app").then((module) => ({
+		default: module.DemoApp,
+	})),
+);
 
 export const Route = createFileRoute("/")({
 	component: RouteComponent,
@@ -43,7 +48,11 @@ function RouteComponent() {
 					</div>
 				</div>
 			</div>
-			<DemoApp />
+			<React.Suspense
+				fallback={<Skeleton className="h-screen w-full bg-muted" />}
+			>
+				<DemoApp />
+			</React.Suspense>
 		</ColorContextProvider>
 	);
 }
