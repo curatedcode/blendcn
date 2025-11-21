@@ -3,7 +3,8 @@ import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
-import { defineConfig } from "vite";
+import { visualizer } from "rollup-plugin-visualizer";
+import { defineConfig, type PluginOption } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import tsConfigPaths from "vite-tsconfig-paths";
 
@@ -103,11 +104,17 @@ export default defineConfig({
 		}),
 		nitro(),
 		viteReact(),
+		process.env.NODE_ENV !== "production" &&
+			(visualizer({
+				open: true,
+				template: "sunburst",
+			}) as PluginOption),
 	],
 	nitro: {
 		preset: "aws-amplify",
 		externals: {
 			inline: ["decimal.js-light"],
 		},
+		compressPublicAssets: true,
 	},
 });
