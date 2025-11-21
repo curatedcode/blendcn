@@ -15,6 +15,7 @@ dist
 .DS_Store
 *.pem
 src/styles/temp.css
+stats.html
 
 # debug
 npm-debug.log*

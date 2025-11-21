@@ -1,20 +1,13 @@
 import { BriefcaseIcon, PlusIcon, SparkleIcon } from "lucide-react";
-import type { Project } from "~/components/demo-app/demo-data";
+import { demoProjects } from "~/components/demo-app/demo-data";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { cn } from "~/lib/utils";
 
-export function ProjectsSection({
-	projects,
-	className,
-}: {
-	projects: Project[];
-	className?: string;
-}) {
+export function ProjectsSection({ className }: { className?: string }) {
 	const isPlural = (num: number) => num === 0 || num > 1;
 
 	return (
-		<Card className={cn("", className)}>
+		<Card className={className}>
 			<CardHeader className="w-fit space-x-2">
 				<CardTitle className="flex items-center gap-3">
 					<BriefcaseIcon className="size-5 text-primary" />
@@ -22,7 +15,7 @@ export function ProjectsSection({
 				</CardTitle>
 			</CardHeader>
 			<CardContent className="grid gap-6 md:grid-cols-2">
-				{projects.map((project, index) => (
+				{demoProjects.map((project, index) => (
 					<div key={project.title} className="flex gap-3">
 						<div
 							className="relative size-11 overflow-hidden rounded-md"

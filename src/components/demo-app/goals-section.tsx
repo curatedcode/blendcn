@@ -1,20 +1,11 @@
 import { TargetIcon } from "lucide-react";
-import type { Project } from "~/components/demo-app/demo-data";
+import { demoGoals } from "~/components/demo-app/demo-data";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Progress } from "~/components/ui/progress";
-import { cn } from "~/lib/utils";
 
-export function GoalsSection({
-	goals,
-	className,
-}: {
-	goals: (Project["goals"][number] & {
-		project: Omit<Project, "goals" | "tasks" | "teammates">;
-	})[];
-	className?: string;
-}) {
+export function GoalsSection({ className }: { className?: string }) {
 	return (
-		<Card className={cn("", className)}>
+		<Card className={className}>
 			<CardHeader>
 				<CardTitle className="flex items-center gap-3">
 					<TargetIcon className="size-5 text-primary" />
@@ -22,7 +13,7 @@ export function GoalsSection({
 				</CardTitle>
 			</CardHeader>
 			<CardContent className="space-y-4">
-				{goals.map((goal) => (
+				{demoGoals.map((goal) => (
 					<div
 						key={goal.id}
 						className="flex justify-between gap-3 md:items-center"

@@ -9,7 +9,6 @@ import {
 	SendIcon,
 } from "lucide-react";
 import type * as React from "react";
-import type { Project } from "~/components/demo-app/demo-data";
 import { NavMain } from "~/components/demo-app/nav-main";
 import { NavProjects } from "~/components/demo-app/nav-projects";
 import { NavSecondary } from "~/components/demo-app/nav-secondary";
@@ -59,20 +58,20 @@ const navData = {
 	],
 };
 
+const userData = {
+	name: {
+		firstName: "Denise",
+		lastName: "Grimes",
+	},
+	email: "Denise.Grimes@yahoo.com",
+	avatarUrl: "/assets/images/avatars/female/14.webp",
+};
+
 export function AppSidebar({
 	projects,
-	user,
 	...props
 }: React.ComponentProps<typeof Sidebar> & {
-	projects: Project[];
-	user: {
-		name: {
-			firstName: string;
-			lastName: string;
-		};
-		email: string;
-		avatarUrl: string;
-	};
+	projects: { id: number; title: string; color: string }[];
 }) {
 	const { state } = useSidebar();
 
@@ -108,7 +107,7 @@ export function AppSidebar({
 						<NavSecondary items={navData.secondary} className="mt-auto" />
 					</SidebarContent>
 					<SidebarFooter>
-						<NavUser user={user} />
+						<NavUser user={userData} />
 					</SidebarFooter>
 				</Sidebar>
 			</div>

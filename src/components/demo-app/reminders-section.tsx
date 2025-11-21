@@ -1,8 +1,6 @@
 /** biome-ignore-all lint/correctness/noChildrenProp: tanstack form */
 
-import dayjs from "dayjs";
 import { TimerIcon } from "lucide-react";
-import type { Reminder } from "~/components/demo-app/demo-data";
 import {
 	Accordion,
 	AccordionContent,
@@ -12,27 +10,51 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
 
-export function RemindersSection({
-	reminders,
-	className,
-}: {
-	reminders: Reminder[];
-	className?: string;
-}) {
-	const todayReminders: Reminder[] = [];
-	const laterReminders: Reminder[] = [];
+type Reminder = {
+	id: number;
+	title: string;
+	due: "today" | "later";
+};
 
-	for (const reminder of reminders) {
-		const isSameDate = dayjs().isSame(reminder.dueDate, "date");
-		if (isSameDate) {
-			todayReminders.push(reminder);
-		} else {
-			laterReminders.push(reminder);
-		}
-	}
+const todayReminders: Reminder[] = [
+	{
+		id: 1,
+		title: "List key decisions made during the workshop",
+		due: "today",
+	},
+	{
+		id: 2,
+		title: "Follow up with stakeholders on requirements",
+		due: "today",
+	},
+	{
+		id: 3,
+		title: "Set reminders for upcoming renewal deadlines",
+		due: "today",
+	},
+];
 
+const laterReminders: Reminder[] = [
+	{
+		id: 4,
+		title: "Prepare agenda items for tomorrow’s planning session",
+		due: "later",
+	},
+	{
+		id: 5,
+		title: "Draft summary notes for the project team",
+		due: "later",
+	},
+	{
+		id: 6,
+		title: "Organize documentation updates flagged today",
+		due: "later",
+	},
+];
+
+export function RemindersSection({ className }: { className?: string }) {
 	return (
-		<Card className={cn("", className)}>
+		<Card className={className}>
 			<CardHeader>
 				<CardTitle className="flex items-center gap-3">
 					<TimerIcon className="size-5 text-primary" />

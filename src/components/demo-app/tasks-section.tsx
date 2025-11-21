@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/correctness/noChildrenProp: tanstack form */
 
-import { useForm, uuid } from "@tanstack/react-form";
+import { useForm } from "@tanstack/react-form";
 import dayjs from "dayjs";
 import relativeTimePlugin from "dayjs/plugin/relativeTime";
 import {
@@ -14,8 +14,8 @@ import {
 } from "lucide-react";
 import * as React from "react";
 import { toast } from "sonner";
-import z from "zod";
-import type { Project } from "~/components/demo-app/demo-data";
+import * as z from "zod";
+import { demoTasks } from "~/components/demo-app/demo-data";
 import {
 	Accordion,
 	AccordionContent,
@@ -90,9 +90,7 @@ import { cn } from "~/lib/utils";
 
 dayjs.extend(relativeTimePlugin);
 
-function getRelativeDueDate(
-	date: Date,
-): "Overdue" | "Today" | `${number} ${string}` {
+function getRelativeDueDate(date: Date): string {
 	const dateObj = dayjs(date);
 
 	const isOverdue = dateObj.isBefore();
@@ -101,7 +99,7 @@ function getRelativeDueDate(
 	const isToday = dateObj.isSame(undefined, "date");
 	if (isToday) return "Today";
 
-	return dateObj.fromNow() as `${number} ${string}`;
+	return dateObj.fromNow();
 }
 
 function capitalizeTaskPriority(value: string) {
@@ -130,28 +128,22 @@ const formSchema = z.object({
 	}),
 });
 
-export function TasksSection({
-	tasks,
-	className,
-}: {
-	tasks: Project["tasks"];
-	className?: string;
-}) {
-	const [_tasks, _setTasks] = React.useState<Project["tasks"]>(tasks);
+export function TasksSection({ className }: { className?: string }) {
+	const [tasks, setTasks] = React.useState<typeof demoTasks>(demoTasks);
 	const [selectedTask, setSelectedTask] =
-		React.useState<Project["tasks"][number]>();
+		React.useState<(typeof demoTasks)[number]>();
 
 	const inProgressTasks = React.useMemo(
-		() => _tasks.filter((v) => v.stage === "in-progress"),
-		[_tasks],
+		() => tasks.filter((v) => v.stage === "in-progress"),
+		[tasks],
 	);
 	const todoTasks = React.useMemo(
-		() => _tasks.filter((v) => v.stage === "to-do"),
-		[_tasks],
+		() => tasks.filter((v) => v.stage === "to-do"),
+		[tasks],
 	);
 	const upcomingTasks = React.useMemo(
-		() => _tasks.filter((v) => v.stage === "upcoming"),
-		[_tasks],
+		() => tasks.filter((v) => v.stage === "upcoming"),
+		[tasks],
 	);
 
 	const form = useForm({
@@ -164,22 +156,25 @@ export function TasksSection({
 		validators: {
 			onSubmit: formSchema,
 		},
-		onSubmit: async ({ value }) => {
-			const newTask: Project["tasks"][number] = {
-				id: uuid(),
-				...value,
+		onSubmit: async ({ value: { title, dueDate, stage, priority } }) => {
+			const newTask: (typeof demoTasks)[number] = {
+				id: tasks[tasks.length]?.id ?? tasks.length,
+				title,
+				stage,
+				priority,
+				due: getRelativeDueDate(dueDate),
 			};
-			_setTasks((prev) => [...prev, newTask]);
+			setTasks((prev) => [...prev, newTask]);
 			toast.success("Successfully created task");
 		},
 	});
 
-	const deleteTask = (id: string) => {
-		_setTasks((prev) => prev.filter((v) => v.id !== id));
+	const deleteTask = (id: number) => {
+		setTasks((prev) => prev.filter((v) => v.id !== id));
 	};
 
 	return (
-		<Card className={cn("", className)}>
+		<Card className={className}>
 			<CardHeader className="w-fit space-x-2">
 				<CardTitle className="flex items-center gap-3">
 					<ClipboardListIcon className="size-5 text-primary" />
@@ -193,13 +188,13 @@ export function TasksSection({
 					>
 						<DialogTrigger asChild>
 							<Button variant={"ghost"} size={"icon-sm"} className="-mt-1.5">
-								<span className="sr-only">Add Task</span>
+								<span className="sr-only">Add typeof demoTasks</span>
 								<PlusIcon className="size-4" />
 							</Button>
 						</DialogTrigger>
 						<DialogContent>
 							<DialogHeader>
-								<DialogTitle>New Task</DialogTitle>
+								<DialogTitle>New typeof demoTasks</DialogTitle>
 								<DialogDescription>
 									Add a new task to your list.
 								</DialogDescription>
@@ -417,12 +412,12 @@ export function TasksSection({
 }
 
 type TaskAccordionItemProps = {
-	value: Project["tasks"][number]["stage"];
+	value: (typeof demoTasks)[number]["stage"];
 	title: string;
-	tasks: Project["tasks"];
+	tasks: typeof demoTasks;
 	color: string;
 	setSelectedTask: React.Dispatch<
-		React.SetStateAction<Project["tasks"][number] | undefined>
+		React.SetStateAction<(typeof demoTasks)[number] | undefined>
 	>;
 };
 
@@ -499,13 +494,11 @@ function TaskAccordionItem({
 
 type TaskTableRowProps = {
 	setSelectedTask: React.Dispatch<
-		React.SetStateAction<Project["tasks"][number] | undefined>
+		React.SetStateAction<(typeof demoTasks)[number] | undefined>
 	>;
-} & Project["tasks"][number];
+} & (typeof demoTasks)[number];
 
 function TaskTableRow({ setSelectedTask, ...task }: TaskTableRowProps) {
-	const relativeDueDate = getRelativeDueDate(task.dueDate);
-
 	return (
 		<TableRow>
 			<TableCell>{task.title}</TableCell>
@@ -523,11 +516,11 @@ function TaskTableRow({ setSelectedTask, ...task }: TaskTableRowProps) {
 			<TableCell
 				className={cn(
 					"text-right",
-					relativeDueDate === "Overdue" && "text-red-600 dark:text-red-500",
-					relativeDueDate === "Today" && "text-blue-600 dark:text-blue-500",
+					task.due === "Overdue" && "text-red-600 dark:text-red-500",
+					task.due === "Today" && "text-blue-600 dark:text-blue-500",
 				)}
 			>
-				{relativeDueDate}
+				{task.due}
 			</TableCell>
 			<TableCell className="w-8">
 				<DropdownMenu>

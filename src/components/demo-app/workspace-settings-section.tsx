@@ -7,7 +7,6 @@ import {
 	Trash2Icon,
 } from "lucide-react";
 import * as React from "react";
-import type { Member } from "~/components/demo-app/demo-data";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -69,19 +68,76 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "~/components/ui/tooltip";
-import { cn } from "~/lib/utils";
+
+const data = {
+	apiKeys: [
+		"844cmTMjIlkAJEf",
+		"gr9M6DQeSL9CnAk",
+		"hdaCpXaY42M65R6",
+		"nerdPGNz5IsrVOU",
+		"vJN8azXhEwudXzf",
+	],
+	members: [
+		{
+			id: 1,
+			name: {
+				firstName: "Nicole",
+				lastName: "Aufderhar",
+			},
+			email: "Nicole_Aufderhar5@gmail.com",
+			avatarUrl: "/assets/images/avatars/female/20.webp",
+			role: "member",
+		},
+		{
+			id: 2,
+			name: {
+				firstName: "Steven",
+				lastName: "Funk",
+			},
+			email: "Steven_Funk3@gmail.com",
+			avatarUrl: "/assets/images/avatars/male/5.webp",
+			role: "admin",
+		},
+		{
+			id: 3,
+			name: {
+				firstName: "Patty",
+				lastName: "Windler",
+			},
+			email: "Patty_Windler@yahoo.com",
+			avatarUrl: "/assets/images/avatars/female/2.webp",
+			role: "admin",
+		},
+		{
+			id: 4,
+			name: {
+				firstName: "Roland",
+				lastName: "O'Hara",
+			},
+			email: "Roland_OHara13@gmail.com",
+			avatarUrl: "/assets/images/avatars/male/22.webp",
+			role: "member",
+		},
+		{
+			id: 5,
+			name: {
+				firstName: "Rolando",
+				lastName: "Larson",
+			},
+			email: "Rolando_Larson@gmail.com",
+			avatarUrl: "/assets/images/avatars/male/17.webp",
+			role: "member",
+		},
+	],
+};
 
 export function WorkspaceSettingsSection({
-	members,
-	apiKeys,
 	className,
 }: {
 	className?: string;
-	apiKeys: string[];
-	members: Member[];
 }) {
 	return (
-		<Card className={cn("", className)}>
+		<Card className={className}>
 			<CardHeader>
 				<CardTitle className="flex items-center gap-3">
 					<TargetIcon className="size-5 text-primary" />
@@ -313,7 +369,7 @@ export function WorkspaceSettingsSection({
 										id="workspace-settings-input-member-roles"
 										className="flex flex-col gap-1.5 text-sm"
 									>
-										{members.map((member) => (
+										{data.members.map((member) => (
 											<MemberContextMenu key={member.id} {...member} />
 										))}
 									</div>
@@ -348,12 +404,12 @@ export function WorkspaceSettingsSection({
 									<FieldLabel htmlFor="workspace-settings-input-api-access">
 										API Access
 									</FieldLabel>
-									{apiKeys.length ? (
+									{data.apiKeys.length ? (
 										<ol
 											className="flex flex-col gap-3"
 											id="workspace-settings-input-api-access"
 										>
-											{apiKeys.map((key) => (
+											{data.apiKeys.map((key) => (
 												<li key={key}>
 													<ButtonGroup>
 														<span className="inline-flex h-9 w-42 items-center justify-center overflow-hidden rounded-md border bg-background px-4 py-2 font-medium text-sm outline-none dark:border-input dark:bg-input/30">
@@ -472,10 +528,16 @@ function DescriptionTextareaField() {
 	);
 }
 
-function MemberContextMenu(member: Member) {
-	const [role, setRole] = React.useState<Member["role"]>(member.role);
+function MemberContextMenu(member: (typeof data.members)[number]) {
+	const [role, setRole] = React.useState<(typeof data.members)[number]["role"]>(
+		member.role,
+	);
 
-	const allRoles: Member["role"][] = ["admin", "manager", "member"];
+	const allRoles: (typeof data.members)[number]["role"][] = [
+		"admin",
+		"manager",
+		"member",
+	];
 
 	return (
 		<ContextMenu>
@@ -491,7 +553,9 @@ function MemberContextMenu(member: Member) {
 			<ContextMenuContent>
 				<ContextMenuRadioGroup
 					value={role}
-					onValueChange={(v) => setRole(v as Member["role"])}
+					onValueChange={(v) =>
+						setRole(v as (typeof data.members)[number]["role"])
+					}
 				>
 					{allRoles.map((role) => (
 						<ContextMenuRadioItem key={role} value={role}>

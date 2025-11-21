@@ -1,9 +1,8 @@
-import { getRouteApi } from "@tanstack/react-router";
 import dayjs from "dayjs";
-import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import { AppSidebar } from "~/components/demo-app/app-sidebar";
 import { CalendarSection } from "~/components/demo-app/calendar-section";
 import { ChartSection } from "~/components/demo-app/chart-section";
+import { demoProjects } from "~/components/demo-app/demo-data";
 import { EmptySection } from "~/components/demo-app/empty-section";
 import { GoalsSection } from "~/components/demo-app/goals-section";
 import { ProjectsSection } from "~/components/demo-app/projects-section";
@@ -22,25 +21,10 @@ import { Separator } from "~/components/ui/separator";
 import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
 import { cn } from "~/lib/utils";
 
-dayjs.extend(advancedFormatPlugin);
-
 export default function DemoApp() {
-	const routeApi = getRouteApi("/");
-	const {
-		userData,
-		projects,
-		tasks,
-		goals,
-		reminders,
-		events,
-		chartData,
-		workspaceApiKeys,
-		workspaceMembers,
-	} = routeApi.useLoaderData();
-
 	return (
 		<SidebarProvider>
-			<AppSidebar className="absolute" user={userData} projects={projects} />
+			<AppSidebar className="absolute" projects={demoProjects} />
 			<div
 				className={cn(
 					"relative flex w-full flex-1 flex-col bg-sidebar",
@@ -69,25 +53,22 @@ export default function DemoApp() {
 				</div>
 				<div className="mb-4 pl-3 md:pl-5">
 					<span className="font-medium text-sm">
-						{dayjs().format("ddd, MMMM Do")}
+						{dayjs().format("dddd, MMM D")}
 					</span>
 				</div>
 				<div className="mx-auto w-full max-w-desktop">
 					<div className="flex flex-col gap-8 p-2 pt-0 lg:flex-row lg:p-4 lg:*:basis-1/2">
 						<div className="flex flex-col gap-8">
-							<TasksSection tasks={tasks} />
-							<GoalsSection goals={goals} />
-							<RemindersSection reminders={reminders} />
+							<TasksSection />
+							<GoalsSection />
+							<RemindersSection />
 							<EmptySection />
 						</div>
 						<div className="flex flex-col gap-8">
-							<ProjectsSection projects={projects} />
-							<CalendarSection events={events} />
-							<ChartSection data={chartData} />
-							<WorkspaceSettingsSection
-								apiKeys={workspaceApiKeys}
-								members={workspaceMembers}
-							/>
+							<ProjectsSection />
+							<CalendarSection />
+							<ChartSection />
+							<WorkspaceSettingsSection />
 						</div>
 					</div>
 				</div>
