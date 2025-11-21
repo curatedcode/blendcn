@@ -43,19 +43,21 @@ const disableAnimation = () => {
 	const css = document.createElement("style");
 	css.appendChild(
 		document.createTextNode(
-			"*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}",
+			"*,*::before,*::after{" +
+				"-webkit-transition:none!important;" +
+				"-moz-transition:none!important;" +
+				"-o-transition:none!important;" +
+				"-ms-transition:none!important;" +
+				"transition:none!important}",
 		),
 	);
 	document.head.appendChild(css);
 
 	return () => {
-		// Force restyle
-		(() => window.getComputedStyle(document.body))();
-
-		// Wait for next tick before removing
-		setTimeout(() => {
+		// remove the style on the next frame (no forced sync layout)
+		requestAnimationFrame(() => {
 			document.head.removeChild(css);
-		}, 1);
+		});
 	};
 };
 
@@ -73,7 +75,7 @@ export function ThemeProvider({
 		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
 		function updateTheme() {
-			const enableAnimation = disableAnimation();
+			const restoreAnimations = disableAnimation();
 
 			root.classList.remove("light", "dark");
 
@@ -87,8 +89,10 @@ export function ThemeProvider({
 			setResolvedTheme(newResolvedTheme);
 			root.classList.add(newResolvedTheme);
 
-			// Re-enable animations after applying theme
-			enableAnimation();
+			// restore animations in the next frame, avoiding forced reflow
+			requestAnimationFrame(() => {
+				restoreAnimations();
+			});
 		}
 
 		updateTheme();
