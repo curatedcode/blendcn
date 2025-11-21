@@ -1,7 +1,7 @@
 /** https://github.com/juliencrn/usehooks-ts/blob/master/packages/usehooks-ts/src/useSessionStorage/useSessionStorage.ts */
 
 import * as React from "react";
-import { useEventCallback } from "~/hooks/use-effect-callback";
+import { useEventCallback } from "~/hooks/use-event-callback";
 import { useEventListener } from "~/hooks/use-event-listener";
 
 declare global {
